@@ -32,7 +32,7 @@ export default function HeroSection() {
         "https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?q=85&w=1920&auto=format&fit=crop",
       caption: "4.5-Acre Lush Green Campus & Modern Academic Infrastructure",
       tag: "Academic Excellence",
-      statValue: "4,600+",
+      statValue: "5,100+",
       statLabel: "Enrolled Students",
     },
     {

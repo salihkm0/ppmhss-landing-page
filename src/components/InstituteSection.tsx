@@ -133,7 +133,7 @@ export default function InstituteSection() {
                 HSS) was founded in 1976 under the Nediyiruppu Muslim Educational
                 Association. What began as a community vision has blossomed into
                 one of Malappuram&apos;s premier educational landmarks, currently
-                empowering over 4,600 students across High School and Higher
+                empowering over 5,100 students across High School and Higher
                 Secondary streams.
               </p>
             </div>
@@ -299,26 +299,24 @@ export default function InstituteSection() {
                     Founding Story & 48-Year Educational Heritage
                   </h3>
                   <p>
-                    Panakkad Pookkoya Thangal Memorial Higher Secondary School
-                    was established in the year <strong>1976</strong> under the
-                    auspices of the{" "}
-                    <strong>
-                      Nediyiruppu Muslim Educational Association
-                    </strong>
-                    . Born out of the vision to provide accessible,
-                    high-standard secular education to the rural and semi-urban
-                    communities of Kondotty and surrounding regions in
-                    Malappuram district, the institution was named in reverent
-                    memory of the legendary humanitarian and visionary leader,{" "}
-                    <strong>Panakkad Pookkoya Thangal</strong>.
+                    Panakkad Pookkoya Thangal Memorial Higher Secondary School (PPM HSS)
+                    was established in <strong>1976</strong> by a handful of visionary educational promoters
+                    under the banner of the <strong>Nediyiruppu Muslim Educational Association (MEA)</strong>,
+                    registered under the Societies Registration Act of 1860 (Registration No. S.22/75).
                   </p>
                   <p>
-                    From humble beginnings with thatched classrooms and a
-                    handful of dedicated instructors, the school grew into a
-                    premier educational landmark of Kerala. In the year 2000,
-                    following the state government&apos;s delinking policy, the
-                    Higher Secondary Wing was sanctioned by the General
-                    Education Department, Government of Kerala.
+                    The institution was founded with the prime objective of driving the educational, cultural,
+                    and social upliftment of socially and educationally backward communities in Nediyiruppu Panchayat.
+                    Named in reverent memory of the esteemed leader and humanitarian, <strong>Panakkad Pookkoya Thangal</strong>,
+                    the school commenced operations in its germinal stages with just <strong>3 divisions and 112 students</strong>.
+                  </p>
+                  <p>
+                    Over nearly five decades of steadfast dedication, PPM HSS has expanded into an educational beacon
+                    accommodating <strong>over 5,100 students</strong> across High School and Higher Secondary sections.
+                    In the academic year <strong>2000–2001</strong>, the Higher Secondary Wing was sanctioned with initial
+                    batches in Science (Biology) and Humanities. The section further broadened in <strong>2002–2003</strong> with
+                    Computer Science, Sociology, and Commerce, and expanded again in <strong>2011–2012</strong> with additional
+                    Science and Commerce batches.
                   </p>
                 </div>
 
@@ -326,29 +324,27 @@ export default function InstituteSection() {
                   <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 space-y-2 shadow-xs">
                     <div className="flex items-center gap-2 font-bold text-slate-900 text-xs">
                       <ShieldCheck className="w-4 h-4 text-[#008744]" />
-                      <span>Affiliation & Board Details</span>
+                      <span>Affiliation & Recognition Details</span>
                     </div>
                     <ul className="text-xs text-slate-600 space-y-1.5 list-disc list-inside">
-                      <li>Recognized Government-Aided School (Code: 11024)</li>
+                      <li>Recognized Government-Aided School (School Code: 11024)</li>
+                      <li>Declared Minority Educational Institution under Section 2(g) of NCMEI Act 2004</li>
                       <li>General Education Department, Government of Kerala</li>
                       <li>Directorate of Higher Secondary Education (DHSE)</li>
                       <li>Kerala Board of Public Examinations (KBPE)</li>
-                      <li>Certified National Minority Educational Status</li>
+                      <li>Managed by Nediyiruppu MEA (Reg. No. S.22/75)</li>
                     </ul>
                   </div>
 
                   <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 space-y-2 shadow-xs">
                     <div className="flex items-center gap-2 font-bold text-slate-900 text-xs">
                       <Award className="w-4 h-4 text-[#008744]" />
-                      <span>School Motto & Emblem Symbolism</span>
+                      <span>Location & Milestone Expansion</span>
                     </div>
                     <p className="text-xs text-slate-600 leading-relaxed">
-                      Our official motto is{" "}
-                      <strong>&ldquo;Knowledge, Character, Service&rdquo;</strong>
-                      . The school crest features an open book symbolising
-                      enlightened wisdom, a burning lamp representing the
-                      dispelling of ignorance, and olive branches denoting peace
-                      and societal harmony.
+                      Situated just <strong>2 km from Kondotty town</strong>, near the Kozhikode–Palakkad National Highway (NH 966)
+                      in Kottukkara. From humble thatched classrooms in 1976 to a 4.5-acre modern educational campus with 6 advanced laboratories,
+                      smart classrooms, and specialized wings in Science, Humanities, and Commerce.
                     </p>
                   </div>
                 </div>
@@ -424,12 +420,8 @@ export default function InstituteSection() {
                   </div>
                 </div>
                 <div className="p-6">
-                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
-                    To be an exemplary center of holistic learning that nurtures
-                    intellectually enlightened, morally upright, and socially
-                    committed individuals capable of navigating global
-                    challenges while contributing selflessly to the progress of
-                    humanity and community development.
+                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed italic font-serif">
+                    &ldquo;To provide quality education par excellence for everyone and to hold high standards of education for the Muslim community.&rdquo;
                   </p>
                 </div>
               </div>
@@ -462,25 +454,19 @@ export default function InstituteSection() {
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-4 h-4 text-[#008744] shrink-0 mt-0.5" />
                       <span>
-                        Impart rigorous academic instruction through modern
-                        pedagogical tools, interactive smart classrooms, and
-                        state-of-the-art laboratory infrastructure.
+                        To promote value-based education, helping students discover their aptitudes and realize their potential by boosting their self-confidence and creative-thinking skills.
                       </span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-4 h-4 text-[#008744] shrink-0 mt-0.5" />
                       <span>
-                        Guarantee inclusive and accessible educational
-                        opportunities irrespective of socio-economic background,
-                        ensuring no deserving student is left behind.
+                        To provide an inclusive and harmonious educational atmosphere for all students of all communities and social strata.
                       </span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-4 h-4 text-[#008744] shrink-0 mt-0.5" />
                       <span>
-                        Instill timeless ethical values, mutual respect,
-                        scientific temper, and deep civic patriotism through
-                        active co-curricular participation.
+                        To inculcate excellent moral and ethical values in adolescents.
                       </span>
                     </li>
                   </ul>
@@ -557,177 +543,198 @@ export default function InstituteSection() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {/* Manager */}
-              <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-7 space-y-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+              <div className="bg-white border border-slate-200 rounded-3xl p-6 space-y-4 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
                 <div className="space-y-4">
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-3">
                     <img
                       src={ADMINISTRATION.manager.photo}
                       alt={ADMINISTRATION.manager.name}
-                      className="w-20 h-20 rounded-2xl object-cover shadow-md border-2 border-[#008744]"
+                      className="w-16 h-16 rounded-2xl object-cover shadow-md border-2 border-[#008744]"
                     />
                     <div>
                       <span className="text-[10px] font-bold text-[#008744] uppercase tracking-wider bg-emerald-50 px-2 py-0.5 rounded-sm">
                         Management
                       </span>
-                      <h3 className="text-base font-bold text-slate-900 mt-1">
+                      <h3 className="text-sm font-bold text-slate-900 mt-1 leading-snug">
                         {ADMINISTRATION.manager.name}
                       </h3>
-                      <p className="text-xs text-slate-500 font-medium">
+                      <p className="text-[11px] text-slate-500 font-medium">
                         {ADMINISTRATION.manager.title}
                       </p>
                     </div>
                   </div>
 
-                  <div className="space-y-2 text-xs text-slate-600 border-t border-slate-100 pt-3">
-                    <div className="flex justify-between py-1 border-b border-slate-50">
+                  <div className="space-y-1.5 text-xs text-slate-600 border-t border-slate-100 pt-2.5">
+                    <div className="flex justify-between py-0.5 border-b border-slate-50 text-[11px]">
                       <strong className="text-slate-800">Qualifications:</strong>
                       <span className="text-right text-slate-600">
                         {ADMINISTRATION.manager.qualification}
                       </span>
                     </div>
-                    <div className="flex justify-between py-1 border-b border-slate-50">
+                    <div className="flex justify-between py-0.5 border-b border-slate-50 text-[11px]">
                       <strong className="text-slate-800">Tenure:</strong>
                       <span className="text-right text-slate-600">
                         {ADMINISTRATION.manager.tenure}
                       </span>
                     </div>
-                    <div className="pt-1">
-                      <strong className="text-slate-800 block mb-1">
-                        Role & Responsibilities Overview:
-                      </strong>
-                      <p className="text-[11px] text-slate-600 leading-relaxed bg-slate-50 p-2.5 rounded-xl border border-slate-100">
-                        {ADMINISTRATION.manager.role}
-                      </p>
-                    </div>
                   </div>
                 </div>
 
-                <div className="bg-emerald-50/50 border border-emerald-100 rounded-2xl p-4 text-xs text-slate-700 italic space-y-1.5 mt-4">
+                <div className="bg-emerald-50/50 border border-emerald-100 rounded-2xl p-3.5 text-xs text-slate-700 italic space-y-1 mt-2">
                   <div className="flex items-center gap-1.5 font-bold not-italic text-[#008744] text-[11px]">
                     <Quote className="w-3.5 h-3.5" />
-                    <span>Message from the Manager</span>
+                    <span>Manager&apos;s Message</span>
                   </div>
-                  <p className="leading-relaxed">
+                  <p className="leading-relaxed text-[11px]">
                     &ldquo;{ADMINISTRATION.manager.message}&rdquo;
                   </p>
                 </div>
               </div>
 
-              {/* Principal */}
-              <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-7 space-y-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+              {/* Secretary & Treasurer */}
+              <div className="bg-white border border-slate-200 rounded-3xl p-6 space-y-4 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
                 <div className="space-y-4">
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-3">
+                    <img
+                      src={ADMINISTRATION.secretary.photo}
+                      alt={ADMINISTRATION.secretary.name}
+                      className="w-16 h-16 rounded-2xl object-cover shadow-md border-2 border-emerald-600"
+                    />
+                    <div>
+                      <span className="text-[10px] font-bold text-emerald-800 uppercase tracking-wider bg-emerald-50 px-2 py-0.5 rounded-sm">
+                        Trust Executive
+                      </span>
+                      <h3 className="text-sm font-bold text-slate-900 mt-1 leading-snug">
+                        {ADMINISTRATION.secretary.name}
+                      </h3>
+                      <p className="text-[11px] text-slate-500 font-medium">
+                        {ADMINISTRATION.secretary.title}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-1.5 text-xs text-slate-600 border-t border-slate-100 pt-2.5">
+                    <div className="flex justify-between py-0.5 border-b border-slate-50 text-[11px]">
+                      <strong className="text-slate-800">Role:</strong>
+                      <span className="text-right text-slate-600">
+                        Secretary & Treasurer
+                      </span>
+                    </div>
+                    <div className="flex justify-between py-0.5 border-b border-slate-50 text-[11px]">
+                      <strong className="text-slate-800">Tenure:</strong>
+                      <span className="text-right text-slate-600">
+                        {ADMINISTRATION.secretary.tenure}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-emerald-50/50 border border-emerald-100 rounded-2xl p-3.5 text-xs text-slate-700 italic space-y-1 mt-2">
+                  <div className="flex items-center gap-1.5 font-bold not-italic text-[#008744] text-[11px]">
+                    <Quote className="w-3.5 h-3.5" />
+                    <span>Secretary&apos;s Message</span>
+                  </div>
+                  <p className="leading-relaxed text-[11px]">
+                    &ldquo;{ADMINISTRATION.secretary.message}&rdquo;
+                  </p>
+                </div>
+              </div>
+
+              {/* Principal */}
+              <div className="bg-white border border-slate-200 rounded-3xl p-6 space-y-4 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
                     <img
                       src={ADMINISTRATION.principal.photo}
                       alt={ADMINISTRATION.principal.name}
-                      className="w-20 h-20 rounded-2xl object-cover shadow-md border-2 border-slate-900"
+                      className="w-16 h-16 rounded-2xl object-cover shadow-md border-2 border-slate-900"
                     />
                     <div>
                       <span className="text-[10px] font-bold text-slate-800 uppercase tracking-wider bg-slate-100 px-2 py-0.5 rounded-sm">
                         Higher Secondary Wing
                       </span>
-                      <h3 className="text-base font-bold text-slate-900 mt-1">
+                      <h3 className="text-sm font-bold text-slate-900 mt-1 leading-snug">
                         {ADMINISTRATION.principal.name}
                       </h3>
-                      <p className="text-xs text-slate-500 font-medium">
+                      <p className="text-[11px] text-slate-500 font-medium">
                         {ADMINISTRATION.principal.title}
                       </p>
                     </div>
                   </div>
 
-                  <div className="space-y-2 text-xs text-slate-600 border-t border-slate-100 pt-3">
-                    <div className="flex justify-between py-1 border-b border-slate-50">
+                  <div className="space-y-1.5 text-xs text-slate-600 border-t border-slate-100 pt-2.5">
+                    <div className="flex justify-between py-0.5 border-b border-slate-50 text-[11px]">
                       <strong className="text-slate-800">Qualifications:</strong>
                       <span className="text-right text-slate-600">
                         {ADMINISTRATION.principal.qualification}
                       </span>
                     </div>
-                    <div className="flex justify-between py-1 border-b border-slate-50">
-                      <strong className="text-slate-800">
-                        Tenure / Experience:
-                      </strong>
+                    <div className="flex justify-between py-0.5 border-b border-slate-50 text-[11px]">
+                      <strong className="text-slate-800">Tenure:</strong>
                       <span className="text-right text-slate-600">
                         {ADMINISTRATION.principal.tenure}
                       </span>
                     </div>
-                    <div className="pt-1">
-                      <strong className="text-slate-800 block mb-1">
-                        Role & Responsibilities Overview:
-                      </strong>
-                      <p className="text-[11px] text-slate-600 leading-relaxed bg-slate-50 p-2.5 rounded-xl border border-slate-100">
-                        {ADMINISTRATION.principal.role}
-                      </p>
-                    </div>
                   </div>
                 </div>
 
-                <div className="bg-emerald-50/50 border border-emerald-100 rounded-2xl p-4 text-xs text-slate-700 italic space-y-1.5 mt-4">
+                <div className="bg-emerald-50/50 border border-emerald-100 rounded-2xl p-3.5 text-xs text-slate-700 italic space-y-1 mt-2">
                   <div className="flex items-center gap-1.5 font-bold not-italic text-[#008744] text-[11px]">
                     <Quote className="w-3.5 h-3.5" />
-                    <span>Message from the Principal</span>
+                    <span>Principal&apos;s Message</span>
                   </div>
-                  <p className="leading-relaxed">
+                  <p className="leading-relaxed text-[11px]">
                     &ldquo;{ADMINISTRATION.principal.message}&rdquo;
                   </p>
                 </div>
               </div>
 
               {/* Headmaster */}
-              <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-7 space-y-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+              <div className="bg-white border border-slate-200 rounded-3xl p-6 space-y-4 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
                 <div className="space-y-4">
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-3">
                     <img
                       src={ADMINISTRATION.headmaster.photo}
                       alt={ADMINISTRATION.headmaster.name}
-                      className="w-20 h-20 rounded-2xl object-cover shadow-md border-2 border-[#008744]"
+                      className="w-16 h-16 rounded-2xl object-cover shadow-md border-2 border-[#008744]"
                     />
                     <div>
                       <span className="text-[10px] font-bold text-[#008744] uppercase tracking-wider bg-emerald-50 px-2 py-0.5 rounded-sm">
                         High School Wing
                       </span>
-                      <h3 className="text-base font-bold text-slate-900 mt-1">
+                      <h3 className="text-sm font-bold text-slate-900 mt-1 leading-snug">
                         {ADMINISTRATION.headmaster.name}
                       </h3>
-                      <p className="text-xs text-slate-500 font-medium">
+                      <p className="text-[11px] text-slate-500 font-medium">
                         {ADMINISTRATION.headmaster.title}
                       </p>
                     </div>
                   </div>
 
-                  <div className="space-y-2 text-xs text-slate-600 border-t border-slate-100 pt-3">
-                    <div className="flex justify-between py-1 border-b border-slate-50">
+                  <div className="space-y-1.5 text-xs text-slate-600 border-t border-slate-100 pt-2.5">
+                    <div className="flex justify-between py-0.5 border-b border-slate-50 text-[11px]">
                       <strong className="text-slate-800">Qualifications:</strong>
                       <span className="text-right text-slate-600">
                         {ADMINISTRATION.headmaster.qualification}
                       </span>
                     </div>
-                    <div className="flex justify-between py-1 border-b border-slate-50">
-                      <strong className="text-slate-800">
-                        Tenure / Experience:
-                      </strong>
+                    <div className="flex justify-between py-0.5 border-b border-slate-50 text-[11px]">
+                      <strong className="text-slate-800">Role:</strong>
                       <span className="text-right text-slate-600">
-                        {ADMINISTRATION.headmaster.tenure}
+                        Headmaster (HS Wing)
                       </span>
-                    </div>
-                    <div className="pt-1">
-                      <strong className="text-slate-800 block mb-1">
-                        Role & Responsibilities Overview:
-                      </strong>
-                      <p className="text-[11px] text-slate-600 leading-relaxed bg-slate-50 p-2.5 rounded-xl border border-slate-100">
-                        {ADMINISTRATION.headmaster.role}
-                      </p>
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-emerald-50/50 border border-emerald-100 rounded-2xl p-4 text-xs text-slate-700 italic space-y-1.5 mt-4">
+                <div className="bg-emerald-50/50 border border-emerald-100 rounded-2xl p-3.5 text-xs text-slate-700 italic space-y-1 mt-2">
                   <div className="flex items-center gap-1.5 font-bold not-italic text-[#008744] text-[11px]">
                     <Quote className="w-3.5 h-3.5" />
-                    <span>Message from the Headmaster</span>
+                    <span>Headmaster&apos;s Message</span>
                   </div>
-                  <p className="leading-relaxed">
+                  <p className="leading-relaxed text-[11px]">
                     &ldquo;{ADMINISTRATION.headmaster.message}&rdquo;
                   </p>
                 </div>
@@ -751,7 +758,7 @@ export default function InstituteSection() {
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                   An indispensable democratic body partnering with faculty to
                   safeguard student welfare, support infrastructural upgrades,
-                  and ensure academic and moral excellence for over 4,600
+                  and ensure academic and moral excellence for over 5,100
                   families.
                 </p>
                 <div className="flex flex-wrap items-center gap-3 pt-2">
@@ -767,7 +774,7 @@ export default function InstituteSection() {
                   </div>
                   <div className="flex items-center gap-2 text-xs bg-emerald-50 border border-emerald-200 px-4 py-2 rounded-full font-bold text-[#008744]">
                     <Users className="w-3.5 h-3.5" />
-                    <span>General Body: 4,600+ Parents</span>
+                    <span>General Body: 5,100+ Parents</span>
                   </div>
                 </div>
               </div>

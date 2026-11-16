@@ -22,7 +22,7 @@ export default function InstitutePage() {
         stats={[
           { label: "Founded", value: "1976" },
           { label: "Campus Area", value: "4.5 Acres" },
-          { label: "Enrolled Students", value: "4,600+" },
+          { label: "Enrolled Students", value: "5,100+" },
         ]}
       />
       <InstituteSection />

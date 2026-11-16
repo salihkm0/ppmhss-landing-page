@@ -70,38 +70,38 @@ export default function ContactSection() {
   const departments = [
     {
       name: "Higher Secondary Section (+1 / +2)",
-      lead: "Principal's Secretariat",
-      phone: "+91 483 2712240 (Ext: 101)",
-      email: "principal@ppmhsskottukkara.edu.in",
+      lead: "Principal's Office",
+      phone: "+91 483 2714174",
+      email: "ppmhss@gmail.com",
       hours: "9:00 AM - 4:30 PM",
     },
     {
       name: "High School Section (Std 8 - 10)",
       lead: "Headmaster's Office",
-      phone: "+91 483 2712240 (Ext: 102)",
-      email: "hm@ppmhsskottukkara.edu.in",
+      phone: "+91 483 2711374",
+      email: "ppmhsskottukkara@gmail.com",
       hours: "9:00 AM - 4:30 PM",
     },
     {
       name: "Admissions & HSCAP Assistance Desk",
-      lead: "Admissions Officer",
-      phone: "+91 94471 22400",
-      email: "admissions@ppmhsskottukkara.edu.in",
+      lead: "Admissions Coordinator",
+      phone: "+91 483 2714174",
+      email: "ppmhss@gmail.com",
       hours: "8:30 AM - 5:00 PM",
     },
     {
       name: "School Bus Transport & Logistics",
       lead: "Transport Supervisor",
-      phone: "+91 98471 00234",
-      email: "transport@ppmhsskottukkara.edu.in",
+      phone: "+91 483 2711374",
+      email: "ppmhsskottukkara@gmail.com",
       hours: "7:30 AM - 6:00 PM",
     },
     {
-      name: "Accounts & Fee Counter",
-      lead: "Administrative Officer",
-      phone: "+91 483 2712240 (Ext: 105)",
-      email: "accounts@ppmhsskottukkara.edu.in",
-      hours: "9:30 AM - 3:30 PM",
+      name: "Office Accounts & Administrative Counter",
+      lead: "Head Clerk (Hamza V. P.)",
+      phone: "+91 483 2711374",
+      email: "ppmhss@gmail.com",
+      hours: "9:00 AM - 4:30 PM",
     },
   ];
 
@@ -134,6 +134,8 @@ export default function ContactSection() {
               <h4 className="text-sm font-bold text-slate-900">Campus Address</h4>
               <p className="text-xs text-slate-600 leading-relaxed">
                 P.P.M. Higher Secondary School, Kottukkara, Kondotty, Malappuram District, Kerala - 673638
+                <br />
+                <span className="text-slate-500 text-[11px] font-medium">Near Calicut Airport • 2 km from Kondotty on NH 966</span>
               </p>
             </div>
           </div>
@@ -144,10 +146,10 @@ export default function ContactSection() {
             </div>
             <div className="space-y-1">
               <span className="text-xs font-bold uppercase text-[#008744]">Telephone</span>
-              <h4 className="text-sm font-bold text-slate-900">Direct Phone Lines</h4>
+              <h4 className="text-sm font-bold text-slate-900">Official Phone Lines</h4>
               <p className="text-xs text-slate-600 leading-relaxed">
-                General Office: +91 483 2712240<br />
-                Admissions Mobile: +91 94471 22400
+                High School Section: <strong>+91 483 2711374</strong><br />
+                Higher Secondary: <strong>+91 483 2714174</strong>
               </p>
             </div>
           </div>
@@ -158,10 +160,10 @@ export default function ContactSection() {
             </div>
             <div className="space-y-1">
               <span className="text-xs font-bold uppercase text-[#008744]">Email</span>
-              <h4 className="text-sm font-bold text-slate-900">Electronic Mail</h4>
+              <h4 className="text-sm font-bold text-slate-900">Official Electronic Mail</h4>
               <p className="text-xs text-slate-600 leading-relaxed">
-                office@ppmhsskottukkara.edu.in<br />
-                admissions@ppmhsskottukkara.edu.in
+                ppmhss@gmail.com<br />
+                ppmhsskottukkara@gmail.com
               </p>
             </div>
           </div>

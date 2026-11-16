@@ -20,8 +20,8 @@ export default function ContactPage() {
         breadcrumbLabel="Contact Us"
         backgroundImage="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop"
         stats={[
-          { label: "Main Office Helpline", value: "+91 483 2712240" },
-          { label: "Visiting Hours", value: "09:00 AM - 04:30 PM" },
+          { label: "HS Helpline", value: "+91 483 2711374" },
+          { label: "HSE Office", value: "+91 483 2714174" },
           { label: "School Code", value: "11024" },
         ]}
       />
