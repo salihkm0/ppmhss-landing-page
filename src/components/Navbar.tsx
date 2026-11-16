@@ -89,6 +89,10 @@ export default function Navbar() {
       href: "/campus-life",
     },
     {
+      label: "GALLERY",
+      href: "/gallery",
+    },
+    {
       label: "DOWNLOADS",
       href: "/resources",
     },

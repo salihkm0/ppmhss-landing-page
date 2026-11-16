@@ -106,6 +106,7 @@ export default function Footer() {
                 { href: "/admissions", label: "Admissions 2025-26" },
                 { href: "/resources", label: "Question Papers & Downloads" },
                 { href: "/campus-life", label: "Campus Life & Clubs" },
+                { href: "/gallery", label: "Photo & Media Gallery" },
                 { href: "/news-events", label: "News & Noticeboard" },
               ].map((link) => (
                 <li key={link.href}>

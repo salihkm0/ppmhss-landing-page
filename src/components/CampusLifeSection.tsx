@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import {
   Building2,
   Palette,
@@ -17,6 +18,7 @@ import {
   X,
   Sparkles,
   BookOpen,
+  ArrowRight,
 } from "lucide-react";
 import { CLUBS_DATA, ACHIEVEMENTS_LIST } from "@/data/schoolData";
 
@@ -448,6 +450,17 @@ export default function CampusLifeSection() {
                   </div>
                 </div>
               ))}
+            </div>
+
+            {/* Link to Dedicated Gallery Page */}
+            <div className="text-center pt-2">
+              <Link
+                href="/gallery"
+                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#008744] hover:bg-[#007038] text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-emerald-800/20 transition-all"
+              >
+                <span>View Complete Campus Photo Gallery</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
 
             {/* Lightbox Modal */}

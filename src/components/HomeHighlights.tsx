@@ -1037,7 +1037,7 @@ export default function HomeHighlights() {
             {galleryImages.map((img, i) => (
               <Link
                 key={i}
-                href="/campus-life"
+                href="/gallery"
                 className="group relative h-60 rounded-3xl overflow-hidden shadow-md block border-2 border-white"
               >
                 <img
@@ -1063,7 +1063,7 @@ export default function HomeHighlights() {
 
           <div className="text-center pt-2">
             <Link
-              href="/campus-life"
+              href="/gallery"
               className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#008744] hover:bg-[#007038] text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-emerald-800/20 transition-all"
             >
               <span>View Full Campus Gallery</span>
