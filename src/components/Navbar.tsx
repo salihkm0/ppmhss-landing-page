@@ -252,6 +252,16 @@ export default function Navbar() {
                   wa
                 </a>
               </div>
+
+              {/* Admin Portal Shortcut */}
+              <Link
+                href="/admin"
+                className="hidden sm:inline-flex items-center gap-1 pl-2.5 border-l border-slate-200 text-[11px] font-bold text-slate-700 hover:text-[#008744] transition-colors shrink-0"
+                title="Admin Control Panel"
+              >
+                <ShieldCheck className="w-3.5 h-3.5 text-[#008744]" />
+                <span>Admin CMS</span>
+              </Link>
             </div>
           </div>
         </div>
@@ -483,6 +493,14 @@ export default function Navbar() {
             </div>
 
             <div className="pt-3 border-t border-slate-100 space-y-2">
+              <Link
+                href="/admin"
+                onClick={closeMobile}
+                className="w-full py-2.5 text-center rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 border border-slate-200 transition-colors"
+              >
+                <ShieldCheck className="w-4 h-4 text-[#008744]" />
+                <span>Admin CMS Portal</span>
+              </Link>
               <a
                 href="https://manage.ppmhsskottukkara.com/login"
                 target="_blank"

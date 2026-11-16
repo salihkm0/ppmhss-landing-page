@@ -132,6 +132,7 @@ export default function Footer() {
             <ul className="space-y-2 text-slate-200">
               {[
                 { href: "/alumni", label: "Alumni Association" },
+                { href: "/admin", label: "Admin CMS Dashboard" },
                 { href: "/logins", label: "Teacher ERP Portal" },
                 { href: "/logins", label: "Student Dashboard" },
                 { href: "/logins", label: "Parent Progress Monitor" },
