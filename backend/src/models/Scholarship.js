@@ -14,3 +14,4 @@ const ScholarshipSchema = new mongoose.Schema(
 );
 
 module.exports = mongoose.model("Scholarship", ScholarshipSchema);
+

@@ -18,3 +18,4 @@ const GallerySchema = new mongoose.Schema(
 );
 
 module.exports = mongoose.model("Gallery", GallerySchema);
+

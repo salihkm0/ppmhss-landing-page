@@ -88,3 +88,4 @@ export const api = {
   updateAlumni: (id, data) => apiRequest(`/alumni/${id}`, { method: "PUT", body: JSON.stringify(data) }),
   deleteAlumni: (id) => apiRequest(`/alumni/${id}`, { method: "DELETE" }),
 };
+

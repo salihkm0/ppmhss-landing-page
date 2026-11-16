@@ -20,3 +20,4 @@ const NoticeSchema = new mongoose.Schema(
 );
 
 module.exports = mongoose.model("Notice", NoticeSchema);
+

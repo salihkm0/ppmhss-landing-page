@@ -3,11 +3,15 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --webpack",
-    "dev:nodemon": "nodemon --exec next dev --webpack",
-    "build": "next build --webpack",
-    "start": "next start",
-    "lint": "eslint"
+    "dev": "npm --prefix landing-page run dev",
+    "dev:landing": "npm --prefix landing-page run dev",
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:admin": "npm --prefix admin-dashboard run dev",
+    "build": "npm --prefix landing-page run build",
+    "build:landing": "npm --prefix landing-page run build",
+    "build:admin": "npm --prefix admin-dashboard run build",
+    "start": "npm --prefix landing-page start",
+    "lint": "npm --prefix landing-page run lint"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.3.5",

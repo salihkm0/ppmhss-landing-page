@@ -69,3 +69,4 @@ Standalone Node.js & Express REST API backend for PPM Higher Secondary School Po
    - `GET, PUT, DELETE /api/contacts` - Manage contact messages (Admin)
    - `POST /api/alumni` - Submit alumni registration
    - `GET, PUT, DELETE /api/alumni` - Manage alumni registrations (Admin)
+

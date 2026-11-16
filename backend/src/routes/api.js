@@ -121,3 +121,4 @@ router.put("/alumni/:id", authMiddleware, alumniCrud.update);
 router.delete("/alumni/:id", authMiddleware, alumniCrud.delete);
 
 module.exports = router;
+

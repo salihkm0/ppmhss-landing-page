@@ -18,3 +18,4 @@ const AlumniSchema = new mongoose.Schema(
 );
 
 module.exports = mongoose.model("Alumni", AlumniSchema);
+

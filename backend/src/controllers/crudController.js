@@ -72,3 +72,4 @@ const createCrudController = (Model, modelName) => {
 };
 
 module.exports = createCrudController;
+

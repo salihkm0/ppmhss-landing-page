@@ -62,3 +62,4 @@ const seedDatabase = async () => {
 };
 
 seedDatabase();
+

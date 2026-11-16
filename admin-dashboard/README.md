@@ -46,3 +46,4 @@ Standalone React + Vite + Tailwind CSS Admin Dashboard for managing the entire P
 5. **Default Credentials:**
    - **Username**: `admin`
    - **Password**: `admin123`
+
