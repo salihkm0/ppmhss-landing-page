@@ -68,3 +68,4 @@ export async function DELETE(request: Request) {
   fallbackStore.alumni = fallbackStore.alumni.filter((a: any) => a.id !== id && a._id !== id);
   return NextResponse.json({ success: true, message: "Alumni deleted" });
 }
+

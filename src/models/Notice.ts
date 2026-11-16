@@ -34,3 +34,4 @@ const NoticeSchema = new Schema<INotice>(
 
 export const Notice =
   mongoose.models.Notice || mongoose.model<INotice>("Notice", NoticeSchema);
+

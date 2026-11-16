@@ -94,3 +94,4 @@ export async function DELETE(request: Request) {
   fallbackStore.achievements = fallbackStore.achievements.filter((a: any) => a.id !== id && a._id !== id);
   return NextResponse.json({ success: true, message: "Achievement deleted" });
 }
+

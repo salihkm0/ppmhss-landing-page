@@ -30,3 +30,4 @@ const GallerySchema = new Schema<IGallery>(
 
 export const Gallery =
   mongoose.models.Gallery || mongoose.model<IGallery>("Gallery", GallerySchema);
+

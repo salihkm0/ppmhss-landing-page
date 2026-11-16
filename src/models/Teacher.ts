@@ -40,3 +40,4 @@ const TeacherSchema = new Schema<ITeacher>(
 
 export const Teacher =
   mongoose.models.Teacher || mongoose.model<ITeacher>("Teacher", TeacherSchema);
+

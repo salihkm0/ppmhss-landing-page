@@ -143,3 +143,4 @@ export async function DELETE(request: Request) {
   fallbackStore.gallery = fallbackStore.gallery.filter((g: any) => g.id !== id && g._id !== id);
   return NextResponse.json({ success: true, message: "Gallery photo deleted" });
 }
+

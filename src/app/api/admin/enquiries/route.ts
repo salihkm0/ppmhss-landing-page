@@ -68,3 +68,4 @@ export async function DELETE(request: Request) {
   fallbackStore.enquiries = fallbackStore.enquiries.filter((e: any) => e.id !== id && e._id !== id);
   return NextResponse.json({ success: true, message: "Enquiry deleted" });
 }
+

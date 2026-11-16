@@ -94,3 +94,4 @@ export async function DELETE(request: Request) {
   fallbackStore.scholarships = fallbackStore.scholarships.filter((s: any) => s.id !== id && s._id !== id);
   return NextResponse.json({ success: true, message: "Scholarship deleted" });
 }
+

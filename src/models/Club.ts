@@ -22,3 +22,4 @@ const ClubSchema = new Schema<IClub>(
 
 export const Club =
   mongoose.models.Club || mongoose.model<IClub>("Club", ClubSchema);
+

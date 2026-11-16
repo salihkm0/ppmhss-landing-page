@@ -68,3 +68,4 @@ export async function DELETE(request: Request) {
   fallbackStore.contacts = fallbackStore.contacts.filter((c: any) => c.id !== id && c._id !== id);
   return NextResponse.json({ success: true, message: "Message deleted" });
 }
+

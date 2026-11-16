@@ -110,3 +110,4 @@ export async function DELETE(request: Request) {
   fallbackStore.clubs = fallbackStore.clubs.filter((c: any) => c.id !== id && c._id !== id);
   return NextResponse.json({ success: true, message: "Club deleted" });
 }
+

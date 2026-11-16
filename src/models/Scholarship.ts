@@ -27,3 +27,4 @@ const ScholarshipSchema = new Schema<IScholarship>(
 export const Scholarship =
   mongoose.models.Scholarship ||
   mongoose.model<IScholarship>("Scholarship", ScholarshipSchema);
+

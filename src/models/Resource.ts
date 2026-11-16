@@ -62,3 +62,4 @@ const ResourceSchema = new Schema<IResource>(
 
 export const Resource =
   mongoose.models.Resource || mongoose.model<IResource>("Resource", ResourceSchema);
+

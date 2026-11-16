@@ -147,3 +147,4 @@ export async function DELETE(request: Request) {
   fallbackStore.resources = fallbackStore.resources.filter((r: any) => r.id !== id && r._id !== id);
   return NextResponse.json({ success: true, message: "Resource deleted" });
 }
+

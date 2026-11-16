@@ -51,3 +51,4 @@ export async function getAdminSession(): Promise<SessionPayload | null> {
 }
 
 export const ADMIN_COOKIE_NAME = COOKIE_NAME;
+

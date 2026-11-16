@@ -163,3 +163,4 @@ export async function DELETE(request: Request) {
   fallbackStore.notices = fallbackStore.notices.filter((n: any) => n.id !== id && n._id !== id);
   return NextResponse.json({ success: true, message: "Notice deleted" });
 }
+
