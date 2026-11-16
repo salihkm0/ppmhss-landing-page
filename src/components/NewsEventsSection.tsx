@@ -84,8 +84,7 @@ export default function NewsEventsSection() {
             News, Events & <span className="text-[#008744]">Noticeboard</span>
           </h2>
           <p className="text-sm text-slate-600 leading-relaxed">
-            Real-time campus communications, official circulars from the Directorate of General Education,
-            examination notifications, and upcoming academic celebrations.
+            Campus communications, examination notices, official circulars, and events.
           </p>
 
           {/* Sub Navigation Pill Tabs */}

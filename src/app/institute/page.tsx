@@ -16,7 +16,7 @@ export default function InstitutePage() {
         eyebrow="FOUNDED 1976 • MALAPPURAM"
         title="About Our"
         highlightWord="Institute"
-        description="Established under the Nediyiruppu Muslim Educational Association, Panakkad Pookkoya Thangal Memorial Higher Secondary School has nurtured academic distinction, moral integrity, and social leadership for nearly five decades."
+        description="Founded in 1976 under the Nediyiruppu MEA, serving over 5,100 students in Malappuram district."
         breadcrumbLabel="The Institute"
         backgroundImage="https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?q=80&w=1600&auto=format&fit=crop"
         stats={[

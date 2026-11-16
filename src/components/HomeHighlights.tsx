@@ -286,10 +286,7 @@ export default function HomeHighlights() {
             </div>
 
             <p className="text-sm text-slate-600 leading-relaxed">
-              Established in 1976 under the Nediyiruppu Muslim Educational Association, PPM HSS has evolved
-              into an illustrious center for school education in Kerala. Affiliated to the Directorate of Higher Secondary
-              Education (DHSE), our campus provides a vibrant sanctuary where academic rigor meets character-building
-              and civic responsibility.
+              Founded in 1976 under the Nediyiruppu MEA, PPM HSS provides quality, government-aided education to over 5,100 students across High School and Higher Secondary wings.
             </p>
 
             {/* Feature Bullet Points with Emerald Icons */}

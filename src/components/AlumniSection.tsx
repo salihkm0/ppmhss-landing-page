@@ -95,8 +95,7 @@ export default function AlumniSection() {
             PPM HSS Global <span className="text-[#008744]">Alumni Association</span>
           </h2>
           <p className="text-sm text-slate-600 leading-relaxed">
-            Uniting four decades of graduates across five continents. Dedicated to upholding the noble traditions of
-            PPM HSS Kottukkara through student scholarships, career mentoring, and community welfare.
+            Uniting graduates since 1976 through student scholarships, career mentoring, and community welfare.
           </p>
         </div>
 
@@ -108,10 +107,7 @@ export default function AlumniSection() {
                 Overview & Mission of the Old Students Association (OSA)
               </h3>
               <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
-                Since the graduation of our inaugural secondary batch in the late 1970s, PPM HSS alumni have distinguished
-                themselves across public governance, clinical medicine, technological research, corporate leadership,
-                and creative arts. The Global Alumni Association coordinates international chapters, funds student merit endowments,
-                sponsors smart classroom tech, and anchors professional coaching for current students.
+                PPM HSS alumni coordinate chapters worldwide, fund student merit endowments, and provide career mentoring for current students.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">

@@ -16,7 +16,7 @@ export default function NewsEventsPage() {
         eyebrow="OFFICIAL NOTICES & NOTIFICATIONS"
         title="News, Events &"
         highlightWord="Noticeboard"
-        description="Stay up to date with urgent Kerala board examination schedules, circulars, academic merit days, admission dates, and vibrant campus celebrations at PPM HSS."
+        description="Board exam schedules, official notices, academic circulars, and campus events."
         breadcrumbLabel="News & Events"
         backgroundImage="https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=1600&auto=format&fit=crop"
         stats={[

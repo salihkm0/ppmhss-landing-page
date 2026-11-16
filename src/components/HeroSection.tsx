@@ -23,53 +23,53 @@ export default function HeroSection() {
 
   const slides = [
     {
-      badge: "PPM HSS KOTTUKKARA • ESTD 1976",
+      badge: "ESTD 1976",
       titlePart1: "Start Your",
       titleHighlight: "Inspiring & Bright",
       titlePart2: "Academic Future",
-      desc: "Panakkad Pookkoya Thangal Memorial Higher Secondary School (School Code: 11024). Nurturing academic distinction, moral integrity, and community leadership in Malappuram district for nearly 50 years.",
+      desc: "Government-aided school nurturing over 5,100 students in Malappuram district.",
       image:
         "https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?q=85&w=1920&auto=format&fit=crop",
-      caption: "4.5-Acre Lush Green Campus & Modern Academic Infrastructure",
+      caption: "4.5-Acre Campus & Modern Infrastructure",
       tag: "Academic Excellence",
       statValue: "5,100+",
       statLabel: "Enrolled Students",
     },
     {
-      badge: "STATE-OF-THE-ART INFRASTRUCTURE",
+      badge: "INFRASTRUCTURE",
       titlePart1: "Modern High-Tech",
       titleHighlight: "Laboratories & Smart",
       titlePart2: "Classrooms",
-      desc: "Fully equipped Physics, Chemistry, Biology, and Computer Science laboratories with interactive smart boards and high-speed broadband network supporting experiential learning.",
+      desc: "Fully equipped science labs and KITE ICT smart classrooms.",
       image:
         "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=85&w=1920&auto=format&fit=crop",
-      caption: "Advanced Science Laboratories & KITE ICT Smart Classrooms",
+      caption: "Science Labs & ICT Smart Classrooms",
       tag: "Research & Science",
       statValue: "6+",
       statLabel: "Specialized Labs",
     },
     {
-      badge: "COMPREHENSIVE HIGHER SECONDARY",
+      badge: "HIGHER SECONDARY",
       titlePart1: "Empowering",
       titleHighlight: "Science, Commerce &",
       titlePart2: "Humanities Streams",
-      desc: "Government-approved Higher Secondary curriculum with expert faculty, career guidance clinics, entrance exam coaching, and stellar SSLC & Plus Two board exam pass records.",
+      desc: "Science, Commerce, and Humanities streams with 194 Full A+ in SSLC 2024.",
       image:
         "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=85&w=1920&auto=format&fit=crop",
-      caption: "165+ Accredited Educators & Personalized Student Mentorship",
+      caption: "165+ Dedicated Educators & Mentors",
       tag: "DHSE Code: 11024",
       statValue: "194",
       statLabel: "Full A+ in SSLC 2024",
     },
     {
-      badge: "KNOWLEDGE & CHARACTER",
+      badge: "CAMPUS LIBRARY",
       titlePart1: "Central Reference",
       titleHighlight: "Library & Digital",
       titlePart2: "Resource Wing",
-      desc: "Home to over 15,000 academic titles, science journals, periodicals, and a 120-seat silent reading room fostering deep inquiry, critical thought, and lifelong reading habits.",
+      desc: "Over 15,000 titles, periodicals, and a reading room for students.",
       image:
         "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=85&w=1920&auto=format&fit=crop",
-      caption: "15,000+ Volume Central Scholastic Library & Digital Reading Room",
+      caption: "15,000+ Volume Central Library",
       tag: "Resource Hub",
       statValue: "15,000+",
       statLabel: "Academic Volumes",
@@ -306,7 +306,7 @@ export default function HeroSection() {
                   Scholarship Facility
                 </h3>
                 <p className="text-xs text-slate-600 mt-2 leading-relaxed">
-                  Extensive financial aid including NMMS, USS, Post-Matric Minority, and PPM Endowed Merit Awards.
+                  NMMS, USS, Post-Matric Minority, and PPM Merit Awards.
                 </p>
               </div>
             </div>
@@ -334,7 +334,7 @@ export default function HeroSection() {
                   Skilled Lecturers
                 </h3>
                 <p className="text-xs text-slate-600 mt-2 leading-relaxed">
-                  165+ accredited post-graduate educators with extensive state curriculum evaluation experience.
+                  165+ experienced post-graduate teachers across HS and HSE wings.
                 </p>
               </div>
             </div>
@@ -362,7 +362,7 @@ export default function HeroSection() {
                   Reference Library
                 </h3>
                 <p className="text-xs text-slate-600 mt-2 leading-relaxed">
-                  Over 15,000 academic titles, science journals, periodicals, and a digital study repository.
+                  15,000+ books, periodicals, and quiet reading spaces.
                 </p>
               </div>
             </div>
@@ -390,7 +390,7 @@ export default function HeroSection() {
                   Government-Aided
                 </h3>
                 <p className="text-xs text-slate-600 mt-2 leading-relaxed">
-                  Completely government-subsidized tuition fee structure ensuring top-tier education accessible to all.
+                  Government-aided fee structure under the Kerala General Education Dept.
                 </p>
               </div>
             </div>

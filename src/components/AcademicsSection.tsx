@@ -199,11 +199,7 @@ export default function AcademicsSection() {
                 <span className="text-[#008744]">Specialized Streams</span>
               </h1>
               <p className="text-sm text-slate-600 leading-relaxed pt-1">
-                PPM HSS delivers a comprehensive, rigorous state curriculum
-                governed by the Kerala State Education Department (SCERT &
-                DHSE). Spanning Standards 8 through 12, our programs integrate
-                interactive smart classrooms, analytical laboratories, and
-                entrance coaching clinics.
+                Kerala State curriculum (SCERT & DHSE) spanning Standards 8 to 12 with smart classrooms, laboratories, and experienced faculty.
               </p>
             </div>
 
@@ -240,12 +236,10 @@ export default function AcademicsSection() {
             <div className="p-4 rounded-2xl bg-emerald-50/70 border border-emerald-200/80 relative">
               <Quote className="w-7 h-7 text-[#008744]/20 absolute top-3 right-4 pointer-events-none" />
               <p className="text-xs italic text-slate-700 leading-relaxed">
-                &ldquo;Rigorous scholarship blended with ethical character: our
-                faculty ensures students master fundamentals, question deeply, and
-                excel in competitive higher education avenues.&rdquo;
+                &ldquo;Rigorous scholarship blended with ethical character: our faculty ensures every student masters fundamentals and excels in board examinations.&rdquo;
               </p>
               <div className="text-[10px] font-bold text-[#008744] mt-2 uppercase tracking-wider">
-                — Academic Council & Curriculum Directorate
+                — Academic Council
               </div>
             </div>
           </div>

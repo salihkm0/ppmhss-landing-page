@@ -51,8 +51,7 @@ export default function TeachersSection() {
             Meet With Our <span className="text-[#008744]">Teachers</span>
           </h1>
           <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            Our distinguished faculty comprises over 165 certified educators dedicated to academic rigor,
-            moral grounding, and individual student mentorship at PPM HSS Kottukkara.
+            Over 165 certified educators across High School and Higher Secondary wings at PPM HSS Kottukkara.
           </p>
         </div>
 

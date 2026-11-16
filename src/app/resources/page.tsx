@@ -16,7 +16,7 @@ export default function ResourcesPage() {
         eyebrow="ACADEMIC REPOSITORY"
         title="Downloads &"
         highlightWord="Resources"
-        description="Official repository of previous years' board examination question papers, subject-wise question banks, vacation worksheets, exam timetables, government circulars, and application forms."
+        description="Previous question papers, question banks, worksheets, exam timetables, and forms."
         breadcrumbLabel="Downloads"
         backgroundImage="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=1600&auto=format&fit=crop"
         stats={[

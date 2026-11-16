@@ -16,7 +16,7 @@ export default function TeachersPage() {
         eyebrow="FACULTY DIRECTORY"
         title="Our Dedicated"
         highlightWord="Teachers & Mentors"
-        description="Meet the passionate subject specialists, department heads, and seasoned educators dedicated to academic rigor, moral grounding, and personalized student mentoring at PPM HSS."
+        description="Subject specialists and educators across High School and Higher Secondary wings."
         breadcrumbLabel="Our Teachers"
         backgroundImage="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1600&auto=format&fit=crop"
         stats={[

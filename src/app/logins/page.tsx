@@ -16,7 +16,7 @@ export default function LoginsPage() {
         eyebrow="DIGITAL GATEWAYS"
         title="School Portals &"
         highlightWord="Logins"
-        description="Direct authenticated gateways for HS Management Login, Kerala DHSE portal, Sametham government statistics, KITE ICT services, and student report card records."
+        description="Direct portals for HS Management, DHSE, Sametham, and KITE ICT services."
         breadcrumbLabel="Portals & Logins"
         backgroundImage="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1600&auto=format&fit=crop"
         stats={[

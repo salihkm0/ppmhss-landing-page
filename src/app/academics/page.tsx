@@ -16,7 +16,7 @@ export default function AcademicsPage() {
         eyebrow="SCERT & DHSE CURRICULUM"
         title="Academic Programs &"
         highlightWord="Streams"
-        description="A rigorous state curriculum spanning Standards 8 to 12, featuring specialized Bio-Science, Computer Science, Commerce, and Humanities streams with modern laboratory training and stellar board results."
+        description="Kerala state curriculum for Standards 8 to 12, featuring Science, Commerce, and Humanities streams."
         breadcrumbLabel="Academics"
         backgroundImage="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=1600&auto=format&fit=crop"
         stats={[

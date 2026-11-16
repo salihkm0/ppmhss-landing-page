@@ -16,7 +16,7 @@ export default function AdmissionsPage() {
         eyebrow="ACADEMIC YEAR 2025-26"
         title="Admissions &"
         highlightWord="Enrollment"
-        description="Join the legacy of excellence at PPM HSS Kottukkara. Transparent merit-based admission guidelines for High School (Classes 8-10) and Higher Secondary (+1 & +2 Science, Commerce, and Humanities)."
+        description="Merit-based admission guidelines for High School (Classes 8-10) and Higher Secondary (+1 & +2)."
         breadcrumbLabel="Admissions"
         backgroundImage="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1600&auto=format&fit=crop"
         stats={[

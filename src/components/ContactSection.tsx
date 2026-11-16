@@ -118,8 +118,7 @@ export default function ContactSection() {
             Reach Out & <span className="text-[#008744]">Contact Us</span>
           </h2>
           <p className="text-sm text-slate-600 leading-relaxed">
-            We are here to assist with admissions guidance, administrative verification, student records,
-            parent communications, and public queries.
+            Get in touch for admissions, student records, and general school inquiries.
           </p>
         </div>
 

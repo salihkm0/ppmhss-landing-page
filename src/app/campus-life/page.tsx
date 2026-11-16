@@ -16,7 +16,7 @@ export default function CampusLifePage() {
         eyebrow="STUDENT LIFE & INFRASTRUCTURE"
         title="Campus Life &"
         highlightWord="Activities"
-        description="Vibrant co-curricular experiences encompassing arts, sports, science fairs, Kalolsavam, and active service units including NCC, NSS, SPC, and Bharat Scouts & Guides on our 4.5-acre green campus."
+        description="Clubs, arts, sports, Kalolsavam, NCC, NSS, and Scouts on our 4.5-acre campus."
         breadcrumbLabel="Campus Life"
         backgroundImage="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=1600&auto=format&fit=crop"
         stats={[

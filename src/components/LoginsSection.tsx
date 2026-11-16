@@ -87,8 +87,7 @@ export default function LoginsSection() {
             Institutional ERP & <span className="text-[#008744]">Login Portals</span>
           </h2>
           <p className="text-sm text-slate-600 leading-relaxed">
-            Direct authenticated access for teachers, students, parents, and administrative staff to internal
-            learning management systems and Kerala Department of General Education digital portals.
+            Direct access to internal school systems and Kerala General Education Department portals.
           </p>
 
           {/* Sub Navigation Pill Tabs */}

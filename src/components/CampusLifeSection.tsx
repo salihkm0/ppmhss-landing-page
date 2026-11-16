@@ -134,8 +134,7 @@ export default function CampusLifeSection() {
             Campus Life & <span className="text-[#008744]">Holistic Activities</span>
           </h2>
           <p className="text-sm text-slate-600 max-w-3xl leading-relaxed">
-            A dynamic educational community integrating state-of-the-art learning infrastructure, competitive athletics,
-            traditional cultural pursuits, vibrant student clubs, and a legendary legacy of state achievements.
+            Co-curricular activities, athletics, arts, and student clubs on our 4.5-acre campus.
           </p>
 
           {/* Sub Navigation Pill Tabs */}

@@ -16,7 +16,7 @@ export default function AlumniPage() {
         eyebrow="GLOBAL PPM HSS NETWORK"
         title="Alumni"
         highlightWord="Association"
-        description="Connecting generations of graduates since 1976. Celebrating distinguished alumni leading in engineering, medicine, public service, and entrepreneurship across the globe."
+        description="Connecting generations of graduates since 1976 across professions worldwide."
         breadcrumbLabel="Alumni"
         backgroundImage="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1600&auto=format&fit=crop"
         stats={[

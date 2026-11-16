@@ -111,8 +111,7 @@ export default function AdmissionsSection() {
             Admissions <span className="text-[#008744]">2025-26</span>
           </h1>
           <p className="text-sm text-slate-600 max-w-3xl leading-relaxed">
-            PPM HSS Kottukkara welcomes aspiring learners to our High School and Higher Secondary wings.
-            Admissions are conducted strictly in accordance with Kerala State General Education Department norms.
+            High School and Higher Secondary admissions conducted as per Kerala General Education Department norms.
           </p>
         </div>
 

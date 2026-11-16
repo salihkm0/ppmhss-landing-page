@@ -296,27 +296,16 @@ export default function InstituteSection() {
               <div className="lg:col-span-8 space-y-6 text-sm text-slate-700 leading-relaxed">
                 <div className="space-y-3">
                   <h3 className="text-xl font-bold text-slate-900">
-                    Founding Story & 48-Year Educational Heritage
+                    Founding Story & 48-Year Heritage
                   </h3>
                   <p>
-                    Panakkad Pookkoya Thangal Memorial Higher Secondary School (PPM HSS)
-                    was established in <strong>1976</strong> by a handful of visionary educational promoters
-                    under the banner of the <strong>Nediyiruppu Muslim Educational Association (MEA)</strong>,
-                    registered under the Societies Registration Act of 1860 (Registration No. S.22/75).
+                    Established in <strong>1976</strong> under the <strong>Nediyiruppu Muslim Educational Association (MEA)</strong>,
+                    PPM HSS was founded to provide quality education in Nediyiruppu Panchayat.
+                    Named in memory of <strong>Panakkad Pookkoya Thangal</strong>, the school began with 3 divisions and 112 students.
                   </p>
                   <p>
-                    The institution was founded with the prime objective of driving the educational, cultural,
-                    and social upliftment of socially and educationally backward communities in Nediyiruppu Panchayat.
-                    Named in reverent memory of the esteemed leader and humanitarian, <strong>Panakkad Pookkoya Thangal</strong>,
-                    the school commenced operations in its germinal stages with just <strong>3 divisions and 112 students</strong>.
-                  </p>
-                  <p>
-                    Over nearly five decades of steadfast dedication, PPM HSS has expanded into an educational beacon
-                    accommodating <strong>over 5,100 students</strong> across High School and Higher Secondary sections.
-                    In the academic year <strong>2000–2001</strong>, the Higher Secondary Wing was sanctioned with initial
-                    batches in Science (Biology) and Humanities. The section further broadened in <strong>2002–2003</strong> with
-                    Computer Science, Sociology, and Commerce, and expanded again in <strong>2011–2012</strong> with additional
-                    Science and Commerce batches.
+                    Today, PPM HSS serves <strong>over 5,100 students</strong> across High School and Higher Secondary sections.
+                    The Higher Secondary Wing was sanctioned in 2000–2001 and currently offers Science, Commerce, and Humanities streams.
                   </p>
                 </div>
 
@@ -342,9 +331,7 @@ export default function InstituteSection() {
                       <span>Location & Milestone Expansion</span>
                     </div>
                     <p className="text-xs text-slate-600 leading-relaxed">
-                      Situated just <strong>2 km from Kondotty town</strong>, near the Kozhikode–Palakkad National Highway (NH 966)
-                      in Kottukkara. From humble thatched classrooms in 1976 to a 4.5-acre modern educational campus with 6 advanced laboratories,
-                      smart classrooms, and specialized wings in Science, Humanities, and Commerce.
+                      Located <strong>2 km from Kondotty town</strong> along NH 966 on a 4.5-acre campus with 6 science and computer labs, smart classrooms, and library.
                     </p>
                   </div>
                 </div>
@@ -483,23 +470,23 @@ export default function InstituteSection() {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {[
                   {
-                    title: "Scholastic Rigor",
-                    desc: "Upholding uncompromising academic benchmarks, conceptual mastery, and analytical thinking.",
+                    title: "Academic Excellence",
+                    desc: "Strong conceptual grounding, continuous evaluation, and board exam preparation.",
                     icon: GraduationCap,
                   },
                   {
                     title: "Moral Integrity",
-                    desc: "Instilling honesty, humility, empathy, and ethical conduct in all spheres of life.",
+                    desc: "Instilling honesty, empathy, and ethical conduct in all spheres of life.",
                     icon: ShieldCheck,
                   },
                   {
-                    title: "Inclusive Access",
-                    desc: "Nurturing an egalitarian campus culture where students of every background thrive equally.",
+                    title: "Inclusivity",
+                    desc: "Equal learning opportunities and support for students of all backgrounds.",
                     icon: Users,
                   },
                   {
-                    title: "Civic Leadership",
-                    desc: "Cultivating proactive community stewardship through social service, NCC, and NSS initiatives.",
+                    title: "Social Commitment",
+                    desc: "Active community involvement through NCC, NSS, and student clubs.",
                     icon: Trophy,
                   },
                 ].map((val, i) => {

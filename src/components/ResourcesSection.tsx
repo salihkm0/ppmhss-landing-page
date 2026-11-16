@@ -67,8 +67,7 @@ export default function ResourcesSection() {
             Academic Resources & <span className="text-[#008744]">Downloads</span>
           </h2>
           <p className="text-sm text-slate-600 leading-relaxed">
-            Official repository of model question papers, subject-wise question banks, vacation worksheets,
-            examination timetables, administrative application forms, and government orders for students, parents, and faculty.
+            Model question papers, question banks, holiday worksheets, exam timetables, and downloadable forms.
           </p>
         </div>
 
