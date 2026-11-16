@@ -49,17 +49,27 @@ export default function Navbar() {
         {
           label: "The Institute",
           href: "/institute",
-          description: "Founding Story, Vision, Administration & PTA",
+          description: "History, Heritage & Affiliation Details",
+        },
+        {
+          label: "Vision, Mission & Values",
+          href: "/institute/vision",
+          description: "Guiding Principles & Educational Philosophy",
+        },
+        {
+          label: "Leadership & Administration",
+          href: "/institute/leadership",
+          description: "Manager, Secretary, Principal & Headmaster",
+        },
+        {
+          label: "Parent-Teacher Association",
+          href: "/institute/pta",
+          description: "Executive Committee, Meetings & Student Welfare",
         },
         {
           label: "Alumni Association",
           href: "/alumni",
           description: "Distinguished Alumni & Global Network",
-        },
-        {
-          label: "News & Announcements",
-          href: "/news-events",
-          description: "Official Circulars, Notices & Highlights",
         },
       ],
     },
@@ -70,27 +80,58 @@ export default function Navbar() {
         {
           label: "Academic Programs",
           href: "/academics",
-          description: "High School, Higher Secondary & Curriculum",
+          description: "High School & Higher Secondary Streams",
         },
         {
           label: "Teachers & Faculty",
           href: "/teachers",
-          description: "165+ Accredited Educators & Department Mentors",
+          description: "165+ Certified Educators by Department",
+        },
+        {
+          label: "Scholarships & Aid",
+          href: "/academics/scholarships",
+          description: "NMMS, USS, Minority & Merit Endowments",
+        },
+        {
+          label: "Academic Calendar",
+          href: "/academics/calendar",
+          description: "Term Schedules & Examination Timetables",
         },
         {
           label: "Admissions 2025-26",
           href: "/admissions",
-          description: "Eligibility Criteria, Guidelines & Applications",
+          description: "Guidelines, Eligibility & HSCAP Helpdesk",
         },
       ],
     },
     {
       label: "CAMPUS LIFE",
       href: "/campus-life",
+      children: [
+        {
+          label: "Campus Facilities",
+          href: "/campus-life",
+          description: "Laboratories, Library, Smart Classes & Grounds",
+        },
+        {
+          label: "Clubs & Activities",
+          href: "/campus-life/clubs",
+          description: "NSS, NCC, Scouts, Eco Club & STEM Forums",
+        },
+        {
+          label: "Hall of Achievements",
+          href: "/campus-life/achievements",
+          description: "SSLC 100% Pass, Kalolsavam & Sports Awards",
+        },
+      ],
     },
     {
       label: "GALLERY",
       href: "/gallery",
+    },
+    {
+      label: "NOTICES & EVENTS",
+      href: "/news-events",
     },
     {
       label: "DOWNLOADS",

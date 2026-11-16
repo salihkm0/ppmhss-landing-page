@@ -90,10 +90,10 @@ export default function NewsEventsSection() {
           {/* Sub Navigation Pill Tabs */}
           <div className="flex flex-wrap justify-center gap-2 pt-4">
             {[
-              { id: "news", label: "7.1 Campus News & Stories" },
-              { id: "events", label: "7.2 Events Calendar" },
-              { id: "announcements", label: "7.3 Urgent Alerts" },
-              { id: "noticeboard", label: "7.4 Official Noticeboard" },
+              { id: "news", label: "Campus News" },
+              { id: "events", label: "Upcoming Events" },
+              { id: "announcements", label: "Urgent Alerts" },
+              { id: "noticeboard", label: "Official Circulars" },
             ].map((tab) => (
               <button
                 key={tab.id}

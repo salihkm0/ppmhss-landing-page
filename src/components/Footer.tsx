@@ -101,11 +101,13 @@ export default function Footer() {
             <ul className="space-y-2 text-slate-200">
               {[
                 { href: "/institute", label: "About The Institute" },
+                { href: "/institute/vision", label: "Vision, Mission & Values" },
+                { href: "/institute/leadership", label: "Administrative Leadership" },
                 { href: "/academics", label: "Academics & Streams" },
-                { href: "/teachers", label: "Our Teachers & Faculty" },
+                { href: "/academics/scholarships", label: "Scholarships & Financial Aid" },
+                { href: "/teachers", label: "Faculty & Staff Directory" },
                 { href: "/admissions", label: "Admissions 2025-26" },
-                { href: "/resources", label: "Question Papers & Downloads" },
-                { href: "/campus-life", label: "Campus Life & Clubs" },
+                { href: "/campus-life/clubs", label: "Clubs & Activities" },
                 { href: "/gallery", label: "Photo & Media Gallery" },
                 { href: "/news-events", label: "News & Noticeboard" },
               ].map((link) => (
