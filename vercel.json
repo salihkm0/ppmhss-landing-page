@@ -2,3 +2,4 @@
   "buildCommand": "cd landing-page && npm run build",
   "outputDirectory": "landing-page/.next"
 }
+

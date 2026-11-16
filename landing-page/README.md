@@ -33,3 +33,4 @@ Official web portal and landing page for Panakkad Pookkoya Thangal Memorial High
    npm run build
    npm start
    ```
+
