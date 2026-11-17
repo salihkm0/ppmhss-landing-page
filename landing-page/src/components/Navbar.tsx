@@ -130,7 +130,7 @@ export default function Navbar() {
       href: "/gallery",
     },
     {
-      label: "NOTICES & EVENTS",
+      label: "NOTICES",
       href: "/news-events",
     },
     {
@@ -138,7 +138,7 @@ export default function Navbar() {
       href: "/resources",
     },
     {
-      label: "CONTACT US",
+      label: "CONTACT",
       href: "/contact",
     },
   ];
@@ -172,8 +172,8 @@ export default function Navbar() {
     <>
       <header className="sticky top-0 z-[100] w-full bg-white shadow-xs">
         {/* Light Institutional Top Bar (Clean, Professional, Light Theme) */}
-        <div className="w-full bg-slate-50 text-slate-600 py-1.5 px-4 sm:px-6 lg:px-8 text-xs font-medium border-b border-slate-200/80">
-          <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2">
+        <div className="w-full bg-slate-50 text-slate-600 py-1.5 border-b border-slate-200/80">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-2 text-xs font-medium">
             {/* Left Info: Code & Location */}
             <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-slate-600 text-[11px] sm:text-xs shrink-0">
               <div className="flex items-center gap-1.5 font-bold text-[#008744] bg-emerald-50 px-2 py-0.5 rounded-sm border border-emerald-200/60 shrink-0">
@@ -257,100 +257,101 @@ export default function Navbar() {
         </div>
 
         {/* Main Brand & Navigation Bar */}
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex items-center justify-between gap-3">
-          {/* Official School Crest & Title (Eduka Clean Badge) */}
-          <Link
-            href="/"
-            className="flex items-center gap-2.5 sm:gap-3 shrink-0 group py-0.5"
-          >
-            <img
-              src="/images/logo.png"
-              alt="PPM HSS Official Crest"
-              className="h-10 sm:h-11 w-auto object-contain drop-shadow-xs group-hover:scale-105 transition-transform duration-300 shrink-0"
-            />
-            <div className="flex flex-col shrink-0">
-              <span className="text-sm sm:text-base font-black tracking-tight text-slate-900 leading-none font-serif whitespace-nowrap">
-                P.P.M.H.S.S
-              </span>
-              <span className="text-[10px] sm:text-[11px] font-bold text-[#008744] tracking-wider uppercase mt-0.5 whitespace-nowrap">
-                Kottukkara
-              </span>
-            </div>
-          </Link>
+        <div className="w-full bg-white">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex items-center justify-between gap-3">
+            {/* Official School Crest & Title (Eduka Clean Badge) */}
+            <Link
+              href="/"
+              className="flex items-center gap-2.5 sm:gap-3 shrink-0 group py-0.5"
+            >
+              <img
+                src="/images/logo.png"
+                alt="PPM HSS Official Crest"
+                className="h-10 sm:h-11 w-auto object-contain drop-shadow-xs group-hover:scale-105 transition-transform duration-300 shrink-0"
+              />
+              <div className="flex flex-col shrink-0">
+                <span className="text-sm sm:text-base font-black tracking-tight text-slate-900 leading-none font-serif whitespace-nowrap">
+                  P.P.M.H.S.S
+                </span>
+                <span className="text-[10px] sm:text-[11px] font-bold text-[#008744] tracking-wider uppercase mt-0.5 whitespace-nowrap">
+                  Kottukkara
+                </span>
+              </div>
+            </Link>
 
-          {/* Desktop Navigation with Dropdowns (>= 1024px) */}
-          <nav className="hidden lg:flex items-center gap-1 xl:gap-2 text-slate-800 shrink-0">
-            {navItems.map((item) => {
-              const active = isNavGroupActive(item);
+            {/* Desktop Navigation with Dropdowns (>= 1024px) */}
+            <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1.5 text-slate-800">
+              {navItems.map((item) => {
+                const active = isNavGroupActive(item);
 
-              if (item.children && item.children.length > 0) {
-                return (
-                  <div
-                    key={item.label}
-                    className="relative group py-2 hover:z-[9999]"
-                  >
-                    <Link
-                      href={item.href}
-                      className={`inline-flex items-center gap-1 px-2.5 xl:px-3 py-1.5 rounded-lg text-xs xl:text-[13px] font-bold tracking-wider uppercase transition-colors whitespace-nowrap cursor-pointer ${
-                        active
-                          ? "text-[#008744] font-black"
-                          : "text-slate-700 hover:text-[#008744]"
-                      }`}
+                if (item.children && item.children.length > 0) {
+                  return (
+                    <div
+                      key={item.label}
+                      className="relative group py-2 hover:z-[9999]"
                     >
-                      <span>{item.label}</span>
-                      <ChevronDown className="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180 text-slate-400 group-hover:text-[#008744]" />
-                    </Link>
+                      <Link
+                        href={item.href}
+                        className={`inline-flex items-center gap-1 px-2 xl:px-2.5 py-1.5 rounded-lg text-[11px] xl:text-[13px] font-bold tracking-wider uppercase transition-colors whitespace-nowrap cursor-pointer ${
+                          active
+                            ? "text-[#008744] font-black"
+                            : "text-slate-700 hover:text-[#008744]"
+                        }`}
+                      >
+                        <span>{item.label}</span>
+                        <ChevronDown className="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180 text-slate-400 group-hover:text-[#008744]" />
+                      </Link>
 
-                    {/* Dropdown Menu Box */}
-                    <div className="absolute top-full left-0 pt-1.5 w-64 xl:w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-1 group-hover:translate-y-0 transition-all duration-200 pointer-events-none group-hover:pointer-events-auto z-[9999]">
-                      <div className="bg-white rounded-2xl shadow-2xl shadow-slate-900/20 border border-slate-100 p-2 overflow-hidden ring-1 ring-slate-900/10 space-y-1">
-                        {item.children.map((sub) => (
-                          <Link
-                            key={sub.label}
-                            href={sub.href}
-                            className={`group/item flex flex-col px-3.5 py-2.5 rounded-xl transition-all ${
-                              isExactActive(sub.href)
-                                ? "text-[#008744] bg-emerald-50 font-bold"
-                                : "text-slate-800 hover:text-[#008744] hover:bg-emerald-50/70"
-                            }`}
-                          >
-                            <div className="flex items-center justify-between">
-                              <span className="text-xs font-bold leading-tight">
-                                {sub.label}
-                              </span>
-                              <ChevronRight className="w-3.5 h-3.5 text-slate-300 group-hover/item:text-[#008744] group-hover/item:translate-x-0.5 transition-all" />
-                            </div>
-                            {sub.description && (
-                              <span className="text-[10px] text-slate-500 font-normal mt-0.5 leading-tight group-hover/item:text-slate-600">
-                                {sub.description}
-                              </span>
-                            )}
-                          </Link>
-                        ))}
+                      {/* Dropdown Menu Box */}
+                      <div className="absolute top-full left-0 pt-1.5 w-64 xl:w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-1 group-hover:translate-y-0 transition-all duration-200 pointer-events-none group-hover:pointer-events-auto z-[9999]">
+                        <div className="bg-white rounded-2xl shadow-2xl shadow-slate-900/20 border border-slate-100 p-2 overflow-hidden ring-1 ring-slate-900/10 space-y-1">
+                          {item.children.map((sub) => (
+                            <Link
+                              key={sub.label}
+                              href={sub.href}
+                              className={`group/item flex flex-col px-3.5 py-2.5 rounded-xl transition-all ${
+                                isExactActive(sub.href)
+                                  ? "text-[#008744] bg-emerald-50 font-bold"
+                                  : "text-slate-800 hover:text-[#008744] hover:bg-emerald-50/70"
+                              }`}
+                            >
+                              <div className="flex items-center justify-between">
+                                <span className="text-xs font-bold leading-tight">
+                                  {sub.label}
+                                </span>
+                                <ChevronRight className="w-3.5 h-3.5 text-slate-300 group-hover/item:text-[#008744] group-hover/item:translate-x-0.5 transition-all" />
+                              </div>
+                              {sub.description && (
+                                <span className="text-[10px] text-slate-500 font-normal mt-0.5 leading-tight group-hover/item:text-slate-600">
+                                  {sub.description}
+                                </span>
+                              )}
+                            </Link>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  );
+                }
+
+                return (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    className={`px-2 xl:px-2.5 py-1.5 rounded-lg text-[11px] xl:text-[13px] font-bold tracking-wider uppercase transition-colors whitespace-nowrap ${
+                      active
+                        ? "text-[#008744] font-black"
+                        : "text-slate-700 hover:text-[#008744]"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
                 );
-              }
+              })}
+            </nav>
 
-              return (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  className={`px-2.5 xl:px-3 py-1.5 rounded-lg text-xs xl:text-[13px] font-bold tracking-wider uppercase transition-colors whitespace-nowrap ${
-                    active
-                      ? "text-[#008744] font-black"
-                      : "text-slate-700 hover:text-[#008744]"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-          </nav>
-
-          {/* Right Header Actions */}
-          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+            {/* Right Header Actions */}
+            <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
             {/* Quick Search Trigger */}
             <button
               onClick={() => setSearchModalOpen(true)}
@@ -386,6 +387,7 @@ export default function Navbar() {
             </button>
           </div>
         </div>
+      </div>
 
         {/* Mobile Navigation Drawer with Accordion Sub-Menus */}
         {mobileMenuOpen && (

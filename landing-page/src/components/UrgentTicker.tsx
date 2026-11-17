@@ -10,8 +10,8 @@ export default function UrgentTicker() {
   const urgentNotices = NOTICES_LIST.filter((n) => n.isUrgent);
 
   return (
-    <div className="w-full overflow-hidden bg-emerald-50/90 border-y border-emerald-200/90 text-emerald-950 text-xs py-2 px-4 sm:px-8">
-      <div className="max-w-7xl mx-auto flex items-center gap-3 overflow-hidden">
+    <div className="w-full overflow-hidden bg-emerald-50/90 border-y border-emerald-200/90 text-emerald-950 text-xs py-2">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-3 overflow-hidden">
         <div className="flex items-center gap-1.5 font-bold uppercase tracking-wider text-[11px] text-white bg-[#008744] px-2.5 py-0.5 rounded-sm shrink-0 shadow-xs">
           <AlertCircle className="w-3.5 h-3.5 text-white" />
           <span>Notice</span>
