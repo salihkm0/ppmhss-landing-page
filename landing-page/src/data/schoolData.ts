@@ -50,6 +50,7 @@ export interface ClubItem {
   coordinator: string;
   description: string;
   activities: string[];
+  imageUrl: string;
 }
 
 export const SCHOOL_INFO = {
@@ -829,50 +830,57 @@ export const CLUBS_DATA: ClubItem[] = [
     name: "National Service Scheme (NSS Unit 045)",
     category: "Community Service",
     coordinator: "Sri. K.T. Faisal",
-    description: "Village outreach, blood donation drives, and 7-day annual residential camp.",
+    description: "Village outreach, blood donation drives, and 7-day annual residential camp in nearby rural pockets.",
     activities: ["Palliative care support", "Campus greening drives"],
+    imageUrl: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=800&auto=format&fit=crop",
   },
   {
     name: "National Cadet Corps (NCC Army Wing)",
     category: "Discipline & Leadership",
     coordinator: "Capt. K. Babu",
-    description: "Parade discipline, physical endurance training, and camp activities.",
+    description: "Parade discipline, physical endurance training, firing practice, and state-level camp activities.",
     activities: ["Republic Day parade participation", "Annual training camp"],
+    imageUrl: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=800&auto=format&fit=crop",
   },
   {
     name: "Bharat Scouts & Guides",
     category: "Character & Outdoors",
     coordinator: "Smt. Mary Thomas",
-    description: "Camping, pioneering, first aid, and community service activities.",
+    description: "Camping, pioneering, outdoor survival, first aid, and civic disaster management activities.",
     activities: ["Rashtrapati Award training", "State jamboree camps"],
+    imageUrl: "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?q=80&w=800&auto=format&fit=crop",
   },
   {
     name: "Mathrubhumi SEED / Eco Club",
     category: "Environment",
     coordinator: "Smt. Fathimath Zuhara",
-    description: "Campus biodiversity, organic vegetable farming, and waste reduction.",
+    description: "Campus biodiversity conservation, organic vegetable farming, composting, and plastic waste reduction.",
     activities: ["Vegetable gardening", "Campus clean-up drives"],
+    imageUrl: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=800&auto=format&fit=crop",
   },
   {
     name: "Science & Innovation Club (STEM)",
     category: "Science & Innovation",
     coordinator: "Sri. P. Venugopalan",
-    description: "Science models, exhibitions, and Kerala School Sasthrolsavam participation.",
+    description: "Science working models, IoT & robotics demonstrations, and Kerala School Sasthrolsavam coaching.",
     activities: ["Annual science exhibition", "Science fair project coaching"],
+    imageUrl: "https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=800&auto=format&fit=crop",
   },
   {
     name: "Sahitya Samajam (Literary & Debate Club)",
     category: "Literature & Oratory",
     coordinator: "Sri. M.K. Musthafa",
-    description: "Debates, manuscript magazines, and literary competitions in Malayalam and English.",
+    description: "Debates, manuscript magazines, elocution coaching, and literary competitions in Malayalam and English.",
     activities: ["Reading Week observances", "Elocution and debate competitions"],
+    imageUrl: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=800&auto=format&fit=crop",
   },
   {
     name: "Career Guidance & Counselling Cell",
     category: "Higher Education Guidance",
     coordinator: "Smt. Deepa N.",
-    description: "Aptitude tests, entrance exam guidance, and higher education counseling.",
+    description: "Aptitude assessments, KEAM/NEET/JEE coaching guidance, and university admissions counselling.",
     activities: ["Career orientation sessions", "Mock entrance tests"],
+    imageUrl: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop",
   },
 ];
 
