@@ -19,6 +19,7 @@ export interface AchievementItem {
   year: string;
   description: string;
   badge: string;
+  imageUrl: string;
 }
 
 export interface ResourceItem {
@@ -890,40 +891,54 @@ export const ACHIEVEMENTS_LIST: AchievementItem[] = [
     title: "100% Pass in SSLC Examination 2024",
     category: "Academic",
     year: "2024",
-    description: "All 542 students passed, with 194 securing Full A+ across all subjects.",
+    description: "All 542 students passed, with 194 securing Full A+ across all subjects in the Kerala State Board.",
     badge: "100% Pass / 194 Full A+",
+    imageUrl: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop",
   },
   {
     id: "ach2",
     title: "State 1st Rank in Higher Secondary Commerce",
     category: "Academic",
     year: "2024",
-    description: "Adil Shereef scored 1200/1200 marks in the Kerala DHSE board exam.",
+    description: "Adil Shereef scored 1200/1200 marks in the Kerala DHSE board exam, setting an institutional milestone.",
     badge: "DHSE State 1st Rank (1200/1200)",
+    imageUrl: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=800&auto=format&fit=crop",
   },
   {
     id: "ach3",
     title: "State Kalolsavam 'A Grade' in Mappilappattu & Oppana",
     category: "Arts & Kalolsavam",
     year: "2024",
-    description: "School troupe secured 'A' Grade at the 62nd Kerala School Kalolsavam.",
+    description: "School cultural troupe secured top 'A' Grade honors at the 62nd Kerala School Kalolsavam.",
     badge: "State Kalolsavam A Grade",
+    imageUrl: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=800&auto=format&fit=crop",
   },
   {
     id: "ach4",
     title: "Malappuram District Sub-Junior Football Champions",
     category: "Sports",
     year: "2023",
-    description: "School football team won the Malappuram revenue district championship.",
+    description: "School football team won the Malappuram revenue district championship against 48 competing schools.",
     badge: "District Football Champions",
+    imageUrl: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=800&auto=format&fit=crop",
   },
   {
     id: "ach5",
     title: "Best Eco-Friendly Green Campus Award",
     category: "Institutional",
     year: "2023",
-    description: "Conferred for solar campus installations and rainwater harvesting.",
+    description: "Conferred for solar campus installations, zero-waste bio-bins, and comprehensive rainwater harvesting.",
     badge: "Haritha Vidyalayam Honor",
+    imageUrl: "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    id: "ach6",
+    title: "Kerala School Sasthrolsavam State Science Fair Honors",
+    category: "Academic",
+    year: "2023",
+    description: "Students represented Malappuram district with award-winning working models in renewable energy.",
+    badge: "State Science Fair A Grade",
+    imageUrl: "https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=800&auto=format&fit=crop",
   },
 ];
 
