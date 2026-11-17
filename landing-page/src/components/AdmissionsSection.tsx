@@ -133,67 +133,120 @@ export default function AdmissionsSection() {
           </div>
         </div>
 
-        {/* Key Information Cards: Eligibility, Dates & Fees */}
+        {/* Key Information Cards: Eligibility, Dates & Fees with Image Headers */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Eligibility Criteria */}
-          <div className="bg-slate-50 border border-slate-200 rounded-3xl p-6 space-y-3 shadow-xs">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-[#008744] border-b border-slate-200 pb-2">
-              Eligibility Criteria by Class
-            </h4>
-            <div className="space-y-3 text-xs text-slate-700">
-              <div>
-                <strong className="text-slate-900 block font-bold">High School (Classes 8, 9, 10):</strong>
-                <p className="text-slate-600 mt-1 leading-relaxed">
-                  Successful completion of previous class from any recognized state/central board with valid Transfer Certificate.
-                </p>
+          <div className="group bg-white border border-slate-200/90 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-emerald-950/5 hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between">
+            <div className="relative h-44 w-full overflow-hidden bg-slate-900">
+              <img
+                src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop"
+                alt="Eligibility Criteria"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
+              <span className="absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wider text-emerald-300 bg-slate-900/85 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-emerald-400/20 shadow-sm">
+                Admission Norms
+              </span>
+              <div className="absolute bottom-2.5 left-3 text-white">
+                <h4 className="text-sm font-bold">Eligibility Criteria by Class</h4>
               </div>
-              <div className="pt-2 border-t border-slate-200">
-                <strong className="text-slate-900 block font-bold">Plus One (+1) Higher Secondary:</strong>
-                <p className="text-slate-600 mt-1 leading-relaxed">
-                  Passed SSLC / CBSE Class 10 / ICSE with qualification for higher studies (EHS). Science stream requires min B+ grade in Science & Mathematics.
-                </p>
+            </div>
+
+            <div className="p-6 space-y-3 flex-1 flex flex-col justify-between text-xs text-slate-700">
+              <div className="space-y-3">
+                <div>
+                  <strong className="text-slate-900 block font-bold text-xs">High School (Classes 8, 9, 10):</strong>
+                  <p className="text-slate-600 mt-1 leading-relaxed">
+                    Successful completion of previous class from any recognized state/central board with valid Transfer Certificate.
+                  </p>
+                </div>
+                <div className="pt-2 border-t border-slate-100">
+                  <strong className="text-slate-900 block font-bold text-xs">Plus One (+1) Higher Secondary:</strong>
+                  <p className="text-slate-600 mt-1 leading-relaxed">
+                    Passed SSLC / CBSE Class 10 / ICSE with qualification for higher studies (EHS). Science stream requires min B+ grade in Science & Mathematics.
+                  </p>
+                </div>
+              </div>
+              <div className="pt-2 border-t border-slate-100 text-[11px] font-bold text-[#008744]">
+                Direct Window Available
               </div>
             </div>
           </div>
 
           {/* Important Dates Schedule */}
-          <div className="bg-slate-50 border border-slate-200 rounded-3xl p-6 space-y-3 shadow-xs">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-[#008744] border-b border-slate-200 pb-2">
-              Admission Schedule 2025-26
-            </h4>
-            <ul className="text-xs text-slate-700 space-y-2.5">
-              <li className="flex justify-between border-b border-slate-200/80 pb-1.5">
-                <span>HSCAP Portal Opens:</span>
-                <strong className="text-slate-900 font-mono">May 12, 2025</strong>
-              </li>
-              <li className="flex justify-between border-b border-slate-200/80 pb-1.5">
-                <span>Trial Allotment Published:</span>
-                <strong className="text-slate-900 font-mono">May 24, 2025</strong>
-              </li>
-              <li className="flex justify-between border-b border-slate-200/80 pb-1.5">
-                <span>First Allotment & Joining:</span>
-                <strong className="text-slate-900 font-mono">June 02, 2025</strong>
-              </li>
-              <li className="flex justify-between pb-1">
-                <span>Class 8 & 9 Direct Window:</span>
-                <strong className="text-slate-900 font-mono">May 02 - May 28, 2025</strong>
-              </li>
-            </ul>
+          <div className="group bg-white border border-slate-200/90 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-emerald-950/5 hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between">
+            <div className="relative h-44 w-full overflow-hidden bg-slate-900">
+              <img
+                src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=800&auto=format&fit=crop"
+                alt="Admission Schedule"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
+              <span className="absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wider text-emerald-300 bg-slate-900/85 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-emerald-400/20 shadow-sm">
+                Timeline
+              </span>
+              <div className="absolute bottom-2.5 left-3 text-white">
+                <h4 className="text-sm font-bold">Admission Schedule 2025-26</h4>
+              </div>
+            </div>
+
+            <div className="p-6 space-y-3 flex-1 flex flex-col justify-between text-xs text-slate-700">
+              <ul className="space-y-2.5">
+                <li className="flex justify-between border-b border-slate-100 pb-1.5">
+                  <span>HSCAP Portal Opens:</span>
+                  <strong className="text-slate-900 font-mono">May 12, 2025</strong>
+                </li>
+                <li className="flex justify-between border-b border-slate-100 pb-1.5">
+                  <span>Trial Allotment Published:</span>
+                  <strong className="text-slate-900 font-mono">May 24, 2025</strong>
+                </li>
+                <li className="flex justify-between border-b border-slate-100 pb-1.5">
+                  <span>First Allotment & Joining:</span>
+                  <strong className="text-slate-900 font-mono">June 02, 2025</strong>
+                </li>
+                <li className="flex justify-between pb-1">
+                  <span>Class 8 & 9 Direct Window:</span>
+                  <strong className="text-slate-900 font-mono">May 02 - May 28, 2025</strong>
+                </li>
+              </ul>
+              <div className="pt-2 border-t border-slate-100 text-[11px] font-bold text-[#008744]">
+                HSCAP School Code: 11024
+              </div>
+            </div>
           </div>
 
           {/* Fee Structure */}
-          <div className="bg-slate-50 border border-slate-200 rounded-3xl p-6 space-y-3 shadow-xs">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-[#008744] border-b border-slate-200 pb-2">
-              100% Free Tuition Policy
-            </h4>
-            <p className="text-xs text-slate-700 leading-relaxed">
-              As a recognized government-aided institution, <strong>tuition fee is completely free</strong> for all students
-              under the Kerala Public Education Mission.
-            </p>
-            <div className="text-xs text-slate-600 bg-white border border-slate-200 rounded-2xl p-3 space-y-1">
-              <div>• Free standard textbook distribution</div>
-              <div>• Free noon-meal scheme for secondary students</div>
-              <div>• Nominal voluntary PTA membership & laboratory fee as approved by General Body</div>
+          <div className="group bg-white border border-slate-200/90 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-emerald-950/5 hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between">
+            <div className="relative h-44 w-full overflow-hidden bg-slate-900">
+              <img
+                src="https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=800&auto=format&fit=crop"
+                alt="Free Tuition Policy"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
+              <span className="absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wider text-emerald-300 bg-slate-900/85 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-emerald-400/20 shadow-sm">
+                Financial Welfare
+              </span>
+              <div className="absolute bottom-2.5 left-3 text-white">
+                <h4 className="text-sm font-bold">100% Free Tuition Policy</h4>
+              </div>
+            </div>
+
+            <div className="p-6 space-y-3 flex-1 flex flex-col justify-between text-xs text-slate-700">
+              <div className="space-y-2">
+                <p className="text-xs text-slate-700 leading-relaxed">
+                  As a recognized government-aided institution, <strong>tuition fee is completely free</strong> for all students
+                  under the Kerala Public Education Mission.
+                </p>
+                <div className="text-xs text-slate-600 bg-slate-50 border border-slate-100 rounded-2xl p-3 space-y-1">
+                  <div>• Free standard textbook distribution</div>
+                  <div>• Free noon-meal scheme for secondary students</div>
+                  <div>• Nominal voluntary PTA membership & laboratory fee</div>
+                </div>
+              </div>
+              <div className="pt-2 border-t border-slate-100 text-[11px] font-bold text-[#008744]">
+                Government Aided
+              </div>
             </div>
           </div>
         </div>

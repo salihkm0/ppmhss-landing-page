@@ -752,7 +752,28 @@ export const STAFF_LIST: StaffMember[] = [
   },
 ];
 
-export const ACADEMIC_STREAMS = [
+export interface AcademicStream {
+  code: string;
+  name: string;
+  coreSubjects: string[];
+  languages: string[];
+  description: string;
+  seats: number;
+  labs: string[];
+  imageUrl: string;
+}
+
+export interface ScholarshipItem {
+  name: string;
+  target: string;
+  provider: string;
+  amount: string;
+  eligibility: string;
+  deadline: string;
+  imageUrl: string;
+}
+
+export const ACADEMIC_STREAMS: AcademicStream[] = [
   {
     code: "01",
     name: "Science (Biology Stream)",
@@ -761,6 +782,7 @@ export const ACADEMIC_STREAMS = [
     description: "Foundation for medical, health sciences, and research careers.",
     seats: 120,
     labs: ["Physics Lab", "Chemistry Lab", "Biology Lab"],
+    imageUrl: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=800&auto=format&fit=crop",
   },
   {
     code: "05",
@@ -770,6 +792,7 @@ export const ACADEMIC_STREAMS = [
     description: "Prepares students for engineering, IT, and software fields.",
     seats: 60,
     labs: ["Computer Lab (Linux/Python)", "Physics Lab"],
+    imageUrl: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=800&auto=format&fit=crop",
   },
   {
     code: "19",
@@ -779,6 +802,7 @@ export const ACADEMIC_STREAMS = [
     description: "Combines commerce principles with computer application skills.",
     seats: 120,
     labs: ["Commerce & Tally Computer Lab"],
+    imageUrl: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop",
   },
   {
     code: "28",
@@ -788,10 +812,11 @@ export const ACADEMIC_STREAMS = [
     description: "Study of history, economics, politics, and social sciences.",
     seats: 60,
     labs: ["Social Science Resource Room"],
+    imageUrl: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=800&auto=format&fit=crop",
   },
 ];
 
-export const SCHOLARSHIPS_LIST = [
+export const SCHOLARSHIPS_LIST: ScholarshipItem[] = [
   {
     name: "National Means-cum-Merit Scholarship (NMMS)",
     target: "Class 8 Students",
@@ -799,6 +824,7 @@ export const SCHOLARSHIPS_LIST = [
     amount: "₹12,000 per annum (from Class 9 to Class 12)",
     eligibility: "Students scoring min 55% in Class 7, parental annual income ≤ ₹3,50,000.",
     deadline: "October 31 annually",
+    imageUrl: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop",
   },
   {
     name: "Ushas / USS (Upper Primary Scholarship)",
@@ -807,6 +833,7 @@ export const SCHOLARSHIPS_LIST = [
     amount: "Merit endowment & certificate",
     eligibility: "Based on state-level USS examination qualification.",
     deadline: "August 15",
+    imageUrl: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?q=80&w=800&auto=format&fit=crop",
   },
   {
     name: "Post-Matric Minority Scholarship",
@@ -815,6 +842,7 @@ export const SCHOLARSHIPS_LIST = [
     amount: "Full tuition, maintenance & examination fee waiver",
     eligibility: "Min 50% in previous board exam; family income ≤ ₹2,00,000.",
     deadline: "November 30",
+    imageUrl: "https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=800&auto=format&fit=crop",
   },
   {
     name: "PPM Endowed Merit Award",
@@ -823,6 +851,7 @@ export const SCHOLARSHIPS_LIST = [
     amount: "Gold Medal & Cash Endowment (₹10,000 - ₹25,000)",
     eligibility: "SSLC Full A+ achievers and Higher Secondary school stream toppers.",
     deadline: "Annual Merit Day (July)",
+    imageUrl: "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?q=80&w=800&auto=format&fit=crop",
   },
 ];
 
