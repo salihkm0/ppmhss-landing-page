@@ -11,6 +11,7 @@ const AchievementSchema = new mongoose.Schema(
     year: { type: String, required: true },
     description: { type: String, required: true },
     badge: { type: String, default: "Honour" },
+    imageUrl: { type: String, default: "" },
   },
   { timestamps: true }
 );

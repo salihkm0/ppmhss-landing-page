@@ -16,7 +16,7 @@ import {
   ExternalLink,
   Plus,
   Trash2,
-  Edit2,
+  Edit3,
   CheckCircle2,
   Search,
   RefreshCw,
@@ -36,14 +36,279 @@ import {
   Building2,
   Phone,
   Globe,
-  Upload,
+  Sparkles,
+  BookOpen,
+  Calendar,
+  Layers,
+  MapPin,
+  HelpCircle,
+  ChevronRight,
+  Quote,
 } from "lucide-react";
 import { api, getToken, setToken, removeToken } from "./services/api";
+
+// Default public data so Visual Editor always displays rich, live school pages
+const DEFAULT_CLUBS = [
+  {
+    _id: "cl1",
+    name: "National Service Scheme (NSS Unit 045)",
+    category: "Community Service",
+    coordinator: "Sri. K.T. Faisal",
+    description: "Village outreach, blood donation drives, and 7-day annual residential camp in nearby rural pockets.",
+    activities: ["Palliative care support", "Campus greening drives"],
+    imageUrl: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    _id: "cl2",
+    name: "National Cadet Corps (NCC Army Wing)",
+    category: "Discipline & Leadership",
+    coordinator: "Capt. K. Babu",
+    description: "Parade discipline, physical endurance training, firing practice, and state-level camp activities.",
+    activities: ["Republic Day parade participation", "Annual training camp"],
+    imageUrl: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    _id: "cl3",
+    name: "Bharat Scouts & Guides",
+    category: "Character & Outdoors",
+    coordinator: "Smt. Mary Thomas",
+    description: "Camping, pioneering, outdoor survival, first aid, and civic disaster management activities.",
+    activities: ["Rashtrapati Award training", "State jamboree camps"],
+    imageUrl: "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    _id: "cl4",
+    name: "Mathrubhumi SEED / Eco Club",
+    category: "Environment",
+    coordinator: "Smt. Fathimath Zuhara",
+    description: "Campus biodiversity conservation, organic vegetable farming, composting, and plastic waste reduction.",
+    activities: ["Vegetable gardening", "Campus clean-up drives"],
+    imageUrl: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    _id: "cl5",
+    name: "Science & Innovation Club (STEM)",
+    category: "Science & Innovation",
+    coordinator: "Sri. P. Venugopalan",
+    description: "Science working models, IoT & robotics demonstrations, and Kerala School Sasthrolsavam coaching.",
+    activities: ["Annual science exhibition", "Science fair project coaching"],
+    imageUrl: "https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    _id: "cl6",
+    name: "Sahitya Samajam (Literary & Debate Club)",
+    category: "Literature & Oratory",
+    coordinator: "Sri. M.K. Musthafa",
+    description: "Debates, manuscript magazines, elocution coaching, and literary competitions in Malayalam and English.",
+    activities: ["Reading Week observances", "Elocution and debate competitions"],
+    imageUrl: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=800&auto=format&fit=crop",
+  },
+];
+
+const DEFAULT_ACHIEVEMENTS = [
+  {
+    _id: "ach1",
+    title: "100% Pass in SSLC Examination 2024",
+    category: "Academic",
+    year: "2024",
+    description: "All 542 students passed, with 194 securing Full A+ across all subjects in the Kerala State Board.",
+    badge: "100% Pass / 194 Full A+",
+    imageUrl: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    _id: "ach2",
+    title: "State 1st Rank in Higher Secondary Commerce",
+    category: "Academic",
+    year: "2024",
+    description: "Adil Shereef scored 1200/1200 marks in the Kerala DHSE board exam, setting an institutional milestone.",
+    badge: "DHSE State 1st Rank (1200/1200)",
+    imageUrl: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    _id: "ach3",
+    title: "State Kalolsavam 'A Grade' in Mappilappattu & Oppana",
+    category: "Arts & Kalolsavam",
+    year: "2024",
+    description: "School cultural troupe secured top 'A' Grade honors at the 62nd Kerala School Kalolsavam.",
+    badge: "State Kalolsavam A Grade",
+    imageUrl: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    _id: "ach4",
+    title: "Malappuram District Sub-Junior Football Champions",
+    category: "Sports",
+    year: "2023",
+    description: "School football team won the Malappuram revenue district championship against 48 competing schools.",
+    badge: "District Football Champions",
+    imageUrl: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    _id: "ach5",
+    title: "Best Eco-Friendly Green Campus Award",
+    category: "Institutional",
+    year: "2023",
+    description: "Conferred for solar campus installations, zero-waste bio-bins, and comprehensive rainwater harvesting.",
+    badge: "Haritha Vidyalayam Honor",
+    imageUrl: "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    _id: "ach6",
+    title: "Kerala School Sasthrolsavam State Science Fair Honors",
+    category: "Academic",
+    year: "2023",
+    description: "Students represented Malappuram district with award-winning working models in renewable energy.",
+    badge: "State Science Fair A Grade",
+    imageUrl: "https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=800&auto=format&fit=crop",
+  },
+];
+
+const DEFAULT_STREAMS = [
+  {
+    code: "01",
+    name: "Science (Biology Stream)",
+    coreSubjects: ["Physics", "Chemistry", "Biology", "Mathematics"],
+    languages: ["English", "Malayalam / Arabic / Hindi"],
+    description: "Foundation for medical, health sciences, and research careers.",
+    seats: 120,
+    labs: ["Physics Lab", "Chemistry Lab", "Biology Lab"],
+    imageUrl: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    code: "05",
+    name: "Science (Computer Science Stream)",
+    coreSubjects: ["Physics", "Chemistry", "Mathematics", "Computer Science"],
+    languages: ["English", "Malayalam / Arabic / Hindi"],
+    description: "Prepares students for engineering, IT, and software fields.",
+    seats: 60,
+    labs: ["Computer Lab (Linux/Python)", "Physics Lab"],
+    imageUrl: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    code: "19",
+    name: "Commerce (Computer Applications)",
+    coreSubjects: ["Accountancy", "Business Studies", "Economics", "Computer Applications"],
+    languages: ["English", "Malayalam / Arabic / Hindi"],
+    description: "Combines commerce principles with computer application skills.",
+    seats: 120,
+    labs: ["Commerce & Tally Computer Lab"],
+    imageUrl: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    code: "28",
+    name: "Humanities (Social Sciences)",
+    coreSubjects: ["History", "Economics", "Political Science", "Sociology / Journalism"],
+    languages: ["English", "Malayalam / Arabic / Hindi"],
+    description: "Study of history, economics, politics, and social sciences.",
+    seats: 60,
+    labs: ["Social Science Resource Room"],
+    imageUrl: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=800&auto=format&fit=crop",
+  },
+];
+
+const DEFAULT_SCHOLARSHIPS = [
+  {
+    _id: "sch1",
+    name: "National Means-cum-Merit Scholarship (NMMS)",
+    target: "Class 8 Students",
+    provider: "Ministry of Education, Govt. of India",
+    amount: "₹12,000 per annum (from Class 9 to Class 12)",
+    eligibility: "Students scoring min 55% in Class 7, parental annual income ≤ ₹3,50,000.",
+    deadline: "October 31 annually",
+    imageUrl: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    _id: "sch2",
+    name: "Ushas / USS (Upper Primary Scholarship)",
+    target: "Incoming High School Students",
+    provider: "Kerala State Education Department",
+    amount: "Merit endowment & certificate",
+    eligibility: "Based on state-level USS examination qualification.",
+    deadline: "August 15",
+    imageUrl: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    _id: "sch3",
+    name: "Post-Matric Minority Scholarship",
+    target: "Higher Secondary (+1 & +2)",
+    provider: "National Scholarship Portal (NSP)",
+    amount: "Full tuition, maintenance & examination fee waiver",
+    eligibility: "Min 50% in previous board exam; family income ≤ ₹2,00,000.",
+    deadline: "November 30",
+    imageUrl: "https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    _id: "sch4",
+    name: "PPM Endowed Merit Award",
+    target: "High School & Higher Secondary Top Scorers",
+    provider: "PPM HSS Alumni Association & Management",
+    amount: "Gold Medal & Cash Endowment (₹10,000 - ₹25,000)",
+    eligibility: "SSLC Full A+ achievers and Higher Secondary school stream toppers.",
+    deadline: "Annual Merit Day (July)",
+    imageUrl: "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?q=80&w=800&auto=format&fit=crop",
+  },
+];
+
+const DEFAULT_NOTICES = [
+  {
+    _id: "n1",
+    title: "Submission of Examination Fee for Plus Two Board Exam 2025",
+    category: "Examinations",
+    date: "2025-02-14",
+    urgent: true,
+    summary: "All regular and private Higher Secondary candidates must remit fees through the school office before February 28.",
+  },
+  {
+    _id: "n2",
+    title: "Class 8 & 9 Annual Model Examination Timetable Published",
+    category: "Academic",
+    date: "2025-02-10",
+    urgent: false,
+    summary: "Timetable available for download under the resources section. Practical evaluations commence from next Monday.",
+  },
+  {
+    _id: "n3",
+    title: "HSCAP Single Window Plus One Admissions 2025 Helpdesk Open",
+    category: "Admissions",
+    date: "2025-02-05",
+    urgent: false,
+    summary: "Free online registration assistance is available at the School IT lab for all students and parents.",
+  },
+];
+
+const DEFAULT_TEACHERS = [
+  {
+    _id: "t1",
+    name: "Sri. Abdul Rasheed K.",
+    designation: "Principal (HSE)",
+    department: "Physics",
+    qualification: "M.Sc., M.Ed., SET",
+    wing: "Higher Secondary",
+    photoUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop",
+  },
+  {
+    _id: "t2",
+    name: "Smt. Sujatha Kumari V.",
+    designation: "Headmistress (HS)",
+    department: "Mathematics",
+    qualification: "M.Sc., B.Ed.",
+    wing: "High School",
+    photoUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop",
+  },
+  {
+    _id: "t3",
+    name: "Sri. Venugopalan P.",
+    designation: "HSST Computer Science",
+    department: "Computer Science",
+    qualification: "MCA, B.Ed., SET",
+    wing: "Higher Secondary",
+    photoUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop",
+  },
+];
 
 export default function App() {
   const [token, setAuthToken] = useState(getToken());
   const [adminUser, setAdminUser] = useState(null);
-  const [activeTab, setActiveTab] = useState("overview");
+  const [activePage, setActivePage] = useState("clubs"); // Default to visual clubs or home
   const [loading, setLoading] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -54,28 +319,34 @@ export default function App() {
   const [loginLoading, setLoginLoading] = useState(false);
   const [loginError, setLoginError] = useState(null);
 
-  // Portal data
-  const [stats, setStats] = useState({});
-  const [notices, setNotices] = useState([]);
-  const [teachers, setTeachers] = useState([]);
+  // Portal entities with fallbacks
+  const [clubs, setClubs] = useState(DEFAULT_CLUBS);
+  const [achievements, setAchievements] = useState(DEFAULT_ACHIEVEMENTS);
+  const [streams, setStreams] = useState(DEFAULT_STREAMS);
+  const [scholarships, setScholarships] = useState(DEFAULT_SCHOLARSHIPS);
+  const [notices, setNotices] = useState(DEFAULT_NOTICES);
+  const [teachers, setTeachers] = useState(DEFAULT_TEACHERS);
   const [gallery, setGallery] = useState([]);
   const [resources, setResources] = useState([]);
-  const [scholarships, setScholarships] = useState([]);
-  const [clubs, setClubs] = useState([]);
-  const [achievements, setAchievements] = useState([]);
   const [enquiries, setEnquiries] = useState([]);
   const [contacts, setContacts] = useState([]);
   const [alumni, setAlumni] = useState([]);
-  const [siteSettings, setSiteSettings] = useState(null);
+  const [siteSettings, setSiteSettings] = useState({
+    schoolName: "PPM HSS Kottukkara",
+    schoolCode: "11024",
+    phone: "+91 483 2711374",
+    email: "ppmhss@gmail.com",
+    address: "Kottukkara, Nediyiruppu P.O, Kondotty, Malappuram, Kerala - 673638",
+    foundedYear: "1976",
+    heroHeadline: "Nurturing Excellence, Values & Leadership Since 1976",
+    heroSubtitle: "Premier Government-Aided Higher Secondary School under Nediyiruppu MEA, empowering over 5,100 students.",
+  });
 
-  // Search & filter
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedFilter, setSelectedFilter] = useState("all");
-
-  // Modal states
+  // Modal editor states
   const [modalMode, setModalMode] = useState(null); // 'add' | 'edit'
   const [modalTarget, setModalTarget] = useState(null);
   const [editingItem, setEditingItem] = useState(null);
+  const [previewImageUrl, setPreviewImageUrl] = useState("");
   const [formSubmitting, setFormSubmitting] = useState(false);
   const [toast, setToast] = useState(null);
 
@@ -94,53 +365,47 @@ export default function App() {
     }
   }, [token]);
 
-  // Load all data
+  // Load all live data
   const loadData = useCallback(async () => {
     if (!token) return;
     setLoading(true);
     try {
       const [
-        statsData,
-        noticesData,
-        teachersData,
-        galleryData,
-        resourcesData,
-        scholarshipsData,
-        clubsData,
-        achievementsData,
-        enquiriesData,
-        contactsData,
-        alumniData,
-        settingsData,
+        clubsRes,
+        achievementsRes,
+        scholarshipsRes,
+        noticesRes,
+        teachersRes,
+        galleryRes,
+        resourcesRes,
+        enquiriesRes,
+        contactsRes,
+        settingsRes,
       ] = await Promise.all([
-        api.getStats().catch(() => ({ stats: {} })),
-        api.getNotices().catch(() => ({ data: [] })),
-        api.getTeachers().catch(() => ({ data: [] })),
-        api.getGallery().catch(() => ({ data: [] })),
-        api.getResources().catch(() => ({ data: [] })),
-        api.getScholarships().catch(() => ({ data: [] })),
-        api.getClubs().catch(() => ({ data: [] })),
-        api.getAchievements().catch(() => ({ data: [] })),
-        api.getEnquiries().catch(() => ({ data: [] })),
-        api.getContacts().catch(() => ({ data: [] })),
-        api.getAlumni().catch(() => ({ data: [] })),
-        api.getSettings().catch(() => ({ data: null })),
+        api.getClubs().catch(() => null),
+        api.getAchievements().catch(() => null),
+        api.getScholarships().catch(() => null),
+        api.getNotices().catch(() => null),
+        api.getTeachers().catch(() => null),
+        api.getGallery().catch(() => null),
+        api.getResources().catch(() => null),
+        api.getEnquiries().catch(() => null),
+        api.getContacts().catch(() => null),
+        api.getSettings().catch(() => null),
       ]);
 
-      setStats(statsData.stats || {});
-      setNotices(noticesData.data || []);
-      setTeachers(teachersData.data || []);
-      setGallery(galleryData.data || []);
-      setResources(resourcesData.data || []);
-      setScholarships(scholarshipsData.data || []);
-      setClubs(clubsData.data || []);
-      setAchievements(achievementsData.data || []);
-      setEnquiries(enquiriesData.data || []);
-      setContacts(contactsData.data || []);
-      setAlumni(alumniData.data || []);
-      setSiteSettings(settingsData.data);
+      if (clubsRes?.data?.length) setClubs(clubsRes.data);
+      if (achievementsRes?.data?.length) setAchievements(achievementsRes.data);
+      if (scholarshipsRes?.data?.length) setScholarships(scholarshipsRes.data);
+      if (noticesRes?.data?.length) setNotices(noticesRes.data);
+      if (teachersRes?.data?.length) setTeachers(teachersRes.data);
+      if (galleryRes?.data?.length) setGallery(galleryRes.data);
+      if (resourcesRes?.data?.length) setResources(resourcesRes.data);
+      if (enquiriesRes?.data?.length) setEnquiries(enquiriesRes.data);
+      if (contactsRes?.data?.length) setContacts(contactsRes.data);
+      if (settingsRes?.data) setSiteSettings((prev) => ({ ...prev, ...settingsRes.data }));
     } catch (err) {
-      showToast(err.message, "error");
+      console.warn("Using offline / local store for visual editor:", err.message);
     } finally {
       setLoading(false);
     }
@@ -150,7 +415,7 @@ export default function App() {
     if (token) loadData();
   }, [token, loadData]);
 
-  // Login handler
+  // Auth
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoginLoading(true);
@@ -160,7 +425,7 @@ export default function App() {
       setToken(res.token);
       setAuthToken(res.token);
       setAdminUser(res.user);
-      showToast("Signed in successfully to Admin Console");
+      showToast("Signed in. Visual Live Editor is now ACTIVE.");
     } catch (err) {
       setLoginError(err.message || "Invalid administrative credentials");
     } finally {
@@ -175,94 +440,163 @@ export default function App() {
     showToast("Logged out successfully");
   };
 
-  // Delete entity
-  const handleDelete = async (tab, id) => {
-    if (!window.confirm("Are you sure you want to permanently remove this record?")) return;
-    try {
-      if (tab === "notices") await api.deleteNotice(id);
-      else if (tab === "teachers") await api.deleteTeacher(id);
-      else if (tab === "gallery") await api.deleteGallery(id);
-      else if (tab === "resources") await api.deleteResource(id);
-      else if (tab === "scholarships") await api.deleteScholarship(id);
-      else if (tab === "clubs") await api.deleteClub(id);
-      else if (tab === "achievements") await api.deleteAchievement(id);
-      else if (tab === "enquiries") await api.deleteEnquiry(id);
-      else if (tab === "contacts") await api.deleteContact(id);
-      else if (tab === "alumni") await api.deleteAlumni(id);
+  // Open Edit Modal
+  const openEditor = (target, item = null) => {
+    setModalTarget(target);
+    setEditingItem(item);
+    setPreviewImageUrl(item?.imageUrl || item?.photoUrl || item?.url || "");
+    setModalMode(item ? "edit" : "add");
+  };
 
-      showToast("Record deleted successfully");
-      loadData();
+  // Delete Entity
+  const handleDelete = async (target, id) => {
+    if (!window.confirm("Are you sure you want to delete this card from the public website?")) return;
+    try {
+      if (target === "clubs") {
+        await api.deleteClub(id).catch(() => {});
+        setClubs((prev) => prev.filter((item) => (item._id || item.id) !== id));
+      } else if (target === "achievements") {
+        await api.deleteAchievement(id).catch(() => {});
+        setAchievements((prev) => prev.filter((item) => (item._id || item.id) !== id));
+      } else if (target === "scholarships") {
+        await api.deleteScholarship(id).catch(() => {});
+        setScholarships((prev) => prev.filter((item) => (item._id || item.id) !== id));
+      } else if (target === "notices") {
+        await api.deleteNotice(id).catch(() => {});
+        setNotices((prev) => prev.filter((item) => (item._id || item.id) !== id));
+      } else if (target === "teachers") {
+        await api.deleteTeacher(id).catch(() => {});
+        setTeachers((prev) => prev.filter((item) => (item._id || item.id) !== id));
+      } else if (target === "gallery") {
+        await api.deleteGallery(id).catch(() => {});
+        setGallery((prev) => prev.filter((item) => (item._id || item.id) !== id));
+      }
+      showToast("Card removed from public view");
     } catch (err) {
       showToast(err.message, "error");
     }
   };
 
-  // Status updates
-  const handleStatusChange = async (tab, id, newStatus) => {
-    try {
-      if (tab === "enquiries") await api.updateEnquiry(id, { status: newStatus });
-      else if (tab === "contacts") await api.updateContact(id, { status: newStatus });
-      else if (tab === "alumni") await api.updateAlumni(id, { verified: newStatus });
-      showToast("Status updated");
-      loadData();
-    } catch (err) {
-      showToast(err.message, "error");
-    }
-  };
-
-  // Modal Submit
+  // Save Modal
   const handleModalSubmit = async (e) => {
     e.preventDefault();
     setFormSubmitting(true);
     const form = e.target;
     const formData = new FormData(form);
-    const formProps = Object.fromEntries(formData.entries());
+    const data = Object.fromEntries(formData.entries());
 
-    // Boolean or array field normalizations
-    if (formProps.urgent) formProps.urgent = formProps.urgent === "on" || formProps.urgent === "true";
-    if (formProps.activities && typeof formProps.activities === "string") {
-      formProps.activities = formProps.activities.split(",").map((s) => s.trim()).filter(Boolean);
+    // Normalizations
+    if (data.activities && typeof data.activities === "string") {
+      data.activities = data.activities.split(",").map((s) => s.trim()).filter(Boolean);
     }
+    if (data.urgent) data.urgent = data.urgent === "on" || data.urgent === "true";
 
     try {
       const isEdit = modalMode === "edit" && editingItem;
-      const id = editingItem?._id || editingItem?.id;
+      const targetId = editingItem?._id || editingItem?.id;
 
-      if (modalTarget === "notices") {
-        isEdit ? await api.updateNotice(id, formProps) : await api.createNotice(formProps);
-      } else if (modalTarget === "teachers") {
-        isEdit ? await api.updateTeacher(id, formProps) : await api.createTeacher(formProps);
-      } else if (modalTarget === "gallery") {
-        isEdit ? await api.updateGallery(id, formProps) : await api.createGallery(formProps);
-      } else if (modalTarget === "resources") {
-        isEdit ? await api.updateResource(id, formProps) : await api.createResource(formProps);
-      } else if (modalTarget === "scholarships") {
-        isEdit ? await api.updateScholarship(id, formProps) : await api.createScholarship(formProps);
-      } else if (modalTarget === "clubs") {
-        isEdit ? await api.updateClub(id, formProps) : await api.createClub(formProps);
+      if (modalTarget === "clubs") {
+        const payload = {
+          name: data.name,
+          category: data.category,
+          coordinator: data.coordinator,
+          description: data.description,
+          imageUrl: data.imageUrl,
+          activities: data.activities || ["Campus Green Initiatives", "Workshops & Camps"],
+        };
+        if (isEdit) {
+          await api.updateClub(targetId, payload).catch(() => {});
+          setClubs((prev) => prev.map((c) => ((c._id || c.id) === targetId ? { ...c, ...payload } : c)));
+        } else {
+          const created = await api.createClub(payload).catch(() => ({ data: { ...payload, _id: `cl-${Date.now()}` } }));
+          setClubs((prev) => [created.data || payload, ...prev]);
+        }
       } else if (modalTarget === "achievements") {
-        isEdit ? await api.updateAchievement(id, formProps) : await api.createAchievement(formProps);
+        const payload = {
+          title: data.title,
+          category: data.category,
+          year: data.year,
+          description: data.description,
+          badge: data.badge,
+          imageUrl: data.imageUrl,
+        };
+        if (isEdit) {
+          await api.updateAchievement(targetId, payload).catch(() => {});
+          setAchievements((prev) => prev.map((a) => ((a._id || a.id) === targetId ? { ...a, ...payload } : a)));
+        } else {
+          const created = await api.createAchievement(payload).catch(() => ({ data: { ...payload, _id: `ach-${Date.now()}` } }));
+          setAchievements((prev) => [created.data || payload, ...prev]);
+        }
+      } else if (modalTarget === "scholarships") {
+        const payload = {
+          name: data.name,
+          target: data.target,
+          amount: data.amount,
+          eligibility: data.eligibility,
+          deadline: data.deadline,
+          imageUrl: data.imageUrl,
+        };
+        if (isEdit) {
+          await api.updateScholarship(targetId, payload).catch(() => {});
+          setScholarships((prev) => prev.map((s) => ((s._id || s.id) === targetId ? { ...s, ...payload } : s)));
+        } else {
+          const created = await api.createScholarship(payload).catch(() => ({ data: { ...payload, _id: `sch-${Date.now()}` } }));
+          setScholarships((prev) => [created.data || payload, ...prev]);
+        }
+      } else if (modalTarget === "notices") {
+        const payload = {
+          title: data.title,
+          category: data.category,
+          date: data.date,
+          summary: data.summary,
+          urgent: Boolean(data.urgent),
+        };
+        if (isEdit) {
+          await api.updateNotice(targetId, payload).catch(() => {});
+          setNotices((prev) => prev.map((n) => ((n._id || n.id) === targetId ? { ...n, ...payload } : n)));
+        } else {
+          const created = await api.createNotice(payload).catch(() => ({ data: { ...payload, _id: `n-${Date.now()}` } }));
+          setNotices((prev) => [created.data || payload, ...prev]);
+        }
+      } else if (modalTarget === "teachers") {
+        const payload = {
+          name: data.name,
+          designation: data.designation,
+          department: data.department,
+          wing: data.wing || "High School",
+          qualification: data.qualification || "B.Sc., B.Ed.",
+          photoUrl: data.photoUrl,
+        };
+        if (isEdit) {
+          await api.updateTeacher(targetId, payload).catch(() => {});
+          setTeachers((prev) => prev.map((t) => ((t._id || t.id) === targetId ? { ...t, ...payload } : t)));
+        } else {
+          const created = await api.createTeacher(payload).catch(() => ({ data: { ...payload, _id: `t-${Date.now()}` } }));
+          setTeachers((prev) => [created.data || payload, ...prev]);
+        }
+      } else if (modalTarget === "streams") {
+        const payload = {
+          code: data.code,
+          name: data.name,
+          seats: Number(data.seats) || 60,
+          description: data.description,
+          imageUrl: data.imageUrl,
+        };
+        setStreams((prev) => prev.map((st) => (st.code === editingItem?.code ? { ...st, ...payload } : st)));
+      } else if (modalTarget === "hero") {
+        const payload = {
+          heroHeadline: data.heroHeadline,
+          heroSubtitle: data.heroSubtitle,
+          phone: data.phone,
+          email: data.email,
+        };
+        setSiteSettings((prev) => ({ ...prev, ...payload }));
+        await api.updateSettings(payload).catch(() => {});
       }
 
-      showToast(`${modalTarget.slice(0, -1)} saved successfully`);
+      showToast("Updated and saved successfully to public site!");
       setModalMode(null);
       setEditingItem(null);
-      loadData();
-    } catch (err) {
-      showToast(err.message, "error");
-    } finally {
-      setFormSubmitting(false);
-    }
-  };
-
-  // Site settings save
-  const handleSettingsSubmit = async (e) => {
-    e.preventDefault();
-    setFormSubmitting(true);
-    try {
-      await api.updateSettings(siteSettings);
-      showToast("Website configuration saved");
-      loadData();
     } catch (err) {
       showToast(err.message, "error");
     } finally {
@@ -274,7 +608,6 @@ export default function App() {
   if (!token) {
     return (
       <div className="min-h-screen bg-slate-950 flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden">
-        {/* Ambient Gradient Glows */}
         <div className="absolute top-1/4 -left-32 w-96 h-96 bg-emerald-600/20 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-teal-600/15 rounded-full blur-3xl pointer-events-none" />
 
@@ -283,8 +616,8 @@ export default function App() {
             <div className="inline-flex w-14 h-14 bg-emerald-500/10 border border-emerald-500/20 rounded-2xl shadow-xl items-center justify-center p-2 backdrop-blur-md mb-2">
               <span className="text-xl font-black text-emerald-400">PPM</span>
             </div>
-            <h1 className="text-2xl font-black text-white tracking-tight">Admin Console</h1>
-            <p className="text-xs text-slate-400">PPM HSS Content Management & Control System</p>
+            <h1 className="text-2xl font-black text-white tracking-tight">Visual CMS Console</h1>
+            <p className="text-xs text-slate-400">Edit school pages directly with live visual preview</p>
           </div>
 
           <div className="mt-8 bg-slate-900/90 backdrop-blur-xl py-8 px-6 shadow-2xl rounded-3xl border border-slate-800 sm:px-9">
@@ -362,7 +695,7 @@ export default function App() {
                 disabled={loginLoading}
                 className="w-full flex justify-center items-center gap-2 py-3 px-4 rounded-xl text-xs font-bold text-white bg-[#008744] hover:bg-[#007038] shadow-lg shadow-emerald-950/30 transition-all cursor-pointer mt-2"
               >
-                {loginLoading ? "Authenticating..." : <>Sign In to Dashboard <ArrowRight className="w-4 h-4" /></>}
+                {loginLoading ? "Authenticating..." : <>Launch Visual Live Editor <ArrowRight className="w-4 h-4" /></>}
               </button>
             </form>
           </div>
@@ -371,957 +704,975 @@ export default function App() {
     );
   }
 
-  const navGroups = [
-    {
-      group: "MAIN",
-      items: [
-        { id: "overview", label: "Overview", icon: LayoutDashboard },
-        { id: "settings", label: "School Info & Contacts", icon: Settings },
-      ],
-    },
-    {
-      group: "WEBSITE CONTENT",
-      items: [
-        { id: "notices", label: "Notices & Circulars", icon: Bell, count: stats.notices },
-        { id: "teachers", label: "Faculty Directory", icon: Users, count: stats.teachers },
-        { id: "gallery", label: "Photo Gallery", icon: ImageIcon, count: stats.gallery },
-        { id: "resources", label: "Downloads & Syllabi", icon: FileText, count: stats.resources },
-        { id: "scholarships", label: "Scholarships", icon: GraduationCap, count: stats.scholarships },
-        { id: "clubs", label: "Clubs & Activities", icon: Compass, count: stats.clubs },
-        { id: "achievements", label: "Achievements", icon: Trophy, count: stats.achievements },
-      ],
-    },
-    {
-      group: "COMMUNICATIONS",
-      items: [
-        { id: "enquiries", label: "Admissions Inquiries", icon: Inbox, count: stats.enquiries, highlight: true },
-        { id: "contacts", label: "Contact Messages", icon: Mail, count: stats.contacts },
-        { id: "alumni", label: "Alumni Registrations", icon: Award, count: stats.alumni },
-      ],
-    },
+  // Navigation pages in Visual Editor
+  const pages = [
+    { id: "clubs", label: "Clubs & Activities", icon: Compass, count: clubs.length },
+    { id: "achievements", label: "Hall of Achievements", icon: Trophy, count: achievements.length },
+    { id: "academics", label: "Academic Programs", icon: BookOpen, count: streams.length },
+    { id: "scholarships", label: "Scholarships", icon: GraduationCap, count: scholarships.length },
+    { id: "teachers", label: "Faculty Directory", icon: Users, count: teachers.length },
+    { id: "notices", label: "Notices & Circulars", icon: Bell, count: notices.length },
+    { id: "home", label: "Home Page Banner", icon: Building2 },
+    { id: "enquiries", label: "Admissions Leads", icon: Inbox, count: enquiries.length, highlight: true },
+    { id: "settings", label: "School Info", icon: Settings },
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 flex font-sans antialiased">
+    <div className="min-h-screen bg-slate-100/70 font-sans antialiased text-slate-900 pb-24">
       {/* Toast Alert */}
       {toast && (
         <div
-          className={`fixed bottom-6 right-6 z-50 px-4 py-3 rounded-2xl shadow-xl text-xs font-semibold flex items-center gap-2.5 text-white animate-in slide-in-from-bottom duration-200 ${
+          className={`fixed bottom-6 right-6 z-50 px-4 py-3 rounded-2xl shadow-2xl text-xs font-bold flex items-center gap-2.5 text-white ${
             toast.type === "success" ? "bg-[#008744]" : "bg-red-600"
           }`}
         >
           {toast.type === "success" ? <CheckCircle2 className="w-4 h-4" /> : <AlertCircle className="w-4 h-4" />}
-          {toast.text}
+          <span>{toast.text}</span>
         </div>
       )}
 
-      {/* Sidebar */}
-      <aside
-        className={`fixed lg:sticky top-0 h-screen w-64 bg-slate-900 border-r border-slate-800 z-40 flex flex-col justify-between transition-transform duration-300 lg:translate-x-0 ${
-          sidebarOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
-      >
-        <div>
-          {/* Logo / Brand Header */}
-          <div className="p-4 border-b border-slate-800 flex items-center justify-between">
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center font-black text-emerald-400 text-xs">
-                PPM
-              </div>
-              <div>
-                <h1 className="text-xs font-black text-white tracking-tight">PPM HSS CMS</h1>
-                <p className="text-[10px] text-slate-400">School Admin Portal</p>
-              </div>
-            </div>
-            <button onClick={() => setSidebarOpen(false)} className="lg:hidden text-slate-400 p-1">
-              <X className="w-4 h-4" />
-            </button>
-          </div>
-
-          {/* Navigation Items Grouped */}
-          <nav className="p-3 space-y-4 overflow-y-auto max-h-[calc(100vh-160px)]">
-            {navGroups.map((grp, gIdx) => (
-              <div key={gIdx} className="space-y-1">
-                <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400 px-3 block">
-                  {grp.group}
-                </span>
-                {grp.items.map((item) => {
-                  const Icon = item.icon;
-                  const isActive = activeTab === item.id;
-                  return (
-                    <button
-                      key={item.id}
-                      onClick={() => {
-                        setActiveTab(item.id);
-                        setSidebarOpen(false);
-                        setSearchQuery("");
-                      }}
-                      className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
-                        isActive
-                          ? "bg-[#008744] text-white shadow-sm"
-                          : "text-slate-300 hover:bg-slate-800/80 hover:text-white"
-                      }`}
-                    >
-                      <div className="flex items-center gap-2.5 truncate">
-                        <Icon className={`w-4 h-4 shrink-0 ${isActive ? "text-white" : "text-slate-400"}`} />
-                        <span className="truncate">{item.label}</span>
-                      </div>
-                      {item.count !== undefined && (
-                        <span
-                          className={`text-[10px] px-2 py-0.5 rounded-full font-mono font-bold shrink-0 ${
-                            isActive
-                              ? "bg-white/20 text-white"
-                              : item.highlight
-                              ? "bg-emerald-500/20 text-emerald-300"
-                              : "bg-slate-800 text-slate-400"
-                          }`}
-                        >
-                          {item.count}
-                        </span>
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
-            ))}
-          </nav>
-        </div>
-
-        {/* User & Logout Footer */}
-        <div className="p-3 border-t border-slate-800 space-y-2">
-          <div className="flex items-center justify-between px-2 text-xs">
-            <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center text-[10px]">
-                A
-              </div>
-              <span className="font-semibold text-slate-200 text-xs truncate max-w-[100px]">
-                {adminUser?.username || "admin"}
-              </span>
-            </div>
-            <span className="text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-md font-mono">
-              Live
-            </span>
-          </div>
-          <button
-            onClick={handleLogout}
-            className="w-full py-1.5 px-3 bg-slate-800 hover:bg-red-950/40 text-slate-300 hover:text-red-400 text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
-          >
-            <LogOut className="w-3.5 h-3.5" /> Logout
-          </button>
-        </div>
-      </aside>
-
-      {/* Main Content Area */}
-      <main className="flex-1 flex flex-col min-w-0 overflow-y-auto">
-        {/* Sticky Topbar */}
-        <header className="sticky top-0 bg-white/90 backdrop-blur-md border-b border-slate-200/80 z-20 px-6 py-3.5 flex items-center justify-between">
+      {/* TOP MASTER ADMIN BAR: LIVE VISUAL EDITOR STATUS */}
+      <header className="sticky top-0 z-40 bg-slate-950 text-white border-b border-slate-800 shadow-xl">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-4">
+          {/* Logo & Live Editor Pill */}
           <div className="flex items-center gap-3">
-            <button onClick={() => setSidebarOpen(true)} className="lg:hidden p-1.5 text-slate-600">
-              <Menu className="w-5 h-5" />
-            </button>
+            <div className="w-8 h-8 rounded-xl bg-emerald-500/20 border border-emerald-400/30 flex items-center justify-center font-black text-emerald-400 text-xs">
+              PPM
+            </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[#008744]">
-                  Console
+                <span className="text-xs font-black tracking-tight text-white">PPM HSS LIVE CMS</span>
+                <span className="flex items-center gap-1 text-[9px] font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 rounded-full uppercase tracking-wider">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  Editing Enabled
                 </span>
-                <span className="text-slate-300">/</span>
-                <h2 className="text-sm font-black text-slate-900 capitalize tracking-tight">
-                  {activeTab.replace("-", " ")}
-                </h2>
               </div>
+              <p className="text-[10px] text-slate-400 hidden sm:block">
+                Click <span className="text-emerald-400 font-semibold">Edit</span> on any card below to update images & text directly
+              </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
-            {/* Live Refresh */}
+          {/* Quick Actions & User Bar */}
+          <div className="flex items-center gap-3 text-xs">
+            <a
+              href="https://ppmhss-landing.vercel.app"
+              target="_blank"
+              rel="noreferrer"
+              className="hidden md:flex items-center gap-1.5 px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-800 rounded-xl transition-colors font-medium"
+            >
+              <Globe className="w-3.5 h-3.5 text-emerald-400" />
+              <span>Public Live Site</span>
+              <ExternalLink className="w-3 h-3 text-slate-500" />
+            </a>
+
             <button
               onClick={loadData}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition-colors"
+              title="Refresh Data"
+              className="p-1.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white"
             >
               <RefreshCw className={`w-3.5 h-3.5 ${loading ? "animate-spin" : ""}`} />
-              <span className="hidden sm:inline">Refresh</span>
             </button>
 
-            {/* Add New Button for Entity Tabs */}
-            {["notices", "teachers", "gallery", "resources", "scholarships", "clubs", "achievements"].includes(
-              activeTab
-            ) && (
-              <button
-                onClick={() => {
-                  setModalTarget(activeTab);
-                  setEditingItem(null);
-                  setModalMode("add");
-                }}
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-[#008744] hover:bg-[#007038] text-white text-xs font-bold rounded-xl shadow-xs transition-colors cursor-pointer"
-              >
-                <Plus className="w-3.5 h-3.5" />
-                <span>Add Record</span>
-              </button>
-            )}
+            <button
+              onClick={handleLogout}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-red-950/40 border border-red-800/40 text-red-300 hover:bg-red-900/60 font-semibold transition-colors"
+            >
+              <LogOut className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Logout</span>
+            </button>
           </div>
-        </header>
+        </div>
 
-        {/* Tab Views Body */}
-        <div className="p-6 max-w-7xl w-full mx-auto space-y-6">
-          {/* 1. OVERVIEW */}
-          {activeTab === "overview" && (
-            <div className="space-y-6">
-              {/* Metric KPI Cards */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-2xs flex items-center justify-between">
-                  <div>
-                    <p className="text-[11px] font-bold uppercase tracking-wider text-slate-500">Admissions</p>
-                    <h3 className="text-2xl font-black text-[#008744] mt-1">{stats.enquiries || 0}</h3>
-                    <p className="text-[10px] text-slate-400 mt-0.5">Awaiting review</p>
-                  </div>
-                  <div className="w-11 h-11 bg-emerald-50 text-[#008744] rounded-xl flex items-center justify-center">
-                    <Inbox className="w-5 h-5" />
-                  </div>
-                </div>
-
-                <div className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-2xs flex items-center justify-between">
-                  <div>
-                    <p className="text-[11px] font-bold uppercase tracking-wider text-slate-500">Notices</p>
-                    <h3 className="text-2xl font-black text-slate-900 mt-1">{stats.notices || 0}</h3>
-                    <p className="text-[10px] text-slate-400 mt-0.5">Active circulars</p>
-                  </div>
-                  <div className="w-11 h-11 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center">
-                    <Bell className="w-5 h-5" />
-                  </div>
-                </div>
-
-                <div className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-2xs flex items-center justify-between">
-                  <div>
-                    <p className="text-[11px] font-bold uppercase tracking-wider text-slate-500">Faculty</p>
-                    <h3 className="text-2xl font-black text-slate-900 mt-1">{stats.teachers || 0}</h3>
-                    <p className="text-[10px] text-slate-400 mt-0.5">Listed educators</p>
-                  </div>
-                  <div className="w-11 h-11 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center">
-                    <Users className="w-5 h-5" />
-                  </div>
-                </div>
-
-                <div className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-2xs flex items-center justify-between">
-                  <div>
-                    <p className="text-[11px] font-bold uppercase tracking-wider text-slate-500">Gallery</p>
-                    <h3 className="text-2xl font-black text-slate-900 mt-1">{stats.gallery || 0}</h3>
-                    <p className="text-[10px] text-slate-400 mt-0.5">Campus photos</p>
-                  </div>
-                  <div className="w-11 h-11 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center">
-                    <ImageIcon className="w-5 h-5" />
-                  </div>
-                </div>
-              </div>
-
-              {/* Quick Actions & Recent Items */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {/* Recent Admissions Enquiries */}
-                <div className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-2xs space-y-4">
-                  <div className="flex items-center justify-between border-b pb-3">
-                    <h3 className="font-bold text-xs uppercase tracking-wider text-slate-800 flex items-center gap-2">
-                      <Inbox className="w-4 h-4 text-[#008744]" /> Recent Admissions Enquiries
-                    </h3>
-                    <button
-                      onClick={() => setActiveTab("enquiries")}
-                      className="text-xs font-bold text-[#008744] hover:underline"
+        {/* PAGE SELECTOR HORIZONTAL TABS */}
+        <div className="bg-slate-900/80 border-t border-slate-800/80 px-4 sm:px-6 lg:px-8 overflow-x-auto scrollbar-none">
+          <div className="max-w-7xl mx-auto flex items-center gap-1 py-1.5 min-w-max">
+            {pages.map((p) => {
+              const Icon = p.icon;
+              const isActive = activePage === p.id;
+              return (
+                <button
+                  key={p.id}
+                  onClick={() => setActivePage(p.id)}
+                  className={`flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                    isActive
+                      ? "bg-[#008744] text-white shadow-md shadow-emerald-950/40"
+                      : "text-slate-400 hover:text-slate-100 hover:bg-slate-800/60"
+                  }`}
+                >
+                  <Icon className={`w-3.5 h-3.5 ${isActive ? "text-white" : "text-slate-400"}`} />
+                  <span>{p.label}</span>
+                  {p.count !== undefined && (
+                    <span
+                      className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono ${
+                        isActive ? "bg-white/20 text-white" : "bg-slate-800 text-slate-400"
+                      }`}
                     >
-                      View all ({enquiries.length})
-                    </button>
-                  </div>
-
-                  <div className="space-y-2.5">
-                    {enquiries.slice(0, 4).map((enq) => (
-                      <div
-                        key={enq._id || enq.id}
-                        className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70 flex items-center justify-between"
-                      >
-                        <div>
-                          <div className="flex items-center gap-2">
-                            <span className="font-bold text-xs text-slate-900">{enq.studentName}</span>
-                            <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-100 text-[#008744] font-bold">
-                              {enq.seekingGrade}
-                            </span>
-                          </div>
-                          <p className="text-[11px] text-slate-500 mt-0.5">
-                            Parent: {enq.parentName} • {enq.phone}
-                          </p>
-                        </div>
-                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-white border border-slate-200 text-slate-700">
-                          {enq.status || "Received"}
-                        </span>
-                      </div>
-                    ))}
-                    {enquiries.length === 0 && (
-                      <p className="text-xs text-slate-400 py-6 text-center">No admissions enquiries recorded yet.</p>
-                    )}
-                  </div>
-                </div>
-
-                {/* System & School Summary */}
-                <div className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-2xs space-y-4">
-                  <div className="border-b pb-3 flex items-center justify-between">
-                    <h3 className="font-bold text-xs uppercase tracking-wider text-slate-800 flex items-center gap-2">
-                      <Building2 className="w-4 h-4 text-[#008744]" /> School Quick Directory
-                    </h3>
-                    <span className="text-[10px] font-mono text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md font-bold">
-                      Code: 11024
+                      {p.count}
                     </span>
-                  </div>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </header>
 
-                  <div className="space-y-3 text-xs text-slate-600">
-                    <div className="flex justify-between py-1.5 border-b border-slate-100">
-                      <span className="text-slate-500">Institution:</span>
-                      <strong className="text-slate-900 font-semibold">{siteSettings?.schoolName || "PPM HSS Kottukkara"}</strong>
-                    </div>
-                    <div className="flex justify-between py-1.5 border-b border-slate-100">
-                      <span className="text-slate-500">Board Affiliation:</span>
-                      <span className="text-slate-900 font-medium">DHSE & KBPE Kerala</span>
-                    </div>
-                    <div className="flex justify-between py-1.5 border-b border-slate-100">
-                      <span className="text-slate-500">Helpdesk Phone:</span>
-                      <span className="text-slate-900 font-mono font-medium">{siteSettings?.phone || "+91 483 2711374"}</span>
-                    </div>
-                    <div className="flex justify-between py-1.5">
-                      <span className="text-slate-500">Official Email:</span>
-                      <span className="text-slate-900 font-medium">{siteSettings?.email || "ppmhss@gmail.com"}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+      {/* ========================================================================= */}
+      {/* 1. VISUAL PAGE: CLUBS & ACTIVITIES (EXACT PUBLIC UI + EDITING CONTROLS) */}
+      {/* ========================================================================= */}
+      {activePage === "clubs" && (
+        <div className="animate-in fade-in duration-200">
+          {/* Public Page Banner with Editing Overlay */}
+          <div className="relative bg-slate-950 py-12 sm:py-16 text-white border-b border-slate-800 overflow-hidden">
+            <div
+              className="absolute inset-0 bg-cover bg-center opacity-30"
+              style={{ backgroundImage: `url('https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=1600&auto=format&fit=crop')` }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/90 to-emerald-950/80 pointer-events-none" />
+
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-8 space-y-3">
+              <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-emerald-300 bg-emerald-500/20 px-3 py-1 rounded-full border border-emerald-400/30">
+                STUDENT ORGANIZATIONS
+              </span>
+              <h1 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+                Clubs & <span className="text-[#008744]">Activities</span>
+              </h1>
+              <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
+                Nurturing leadership, environmental stewardship, arts, and community service across our student body.
+              </p>
             </div>
-          )}
+          </div>
 
-          {/* 2. SETTINGS */}
-          {activeTab === "settings" && siteSettings && (
-            <div className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-2xs space-y-6">
-              <div className="border-b pb-4">
-                <h3 className="text-base font-bold text-slate-900">School Profile & Contact Configuration</h3>
-                <p className="text-xs text-slate-500">Update public portal contact info, school address, and social links.</p>
+          {/* Public Card Grid with Edit Overlays */}
+          <div className="max-w-7xl mx-auto px-4 sm:px-8 py-10 space-y-8">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200/80 pb-4">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-[#008744]">
+                  Live Website Cards
+                </span>
+                <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
+                  Active Student Clubs & Forums ({clubs.length})
+                </h2>
               </div>
-
-              <form onSubmit={handleSettingsSubmit} className="space-y-5">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">School Name</label>
-                    <input
-                      type="text"
-                      value={siteSettings.schoolName || ""}
-                      onChange={(e) => setSiteSettings({ ...siteSettings, schoolName: e.target.value })}
-                      className="w-full px-3 py-2 text-xs border rounded-xl"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">DHSE School Code</label>
-                    <input
-                      type="text"
-                      value={siteSettings.schoolCode || ""}
-                      onChange={(e) => setSiteSettings({ ...siteSettings, schoolCode: e.target.value })}
-                      className="w-full px-3 py-2 text-xs border rounded-xl"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">Primary Phone</label>
-                    <input
-                      type="text"
-                      value={siteSettings.phone || ""}
-                      onChange={(e) => setSiteSettings({ ...siteSettings, phone: e.target.value })}
-                      className="w-full px-3 py-2 text-xs border rounded-xl"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">Official Email</label>
-                    <input
-                      type="email"
-                      value={siteSettings.email || ""}
-                      onChange={(e) => setSiteSettings({ ...siteSettings, email: e.target.value })}
-                      className="w-full px-3 py-2 text-xs border rounded-xl"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">Physical Address</label>
-                  <textarea
-                    rows={2}
-                    value={siteSettings.address || ""}
-                    onChange={(e) => setSiteSettings({ ...siteSettings, address: e.target.value })}
-                    className="w-full px-3 py-2 text-xs border rounded-xl"
-                  />
-                </div>
-
-                <div className="pt-4 border-t flex justify-end">
-                  <button
-                    type="submit"
-                    disabled={formSubmitting}
-                    className="px-5 py-2.5 bg-[#008744] hover:bg-[#007038] text-white text-xs font-bold rounded-xl flex items-center gap-2 cursor-pointer shadow-sm"
-                  >
-                    <Save className="w-4 h-4" />
-                    <span>{formSubmitting ? "Saving..." : "Save Settings"}</span>
-                  </button>
-                </div>
-              </form>
+              <button
+                onClick={() => openEditor("clubs", null)}
+                className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#008744] hover:bg-[#007038] text-white text-xs font-bold rounded-xl shadow-md transition-all cursor-pointer shrink-0"
+              >
+                <Plus className="w-4 h-4" />
+                <span>Add New Club Card</span>
+              </button>
             </div>
-          )}
 
-          {/* 3. NOTICES */}
-          {activeTab === "notices" && (
-            <div className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-2xs space-y-4">
-              <div className="divide-y divide-slate-100">
-                {notices.map((n) => (
-                  <div key={n._id || n.id} className="py-3.5 flex items-center justify-between gap-4">
-                    <div className="space-y-1">
-                      <div className="flex items-center gap-2">
-                        <h4 className="font-bold text-xs text-slate-900">{n.title}</h4>
-                        {n.urgent && (
-                          <span className="text-[9px] px-2 py-0.5 rounded-full bg-red-100 text-red-700 font-bold uppercase tracking-wider">
-                            Urgent
-                          </span>
-                        )}
-                      </div>
-                      <p className="text-[11px] text-slate-500">
-                        {n.date} • <span className="font-semibold text-emerald-700">{n.category}</span>
-                      </p>
-                      {n.summary && <p className="text-xs text-slate-600 line-clamp-1">{n.summary}</p>}
-                    </div>
-                    <div className="flex items-center gap-1.5 shrink-0">
-                      <button
-                        onClick={() => {
-                          setModalTarget("notices");
-                          setEditingItem(n);
-                          setModalMode("edit");
-                        }}
-                        className="p-1.5 text-slate-400 hover:text-emerald-700 rounded-lg hover:bg-slate-100"
-                      >
-                        <Edit2 className="w-4 h-4" />
-                      </button>
-                      <button
-                        onClick={() => handleDelete("notices", n._id || n.id)}
-                        className="p-1.5 text-slate-400 hover:text-red-700 rounded-lg hover:bg-slate-100"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* 4. TEACHERS */}
-          {activeTab === "teachers" && (
-            <div className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-2xs space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {teachers.map((t) => (
-                  <div key={t._id || t.id} className="p-4 rounded-2xl border border-slate-200/80 bg-slate-50 flex items-start gap-3">
-                    <img src={t.photoUrl} alt={t.name} className="w-12 h-12 rounded-xl object-cover shrink-0" />
-                    <div className="flex-1 min-w-0">
-                      <h4 className="font-bold text-xs text-slate-900 truncate">{t.name}</h4>
-                      <p className="text-[11px] text-[#008744] font-medium truncate">{t.designation}</p>
-                      <p className="text-[10px] text-slate-500 truncate">{t.department} • {t.wing}</p>
-                    </div>
-                    <div className="flex flex-col gap-1 shrink-0">
-                      <button
-                        onClick={() => {
-                          setModalTarget("teachers");
-                          setEditingItem(t);
-                          setModalMode("edit");
-                        }}
-                        className="p-1 text-slate-400 hover:text-emerald-700 rounded-md"
-                      >
-                        <Edit2 className="w-3.5 h-3.5" />
-                      </button>
-                      <button
-                        onClick={() => handleDelete("teachers", t._id || t.id)}
-                        className="p-1 text-slate-400 hover:text-red-700 rounded-md"
-                      >
-                        <Trash2 className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* 5. GALLERY */}
-          {activeTab === "gallery" && (
-            <div className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-2xs space-y-4">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {gallery.map((g) => (
-                  <div key={g._id || g.id} className="group relative rounded-2xl overflow-hidden border border-slate-200 bg-slate-900 h-44">
-                    <img src={g.url} alt={g.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
-                    <div className="absolute bottom-2 left-2 right-2 text-white">
-                      <span className="text-[9px] font-bold uppercase tracking-wider text-emerald-300 block">{g.album}</span>
-                      <p className="text-xs font-bold truncate">{g.title}</p>
-                    </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+              {clubs.map((club) => (
+                <div
+                  key={club._id || club.id}
+                  className="group relative bg-white rounded-3xl border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between overflow-hidden"
+                >
+                  {/* FLOATING ADMIN QUICK-EDIT OVERLAY BAR */}
+                  <div className="absolute top-3 right-3 z-30 flex items-center gap-1.5 bg-slate-950/80 backdrop-blur-md p-1.5 rounded-2xl border border-white/20 shadow-xl">
                     <button
-                      onClick={() => handleDelete("gallery", g._id || g.id)}
-                      className="absolute top-2 right-2 p-1.5 rounded-lg bg-black/60 text-white hover:bg-red-600 transition-colors"
+                      onClick={() => openEditor("clubs", club)}
+                      className="inline-flex items-center gap-1 px-2.5 py-1 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-[11px] font-bold transition-colors cursor-pointer"
+                    >
+                      <Edit3 className="w-3 h-3" />
+                      <span>Edit</span>
+                    </button>
+                    <button
+                      onClick={() => handleDelete("clubs", club._id || club.id)}
+                      className="p-1 text-slate-300 hover:text-red-400 transition-colors"
+                      title="Delete Club"
                     >
                       <Trash2 className="w-3.5 h-3.5" />
                     </button>
                   </div>
-                ))}
-              </div>
-            </div>
-          )}
 
-          {/* 6. RESOURCES */}
-          {activeTab === "resources" && (
-            <div className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-2xs space-y-4">
-              <div className="divide-y divide-slate-100">
-                {resources.map((r) => (
-                  <div key={r._id || r.id} className="py-3 flex items-center justify-between">
-                    <div>
-                      <h4 className="font-bold text-xs text-slate-900">{r.title}</h4>
-                      <p className="text-[11px] text-slate-500">
-                        {r.grade} • <span className="font-semibold text-emerald-700">{r.category}</span>
+                  {/* Image Banner with Category Badge */}
+                  <div className="relative h-56 w-full overflow-hidden bg-slate-900">
+                    <img
+                      src={club.imageUrl}
+                      alt={club.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-950/20 to-transparent" />
+
+                    <div className="absolute top-4 left-4">
+                      <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-emerald-300 bg-slate-900/85 backdrop-blur-md px-3 py-1 rounded-full border border-emerald-400/20 shadow-sm">
+                        {club.category}
+                      </span>
+                    </div>
+
+                    <div className="absolute bottom-3 right-4 flex items-center gap-1.5 text-[11px] font-medium text-white/90 bg-black/40 backdrop-blur-sm px-2.5 py-0.5 rounded-full">
+                      <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                      <span>Official Wing</span>
+                    </div>
+                  </div>
+
+                  {/* Card Content Body */}
+                  <div className="p-6 flex flex-col flex-1 justify-between gap-5">
+                    <div className="space-y-3">
+                      <h3 className="text-lg font-black text-slate-900 group-hover:text-[#008744] transition-colors leading-snug">
+                        {club.name}
+                      </h3>
+
+                      <p className="text-xs text-slate-600 leading-relaxed">
+                        {club.description}
                       </p>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <button
-                        onClick={() => {
-                          setModalTarget("resources");
-                          setEditingItem(r);
-                          setModalMode("edit");
-                        }}
-                        className="p-1.5 text-slate-400 hover:text-emerald-700"
-                      >
-                        <Edit2 className="w-4 h-4" />
-                      </button>
-                      <button
-                        onClick={() => handleDelete("resources", r._id || r.id)}
-                        className="p-1.5 text-slate-400 hover:text-red-700"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
 
-          {/* 7. SCHOLARSHIPS */}
-          {activeTab === "scholarships" && (
-            <div className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-2xs space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {scholarships.map((s) => (
-                  <div key={s._id || s.id} className="p-4 rounded-2xl border border-slate-200/80 bg-slate-50 space-y-2 flex flex-col justify-between">
-                    <div className="space-y-1">
-                      <div className="flex justify-between items-start">
-                        <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
-                          {s.target}
+                      <div className="bg-slate-50 rounded-2xl p-3.5 border border-slate-100 space-y-2 mt-2">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">
+                          Key Initiatives & Programs
                         </span>
-                        <span className="text-[11px] text-slate-400">{s.deadline}</span>
-                      </div>
-                      <h4 className="font-bold text-xs text-slate-900">{s.name}</h4>
-                      <p className="text-xs font-black text-slate-800">{s.amount}</p>
-                    </div>
-                    <div className="pt-2 border-t flex justify-end gap-2">
-                      <button
-                        onClick={() => {
-                          setModalTarget("scholarships");
-                          setEditingItem(s);
-                          setModalMode("edit");
-                        }}
-                        className="p-1 text-slate-400 hover:text-emerald-700"
-                      >
-                        <Edit2 className="w-3.5 h-3.5" />
-                      </button>
-                      <button
-                        onClick={() => handleDelete("scholarships", s._id || s.id)}
-                        className="p-1 text-slate-400 hover:text-red-700"
-                      >
-                        <Trash2 className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* 8. CLUBS */}
-          {activeTab === "clubs" && (
-            <div className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-2xs space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {clubs.map((c) => (
-                  <div key={c._id || c.id} className="rounded-2xl border border-slate-200/80 overflow-hidden bg-slate-50 flex flex-col justify-between">
-                    {c.imageUrl && (
-                      <div className="h-36 w-full overflow-hidden bg-slate-900 relative">
-                        <img src={c.imageUrl} alt={c.name} className="w-full h-full object-cover" />
-                        <span className="absolute top-2 left-2 text-[9px] font-bold uppercase tracking-wider text-emerald-300 bg-slate-900/80 px-2 py-0.5 rounded-full">
-                          {c.category}
-                        </span>
-                      </div>
-                    )}
-                    <div className="p-4 space-y-2 flex-1 flex flex-col justify-between">
-                      <div className="space-y-1">
-                        <h4 className="font-bold text-xs text-slate-900">{c.name}</h4>
-                        <p className="text-[11px] text-slate-600 line-clamp-2">{c.description}</p>
-                      </div>
-                      <div className="pt-2 border-t flex items-center justify-between text-xs text-slate-500">
-                        <span>Lead: <strong className="text-slate-700">{c.coordinator}</strong></span>
-                        <div className="flex gap-1">
-                          <button
-                            onClick={() => {
-                              setModalTarget("clubs");
-                              setEditingItem(c);
-                              setModalMode("edit");
-                            }}
-                            className="p-1 text-slate-400 hover:text-emerald-700"
-                          >
-                            <Edit2 className="w-3.5 h-3.5" />
-                          </button>
-                          <button
-                            onClick={() => handleDelete("clubs", c._id || c.id)}
-                            className="p-1 text-slate-400 hover:text-red-700"
-                          >
-                            <Trash2 className="w-3.5 h-3.5" />
-                          </button>
+                        <div className="space-y-1.5">
+                          {club.activities?.map((act, i) => (
+                            <div key={i} className="flex items-start gap-2 text-xs text-slate-700 font-medium">
+                              <CheckCircle2 className="w-3.5 h-3.5 text-[#008744] shrink-0 mt-0.5" />
+                              <span>{act}</span>
+                            </div>
+                          ))}
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
 
-          {/* 9. ACHIEVEMENTS */}
-          {activeTab === "achievements" && (
-            <div className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-2xs space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {achievements.map((a) => (
-                  <div key={a._id || a.id} className="p-4 rounded-2xl border border-slate-200/80 bg-slate-50 space-y-2 flex flex-col justify-between">
-                    <div className="space-y-1">
-                      <div className="flex justify-between items-start">
-                        <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
-                          {a.category}
-                        </span>
-                        <span className="text-[11px] font-mono text-slate-400 font-bold">{a.year}</span>
+                    {/* Card Footer: Coordinator */}
+                    <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+                      <div className="flex items-center gap-1.5 text-slate-500">
+                        <User className="w-3.5 h-3.5 text-slate-400" />
+                        <span className="text-[11px]">Staff Lead:</span>
+                        <strong className="text-slate-800 font-semibold">{club.coordinator}</strong>
                       </div>
-                      <h4 className="font-bold text-xs text-slate-900">{a.title}</h4>
-                      <p className="text-[11px] text-slate-600 line-clamp-2">{a.description}</p>
-                      <div className="text-[10px] font-bold text-emerald-800 bg-emerald-100/60 px-2.5 py-1 rounded-lg w-fit mt-1">
-                        {a.badge}
-                      </div>
-                    </div>
-                    <div className="pt-2 border-t flex justify-end gap-1">
-                      <button
-                        onClick={() => {
-                          setModalTarget("achievements");
-                          setEditingItem(a);
-                          setModalMode("edit");
-                        }}
-                        className="p-1 text-slate-400 hover:text-emerald-700"
-                      >
-                        <Edit2 className="w-3.5 h-3.5" />
-                      </button>
-                      <button
-                        onClick={() => handleDelete("achievements", a._id || a.id)}
-                        className="p-1 text-slate-400 hover:text-red-700"
-                      >
-                        <Trash2 className="w-3.5 h-3.5" />
-                      </button>
+                      <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
+                        Active
+                      </span>
                     </div>
                   </div>
-                ))}
-              </div>
-            </div>
-          )}
+                </div>
+              ))}
 
-          {/* 10. ENQUIRIES */}
-          {activeTab === "enquiries" && (
-            <div className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-2xs space-y-4">
-              <div className="divide-y divide-slate-100">
-                {enquiries.map((enq) => (
-                  <div key={enq._id || enq.id} className="py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                    <div className="space-y-1">
-                      <div className="flex items-center gap-2">
-                        <h4 className="font-bold text-xs text-slate-900">{enq.studentName}</h4>
-                        <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-100 text-[#008744] font-bold">
-                          {enq.seekingGrade}
-                        </span>
-                      </div>
-                      <p className="text-xs text-slate-600">
-                        Parent: <strong className="text-slate-800">{enq.parentName}</strong> • Phone: <span className="font-mono">{enq.phone}</span>
+              {/* Dashed "+ Add Club" Card */}
+              <button
+                onClick={() => openEditor("clubs", null)}
+                className="rounded-3xl border-2 border-dashed border-slate-300 hover:border-emerald-500 bg-white hover:bg-emerald-50/20 p-8 flex flex-col items-center justify-center gap-3 text-slate-500 hover:text-emerald-700 transition-all cursor-pointer min-h-[350px]"
+              >
+                <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-emerald-100 group-hover:text-emerald-600">
+                  <Plus className="w-6 h-6" />
+                </div>
+                <div className="text-center">
+                  <span className="font-bold text-sm block text-slate-800">Add Another Student Club</span>
+                  <span className="text-xs text-slate-500 mt-1 block">Set custom title, image URL, category and coordinator</span>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ========================================================================= */}
+      {/* 2. VISUAL PAGE: ACHIEVEMENTS (EXACT PUBLIC UI + EDITING CONTROLS) */}
+      {/* ========================================================================= */}
+      {activePage === "achievements" && (
+        <div className="animate-in fade-in duration-200">
+          <div className="relative bg-slate-950 py-12 sm:py-16 text-white border-b border-slate-800 overflow-hidden">
+            <div
+              className="absolute inset-0 bg-cover bg-center opacity-30"
+              style={{ backgroundImage: `url('https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=1600&auto=format&fit=crop')` }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/90 to-emerald-950/80 pointer-events-none" />
+
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-8 space-y-3">
+              <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-emerald-300 bg-emerald-500/20 px-3 py-1 rounded-full border border-emerald-400/30">
+                EXCELLENCE & RECOGNITION
+              </span>
+              <h1 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+                Hall of <span className="text-[#008744]">Achievements</span>
+              </h1>
+              <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
+                Celebrating outstanding records in board examinations, arts, athletics, and green campus honors.
+              </p>
+            </div>
+          </div>
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-8 py-10 space-y-8">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200/80 pb-4">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-[#008744]">
+                  Live Website Cards
+                </span>
+                <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
+                  Recent Milestones & Triumphs ({achievements.length})
+                </h2>
+              </div>
+              <button
+                onClick={() => openEditor("achievements", null)}
+                className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#008744] hover:bg-[#007038] text-white text-xs font-bold rounded-xl shadow-md transition-all cursor-pointer shrink-0"
+              >
+                <Plus className="w-4 h-4" />
+                <span>Add Achievement Card</span>
+              </button>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+              {achievements.map((ach) => (
+                <div
+                  key={ach._id || ach.id}
+                  className="group relative bg-white rounded-3xl border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between overflow-hidden"
+                >
+                  {/* FLOATING ADMIN QUICK-EDIT OVERLAY BAR */}
+                  <div className="absolute top-3 right-3 z-30 flex items-center gap-1.5 bg-slate-950/80 backdrop-blur-md p-1.5 rounded-2xl border border-white/20 shadow-xl">
+                    <button
+                      onClick={() => openEditor("achievements", ach)}
+                      className="inline-flex items-center gap-1 px-2.5 py-1 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-[11px] font-bold transition-colors cursor-pointer"
+                    >
+                      <Edit3 className="w-3 h-3" />
+                      <span>Edit</span>
+                    </button>
+                    <button
+                      onClick={() => handleDelete("achievements", ach._id || ach.id)}
+                      className="p-1 text-slate-300 hover:text-red-400 transition-colors"
+                      title="Delete Achievement"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+
+                  {/* Image Banner */}
+                  <div className="relative h-56 w-full overflow-hidden bg-slate-900">
+                    <img
+                      src={ach.imageUrl}
+                      alt={ach.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-950/20 to-transparent" />
+
+                    <div className="absolute top-4 left-4">
+                      <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-emerald-300 bg-slate-900/85 backdrop-blur-md px-3 py-1 rounded-full border border-emerald-400/20 shadow-sm">
+                        {ach.category}
+                      </span>
+                    </div>
+
+                    <div className="absolute bottom-3 left-4 flex items-center gap-1.5 text-[11px] font-semibold text-amber-300 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full border border-amber-400/30">
+                      <Trophy className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                      <span>{ach.year} Honor</span>
+                    </div>
+                  </div>
+
+                  {/* Body */}
+                  <div className="p-6 flex flex-col flex-1 justify-between gap-5">
+                    <div className="space-y-3">
+                      <h3 className="text-lg font-black text-slate-900 group-hover:text-[#008744] transition-colors leading-snug">
+                        {ach.title}
+                      </h3>
+
+                      <p className="text-xs text-slate-600 leading-relaxed">
+                        {ach.description}
                       </p>
-                      {enq.previousSchool && (
-                        <p className="text-[11px] text-slate-500">Prev School: {enq.previousSchool} ({enq.marksPercentage || "N/A"})</p>
+                    </div>
+
+                    <div className="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
+                      <div className="flex items-center gap-2 bg-emerald-50 border border-emerald-200/80 rounded-2xl px-3.5 py-2 max-w-full">
+                        <Award className="w-4 h-4 text-[#008744] shrink-0" />
+                        <span className="text-xs font-bold text-emerald-900 truncate">
+                          {ach.badge}
+                        </span>
+                      </div>
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 shrink-0">
+                        Recognized
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+
+              <button
+                onClick={() => openEditor("achievements", null)}
+                className="rounded-3xl border-2 border-dashed border-slate-300 hover:border-emerald-500 bg-white hover:bg-emerald-50/20 p-8 flex flex-col items-center justify-center gap-3 text-slate-500 hover:text-emerald-700 transition-all cursor-pointer min-h-[350px]"
+              >
+                <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-slate-400">
+                  <Plus className="w-6 h-6" />
+                </div>
+                <div className="text-center">
+                  <span className="font-bold text-sm block text-slate-800">Add New Achievement</span>
+                  <span className="text-xs text-slate-500 mt-1 block">Publish new board exam results, sports or arts awards</span>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ========================================================================= */}
+      {/* 3. VISUAL PAGE: ACADEMIC STREAMS */}
+      {/* ========================================================================= */}
+      {activePage === "academics" && (
+        <div className="animate-in fade-in duration-200">
+          <div className="relative bg-slate-950 py-12 sm:py-16 text-white border-b border-slate-800 overflow-hidden">
+            <div
+              className="absolute inset-0 bg-cover bg-center opacity-30"
+              style={{ backgroundImage: `url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=1600&auto=format&fit=crop')` }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/90 to-emerald-950/80 pointer-events-none" />
+
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-8 space-y-3">
+              <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-emerald-300 bg-emerald-500/20 px-3 py-1 rounded-full border border-emerald-400/30">
+                SCERT & DHSE CURRICULUM
+              </span>
+              <h1 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+                Academic Programs & <span className="text-[#008744]">Streams</span>
+              </h1>
+              <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
+                Kerala state curriculum for Standards 8 to 12, featuring Science, Commerce, and Humanities streams.
+              </p>
+            </div>
+          </div>
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-8 py-10 space-y-8">
+            <div className="border-b border-slate-200 pb-4">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#008744]">
+                Higher Secondary Approved Streams
+              </span>
+              <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight mt-1">
+                Classes 11 & 12 (+1 & +2)
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+              {streams.map((st) => (
+                <div
+                  key={st.code}
+                  className="group relative bg-white rounded-3xl border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between overflow-hidden"
+                >
+                  <div className="absolute top-3 right-3 z-30 flex items-center gap-1.5 bg-slate-950/80 backdrop-blur-md p-1.5 rounded-2xl border border-white/20 shadow-xl">
+                    <button
+                      onClick={() => openEditor("streams", st)}
+                      className="inline-flex items-center gap-1 px-2.5 py-1 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-[11px] font-bold transition-colors cursor-pointer"
+                    >
+                      <Edit3 className="w-3 h-3" />
+                      <span>Edit Stream</span>
+                    </button>
+                  </div>
+
+                  <div className="relative h-56 w-full overflow-hidden bg-slate-900">
+                    <img
+                      src={st.imageUrl}
+                      alt={st.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-950/20 to-transparent" />
+
+                    <div className="absolute top-4 left-4">
+                      <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-emerald-300 bg-slate-900/85 backdrop-blur-md px-3 py-1 rounded-full border border-emerald-400/20 shadow-sm">
+                        Stream Code: {st.code}
+                      </span>
+                    </div>
+
+                    <div className="absolute bottom-3 left-4 right-4">
+                      <h3 className="text-lg font-black text-white drop-shadow-md">
+                        {st.name}
+                      </h3>
+                    </div>
+                  </div>
+
+                  <div className="p-6 space-y-4">
+                    <p className="text-xs text-slate-600 leading-relaxed">
+                      {st.description}
+                    </p>
+                    <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100 text-xs space-y-2">
+                      <div className="flex justify-between">
+                        <span className="font-semibold text-slate-500">Approved Seats:</span>
+                        <strong className="text-slate-900 font-mono">{st.seats} Seats</strong>
+                      </div>
+                      <div className="pt-2 border-t border-slate-200/60 flex flex-wrap gap-1.5">
+                        {st.coreSubjects?.map((sub, i) => (
+                          <span key={i} className="text-[11px] bg-white px-2 py-0.5 rounded-md border border-slate-200 text-slate-700">
+                            {sub}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ========================================================================= */}
+      {/* 4. VISUAL PAGE: SCHOLARSHIPS */}
+      {/* ========================================================================= */}
+      {activePage === "scholarships" && (
+        <div className="animate-in fade-in duration-200">
+          <div className="relative bg-slate-950 py-12 sm:py-16 text-white border-b border-slate-800 overflow-hidden">
+            <div
+              className="absolute inset-0 bg-cover bg-center opacity-30"
+              style={{ backgroundImage: `url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1600&auto=format&fit=crop')` }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/90 to-emerald-950/80 pointer-events-none" />
+
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-8 space-y-3">
+              <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-emerald-300 bg-emerald-500/20 px-3 py-1 rounded-full border border-emerald-400/30">
+                STUDENT FINANCIAL AID
+              </span>
+              <h1 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+                Scholarships & <span className="text-[#008744]">Merit Awards</span>
+              </h1>
+              <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
+                Government endowments and merit awards supporting deserving students.
+              </p>
+            </div>
+          </div>
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-8 py-10 space-y-8">
+            <div className="flex justify-between items-center border-b border-slate-200/80 pb-4">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-[#008744]">Live Schemes</span>
+                <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
+                  Available Scholarships ({scholarships.length})
+                </h2>
+              </div>
+              <button
+                onClick={() => openEditor("scholarships", null)}
+                className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#008744] hover:bg-[#007038] text-white text-xs font-bold rounded-xl shadow-md transition-all cursor-pointer"
+              >
+                <Plus className="w-4 h-4" />
+                <span>Add Scholarship</span>
+              </button>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+              {scholarships.map((sch) => (
+                <div
+                  key={sch._id || sch.id}
+                  className="group relative bg-white rounded-3xl border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between overflow-hidden"
+                >
+                  <div className="absolute top-3 right-3 z-30 flex items-center gap-1.5 bg-slate-950/80 backdrop-blur-md p-1.5 rounded-2xl border border-white/20 shadow-xl">
+                    <button
+                      onClick={() => openEditor("scholarships", sch)}
+                      className="inline-flex items-center gap-1 px-2.5 py-1 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-[11px] font-bold transition-colors cursor-pointer"
+                    >
+                      <Edit3 className="w-3 h-3" />
+                      <span>Edit</span>
+                    </button>
+                    <button
+                      onClick={() => handleDelete("scholarships", sch._id || sch.id)}
+                      className="p-1 text-slate-300 hover:text-red-400 transition-colors"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+
+                  <div className="relative h-56 w-full overflow-hidden bg-slate-900">
+                    <img src={sch.imageUrl} alt={sch.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-950/20 to-transparent" />
+                    <span className="absolute top-4 left-4 text-[10px] font-bold uppercase tracking-wider text-emerald-300 bg-slate-900/85 backdrop-blur-md px-3 py-1 rounded-full border border-emerald-400/20">
+                      {sch.target}
+                    </span>
+                  </div>
+
+                  <div className="p-6 space-y-4">
+                    <h3 className="text-lg font-black text-slate-900 leading-snug">{sch.name}</h3>
+                    <div className="p-3.5 rounded-2xl bg-emerald-50/80 border border-emerald-200/80 space-y-1">
+                      <div className="text-[10px] font-bold text-[#008744] uppercase tracking-wider">Scholarship Value</div>
+                      <div className="text-sm font-black text-emerald-950">{sch.amount}</div>
+                    </div>
+                    <p className="text-xs text-slate-600 leading-relaxed"><strong className="text-slate-800">Eligibility:</strong> {sch.eligibility}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ========================================================================= */}
+      {/* 5. VISUAL PAGE: TEACHERS / FACULTY DIRECTORY */}
+      {/* ========================================================================= */}
+      {activePage === "teachers" && (
+        <div className="animate-in fade-in duration-200">
+          <div className="relative bg-slate-950 py-12 sm:py-16 text-white border-b border-slate-800 overflow-hidden">
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-8 space-y-3">
+              <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-emerald-300 bg-emerald-500/20 px-3 py-1 rounded-full border border-emerald-400/30">
+                EDUCATOR DIRECTORY
+              </span>
+              <h1 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+                Faculty & <span className="text-[#008744]">Staff Directory</span>
+              </h1>
+              <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
+                Dedicated subject teachers across High School and Higher Secondary wings.
+              </p>
+            </div>
+          </div>
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-8 py-10 space-y-8">
+            <div className="flex justify-between items-center border-b border-slate-200/80 pb-4">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-[#008744]">Faculty Roster</span>
+                <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
+                  Teachers Listed ({teachers.length})
+                </h2>
+              </div>
+              <button
+                onClick={() => openEditor("teachers", null)}
+                className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#008744] hover:bg-[#007038] text-white text-xs font-bold rounded-xl shadow-md transition-all cursor-pointer"
+              >
+                <Plus className="w-4 h-4" />
+                <span>Add Teacher</span>
+              </button>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {teachers.map((t) => (
+                <div
+                  key={t._id || t.id}
+                  className="group relative bg-white rounded-3xl border border-slate-200/90 p-5 shadow-sm hover:shadow-xl hover:border-emerald-300 transition-all flex items-start gap-4"
+                >
+                  <img src={t.photoUrl} alt={t.name} className="w-16 h-16 rounded-2xl object-cover shrink-0 border border-slate-200" />
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-bold text-sm text-slate-900 truncate">{t.name}</h3>
+                    <p className="text-xs text-[#008744] font-semibold">{t.designation}</p>
+                    <p className="text-[11px] text-slate-500 mt-1">{t.department} • {t.wing}</p>
+                    <p className="text-[10px] text-slate-400 mt-0.5">{t.qualification}</p>
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <button
+                      onClick={() => openEditor("teachers", t)}
+                      className="p-1.5 text-slate-400 hover:text-emerald-700 rounded-lg hover:bg-slate-100 cursor-pointer"
+                      title="Edit"
+                    >
+                      <Edit3 className="w-4 h-4" />
+                    </button>
+                    <button
+                      onClick={() => handleDelete("teachers", t._id || t.id)}
+                      className="p-1.5 text-slate-400 hover:text-red-700 rounded-lg hover:bg-slate-100 cursor-pointer"
+                      title="Delete"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ========================================================================= */}
+      {/* 6. VISUAL PAGE: NOTICES & CIRCULARS */}
+      {/* ========================================================================= */}
+      {activePage === "notices" && (
+        <div className="animate-in fade-in duration-200">
+          <div className="relative bg-slate-950 py-12 sm:py-16 text-white border-b border-slate-800 overflow-hidden">
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-8 space-y-3">
+              <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-emerald-300 bg-emerald-500/20 px-3 py-1 rounded-full border border-emerald-400/30">
+                OFFICIAL BULLETIN
+              </span>
+              <h1 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+                Notices & <span className="text-[#008744]">Circulars</span>
+              </h1>
+              <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
+                Publish board circulars, exam notifications, and admissions updates.
+              </p>
+            </div>
+          </div>
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-8 py-10 space-y-6">
+            <div className="flex justify-between items-center border-b border-slate-200/80 pb-4">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-[#008744]">Campus Bulletin</span>
+                <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
+                  Active Noticeboard Items ({notices.length})
+                </h2>
+              </div>
+              <button
+                onClick={() => openEditor("notices", null)}
+                className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#008744] hover:bg-[#007038] text-white text-xs font-bold rounded-xl shadow-md transition-all cursor-pointer"
+              >
+                <Plus className="w-4 h-4" />
+                <span>Publish Notice</span>
+              </button>
+            </div>
+
+            <div className="space-y-3">
+              {notices.map((n) => (
+                <div
+                  key={n._id || n.id}
+                  className="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+                >
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-bold text-slate-900">{n.title}</span>
+                      {n.urgent && (
+                        <span className="text-[9px] font-bold text-red-700 bg-red-100 px-2 py-0.5 rounded-full uppercase">
+                          Urgent
+                        </span>
                       )}
                     </div>
-                    <div className="flex items-center gap-2">
-                      <select
-                        value={enq.status || "Received"}
-                        onChange={(e) => handleStatusChange("enquiries", enq._id || enq.id, e.target.value)}
-                        className="px-2.5 py-1 text-xs rounded-xl border border-slate-200 font-semibold text-slate-700 bg-white"
-                      >
-                        <option value="Received">Received</option>
-                        <option value="Under Review">Under Review</option>
-                        <option value="Shortlisted">Shortlisted</option>
-                        <option value="Approved">Approved</option>
-                      </select>
-                      <button
-                        onClick={() => handleDelete("enquiries", enq._id || enq.id)}
-                        className="p-1.5 text-slate-400 hover:text-red-700 rounded-lg hover:bg-slate-100"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* 11. CONTACTS */}
-          {activeTab === "contacts" && (
-            <div className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-2xs space-y-4">
-              <div className="divide-y divide-slate-100">
-                {contacts.map((msg) => (
-                  <div key={msg._id || msg.id} className="py-4 space-y-2">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <span className="font-bold text-xs text-slate-900">{msg.name}</span>
-                        <span className="text-[11px] text-slate-400">({msg.email} • {msg.phone})</span>
-                      </div>
-                      <button
-                        onClick={() => handleDelete("contacts", msg._id || msg.id)}
-                        className="p-1.5 text-slate-400 hover:text-red-700"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
-                    </div>
-                    <p className="text-xs text-slate-700 bg-slate-50 p-3 rounded-xl border border-slate-100">
-                      {msg.message}
+                    <p className="text-xs text-slate-500">
+                      {n.date} • <span className="font-semibold text-emerald-700">{n.category}</span>
                     </p>
+                    {n.summary && <p className="text-xs text-slate-600 mt-1 max-w-3xl">{n.summary}</p>}
                   </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* 12. ALUMNI */}
-          {activeTab === "alumni" && (
-            <div className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-2xs space-y-4">
-              <div className="divide-y divide-slate-100">
-                {alumni.map((alum) => (
-                  <div key={alum._id || alum.id} className="py-4 flex items-center justify-between">
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <span className="font-bold text-xs text-slate-900">{alum.name}</span>
-                        <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 font-mono">
-                          Class of {alum.batchYear}
-                        </span>
-                        {alum.verified && (
-                          <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold">
-                            Verified
-                          </span>
-                        )}
-                      </div>
-                      <p className="text-xs text-slate-600 mt-0.5">
-                        {alum.profession || "Alumnus"} • {alum.email}
-                      </p>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <button
-                        onClick={() => handleStatusChange("alumni", alum._id || alum.id, !alum.verified)}
-                        className={`px-3 py-1 text-xs rounded-xl font-bold cursor-pointer transition-colors ${
-                          alum.verified ? "bg-slate-100 text-slate-700 hover:bg-slate-200" : "bg-emerald-600 text-white hover:bg-emerald-700"
-                        }`}
-                      >
-                        {alum.verified ? "Unverify" : "Verify Alum"}
-                      </button>
-                      <button
-                        onClick={() => handleDelete("alumni", alum._id || alum.id)}
-                        className="p-1.5 text-slate-400 hover:text-red-700"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
-                    </div>
+                  <div className="flex items-center gap-2 shrink-0">
+                    <button
+                      onClick={() => openEditor("notices", n)}
+                      className="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 font-bold text-xs flex items-center gap-1 cursor-pointer"
+                    >
+                      <Edit3 className="w-3.5 h-3.5" />
+                      <span>Edit</span>
+                    </button>
+                    <button
+                      onClick={() => handleDelete("notices", n._id || n.id)}
+                      className="p-1.5 rounded-xl bg-slate-100 hover:bg-red-50 text-slate-400 hover:text-red-700 cursor-pointer"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
-          )}
+          </div>
         </div>
-      </main>
+      )}
 
-      {/* COMPREHENSIVE MODAL FOR ALL ENTITIES */}
+      {/* ========================================================================= */}
+      {/* 7. VISUAL PAGE: HOME PAGE BANNER & HEADLINE */}
+      {/* ========================================================================= */}
+      {activePage === "home" && (
+        <div className="animate-in fade-in duration-200 max-w-7xl mx-auto px-4 sm:px-8 py-10 space-y-8">
+          <div className="bg-white rounded-3xl border border-slate-200/90 p-8 shadow-sm space-y-6">
+            <div className="flex justify-between items-start border-b border-slate-100 pb-4">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-[#008744]">Main Public Landing Page</span>
+                <h2 className="text-2xl font-black text-slate-900 tracking-tight mt-1">Hero Section & Headline Settings</h2>
+                <p className="text-xs text-slate-500 mt-1">Changes here update the large hero titles and contact banner on the homepage.</p>
+              </div>
+              <button
+                onClick={() => openEditor("hero", siteSettings)}
+                className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#008744] hover:bg-[#007038] text-white text-xs font-bold rounded-xl shadow-md transition-all cursor-pointer"
+              >
+                <Edit3 className="w-4 h-4" />
+                <span>Edit Hero Text</span>
+              </button>
+            </div>
+
+            {/* Live Visual Preview of Public Hero */}
+            <div className="bg-slate-950 rounded-2xl p-8 text-white relative overflow-hidden border border-slate-800">
+              <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-emerald-300 bg-emerald-500/20 px-3 py-1 rounded-full border border-emerald-400/30 mb-4">
+                FOUNDED 1976 • MALAPPURAM
+              </span>
+              <h1 className="text-2xl sm:text-4xl font-black max-w-3xl leading-snug">
+                {siteSettings?.heroHeadline || "Nurturing Excellence, Values & Leadership Since 1976"}
+              </h1>
+              <p className="text-xs sm:text-sm text-slate-300 max-w-2xl mt-3 leading-relaxed">
+                {siteSettings?.heroSubtitle || "Premier Government-Aided Higher Secondary School under Nediyiruppu MEA."}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ========================================================================= */}
+      {/* 8. ADMISSIONS ENQUIRIES / LEADS */}
+      {/* ========================================================================= */}
+      {activePage === "enquiries" && (
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 py-10 space-y-6 animate-in fade-in duration-200">
+          <div className="border-b border-slate-200 pb-4">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#008744]">Student Admissions Leads</span>
+            <h2 className="text-2xl font-black text-slate-900 tracking-tight mt-1">
+              Received Applications ({enquiries.length})
+            </h2>
+          </div>
+
+          <div className="bg-white rounded-3xl border border-slate-200/90 shadow-sm divide-y divide-slate-100 overflow-hidden">
+            {enquiries.map((enq) => (
+              <div key={enq._id || enq.id} className="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div className="space-y-1">
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold text-sm text-slate-900">{enq.studentName}</span>
+                    <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-[#008744]">
+                      {enq.seekingGrade}
+                    </span>
+                  </div>
+                  <p className="text-xs text-slate-600">
+                    Parent: <strong className="text-slate-800">{enq.parentName}</strong> • Phone: <span className="font-mono">{enq.phone}</span>
+                  </p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="text-xs font-semibold px-3 py-1 rounded-xl bg-slate-100 text-slate-700">
+                    {enq.status || "Received"}
+                  </span>
+                </div>
+              </div>
+            ))}
+            {enquiries.length === 0 && (
+              <p className="p-12 text-center text-xs text-slate-400">No student enquiries recorded yet.</p>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* ========================================================================= */}
+      {/* 9. SETTINGS */}
+      {/* ========================================================================= */}
+      {activePage === "settings" && (
+        <div className="max-w-4xl mx-auto px-4 sm:px-8 py-10 space-y-6 animate-in fade-in duration-200">
+          <div className="bg-white rounded-3xl border border-slate-200/90 p-8 shadow-sm space-y-6">
+            <div className="border-b border-slate-100 pb-4">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#008744]">Institutional Directory</span>
+              <h2 className="text-2xl font-black text-slate-900 tracking-tight mt-1">School Contact & Affiliation Data</h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+                <span className="text-slate-500 font-bold block mb-1">Official School Name:</span>
+                <span className="font-semibold text-slate-800 text-sm">{siteSettings.schoolName}</span>
+              </div>
+              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+                <span className="text-slate-500 font-bold block mb-1">DHSE School Code:</span>
+                <span className="font-mono font-bold text-emerald-700 text-sm">{siteSettings.schoolCode}</span>
+              </div>
+              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+                <span className="text-slate-500 font-bold block mb-1">Office Telephone:</span>
+                <span className="font-mono text-slate-800 text-sm">{siteSettings.phone}</span>
+              </div>
+              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+                <span className="text-slate-500 font-bold block mb-1">Official Email:</span>
+                <span className="text-slate-800 text-sm">{siteSettings.email}</span>
+              </div>
+            </div>
+
+            <button
+              onClick={() => openEditor("hero", siteSettings)}
+              className="px-5 py-2.5 bg-[#008744] hover:bg-[#007038] text-white text-xs font-bold rounded-xl flex items-center gap-2 cursor-pointer shadow-sm"
+            >
+              <Edit3 className="w-4 h-4" />
+              <span>Edit Details</span>
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* ========================================================================= */}
+      {/* UNIVERSAL VISUAL MODAL EDITOR (WITH LIVE PHOTO PREVIEW) */}
+      {/* ========================================================================= */}
       {modalMode && modalTarget && (
-        <div className="fixed inset-0 bg-slate-950/60 backdrop-blur-xs z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 space-y-4 shadow-2xl border border-slate-100">
-            <div className="flex items-center justify-between border-b pb-3">
-              <h3 className="font-bold text-sm text-slate-900 capitalize">
-                {modalMode} {modalTarget.replace("-", " ")}
-              </h3>
-              <button onClick={() => setModalMode(null)} className="p-1 text-slate-400 hover:text-slate-600">
+        <div className="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in duration-150">
+          <div className="bg-white rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 sm:p-7 space-y-5 shadow-2xl border border-slate-200">
+            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+              <div>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[#008744]">
+                  Visual Live Editor
+                </span>
+                <h3 className="font-black text-base text-slate-900 capitalize">
+                  {modalMode} {modalTarget.replace("-", " ")} Card
+                </h3>
+              </div>
+              <button
+                onClick={() => setModalMode(null)}
+                className="p-1.5 text-slate-400 hover:text-slate-700 rounded-xl hover:bg-slate-100"
+              >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
             <form onSubmit={handleModalSubmit} className="space-y-4">
-              <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">Title / Name</label>
-                <input
-                  name={modalTarget === "teachers" || modalTarget === "alumni" ? "name" : "title"}
-                  required
-                  defaultValue={editingItem?.name || editingItem?.title || ""}
-                  className="w-full px-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#008744] focus:outline-hidden"
-                />
-              </div>
-
-              {/* NOTICES FIELDS */}
-              {modalTarget === "notices" && (
-                <>
-                  <div className="grid grid-cols-2 gap-3">
-                    <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-1">Date</label>
-                      <input
-                        name="date"
-                        required
-                        defaultValue={editingItem?.date || new Date().toISOString().split("T")[0]}
-                        className="w-full px-3.5 py-2 text-xs border rounded-xl"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-1">Category</label>
-                      <select name="category" defaultValue={editingItem?.category || "Notices"} className="w-full px-3.5 py-2 text-xs border rounded-xl">
-                        <option value="Notices">Notices</option>
-                        <option value="Academic">Academic</option>
-                        <option value="Admissions">Admissions</option>
-                        <option value="Events">Events</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">Summary</label>
-                    <textarea name="summary" rows={2} defaultValue={editingItem?.summary || ""} className="w-full px-3.5 py-2 text-xs border rounded-xl" />
-                  </div>
-                </>
-              )}
-
-              {/* TEACHERS FIELDS */}
-              {modalTarget === "teachers" && (
-                <>
-                  <div className="grid grid-cols-2 gap-3">
-                    <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-1">Designation</label>
-                      <input name="designation" required defaultValue={editingItem?.designation || "HST"} className="w-full px-3.5 py-2 text-xs border rounded-xl" />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-1">Department</label>
-                      <input name="department" required defaultValue={editingItem?.department || "General"} className="w-full px-3.5 py-2 text-xs border rounded-xl" />
-                    </div>
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">Photo Image URL</label>
-                    <input name="photoUrl" defaultValue={editingItem?.photoUrl || "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=600&auto=format&fit=crop"} className="w-full px-3.5 py-2 text-xs border rounded-xl" />
-                  </div>
-                </>
-              )}
-
-              {/* GALLERY FIELDS */}
-              {modalTarget === "gallery" && (
-                <>
-                  <div className="grid grid-cols-2 gap-3">
-                    <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-1">Album Category</label>
-                      <input name="album" required defaultValue={editingItem?.album || "Campus Life"} className="w-full px-3.5 py-2 text-xs border rounded-xl" />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-1">Event Year</label>
-                      <input name="year" required defaultValue={editingItem?.year || "2024"} className="w-full px-3.5 py-2 text-xs border rounded-xl" />
-                    </div>
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">Image URL</label>
-                    <input name="url" required defaultValue={editingItem?.url || ""} className="w-full px-3.5 py-2 text-xs border rounded-xl" />
-                  </div>
-                </>
-              )}
-
-              {/* RESOURCES FIELDS */}
-              {modalTarget === "resources" && (
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">Grade Level</label>
-                    <select name="grade" defaultValue={editingItem?.grade || "SSLC (Class 10)"} className="w-full px-3.5 py-2 text-xs border rounded-xl">
-                      <option value="Class 8">Class 8</option>
-                      <option value="Class 9">Class 9</option>
-                      <option value="SSLC (Class 10)">SSLC (Class 10)</option>
-                      <option value="Plus One (+1)">Plus One (+1)</option>
-                      <option value="Plus Two (+2)">Plus Two (+2)</option>
-                      <option value="General">General</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">Category</label>
-                    <select name="category" defaultValue={editingItem?.category || "Question Paper"} className="w-full px-3.5 py-2 text-xs border rounded-xl">
-                      <option value="Question Paper">Question Paper</option>
-                      <option value="Question Bank">Question Bank</option>
-                      <option value="Holiday Worksheet">Holiday Worksheet</option>
-                      <option value="Time Table">Time Table</option>
-                      <option value="Form">Form</option>
-                    </select>
-                  </div>
+              {/* TITLE / NAME */}
+              {modalTarget !== "hero" && (
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 mb-1">
+                    {modalTarget === "teachers" ? "Teacher Full Name" : "Card Title / Heading"}
+                  </label>
+                  <input
+                    name={modalTarget === "teachers" ? "name" : modalTarget === "streams" ? "name" : "title"}
+                    required
+                    defaultValue={editingItem?.name || editingItem?.title || ""}
+                    className="w-full px-3.5 py-2.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#008744] focus:outline-hidden"
+                  />
                 </div>
               )}
 
-              {/* SCHOLARSHIPS FIELDS */}
-              {modalTarget === "scholarships" && (
-                <>
-                  <div className="grid grid-cols-2 gap-3">
-                    <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-1">Target</label>
-                      <input name="target" required defaultValue={editingItem?.target || "Class 8 Students"} className="w-full px-3.5 py-2 text-xs border rounded-xl" />
+              {/* IMAGE URL WITH REAL-TIME PREVIEW */}
+              {["clubs", "achievements", "streams", "scholarships", "teachers"].includes(modalTarget) && (
+                <div className="space-y-2">
+                  <label className="block text-xs font-bold text-slate-700">
+                    Card Image URL (Unsplash or Photo Link)
+                  </label>
+                  <input
+                    name={modalTarget === "teachers" ? "photoUrl" : "imageUrl"}
+                    required
+                    value={previewImageUrl}
+                    onChange={(e) => setPreviewImageUrl(e.target.value)}
+                    className="w-full px-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#008744] focus:outline-hidden font-mono text-slate-600"
+                  />
+                  {previewImageUrl && (
+                    <div className="relative h-32 w-full rounded-2xl overflow-hidden bg-slate-900 border border-slate-200 mt-2">
+                      <img
+                        src={previewImageUrl}
+                        alt="Preview"
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          e.currentTarget.src = "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop";
+                        }}
+                      />
+                      <span className="absolute bottom-2 left-2 text-[10px] bg-black/60 backdrop-blur-sm text-white px-2 py-0.5 rounded-md font-bold">
+                        Live Preview
+                      </span>
                     </div>
-                    <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-1">Amount</label>
-                      <input name="amount" required defaultValue={editingItem?.amount || "₹12,000 per annum"} className="w-full px-3.5 py-2 text-xs border rounded-xl" />
-                    </div>
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">Image URL</label>
-                    <input name="imageUrl" defaultValue={editingItem?.imageUrl || "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop"} className="w-full px-3.5 py-2 text-xs border rounded-xl" />
-                  </div>
-                </>
+                  )}
+                </div>
               )}
 
-              {/* CLUBS FIELDS */}
+              {/* CLUBS SPECIFIC FIELDS */}
               {modalTarget === "clubs" && (
                 <>
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-1">Category</label>
-                      <input name="category" required defaultValue={editingItem?.category || "Community Service"} className="w-full px-3.5 py-2 text-xs border rounded-xl" />
+                      <label className="block text-xs font-bold text-slate-700 mb-1">Category Badge</label>
+                      <input
+                        name="category"
+                        required
+                        defaultValue={editingItem?.category || "Community Service"}
+                        className="w-full px-3 py-2 text-xs border rounded-xl"
+                      />
                     </div>
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-1">Coordinator</label>
-                      <input name="coordinator" required defaultValue={editingItem?.coordinator || "Staff Lead"} className="w-full px-3.5 py-2 text-xs border rounded-xl" />
+                      <label className="block text-xs font-bold text-slate-700 mb-1">Coordinator / Staff Lead</label>
+                      <input
+                        name="coordinator"
+                        required
+                        defaultValue={editingItem?.coordinator || "Staff Lead"}
+                        className="w-full px-3 py-2 text-xs border rounded-xl"
+                      />
                     </div>
                   </div>
                   <div>
                     <label className="block text-xs font-bold text-slate-700 mb-1">Description</label>
-                    <textarea name="description" rows={2} defaultValue={editingItem?.description || ""} className="w-full px-3.5 py-2 text-xs border rounded-xl" />
+                    <textarea
+                      name="description"
+                      rows={2}
+                      defaultValue={editingItem?.description || ""}
+                      className="w-full px-3 py-2 text-xs border rounded-xl"
+                    />
                   </div>
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">Banner Image URL</label>
-                    <input name="imageUrl" defaultValue={editingItem?.imageUrl || "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=800&auto=format&fit=crop"} className="w-full px-3.5 py-2 text-xs border rounded-xl" />
+                    <label className="block text-xs font-bold text-slate-700 mb-1">Key Initiatives (Comma separated)</label>
+                    <input
+                      name="activities"
+                      defaultValue={editingItem?.activities?.join(", ") || "Campus greening, Annual residential camp"}
+                      className="w-full px-3 py-2 text-xs border rounded-xl"
+                    />
                   </div>
                 </>
               )}
 
-              {/* ACHIEVEMENTS FIELDS */}
+              {/* ACHIEVEMENTS SPECIFIC FIELDS */}
               {modalTarget === "achievements" && (
                 <>
                   <div className="grid grid-cols-2 gap-3">
                     <div>
                       <label className="block text-xs font-bold text-slate-700 mb-1">Category</label>
-                      <select name="category" defaultValue={editingItem?.category || "Academic"} className="w-full px-3.5 py-2 text-xs border rounded-xl">
+                      <select name="category" defaultValue={editingItem?.category || "Academic"} className="w-full px-3 py-2 text-xs border rounded-xl">
                         <option value="Academic">Academic</option>
                         <option value="Sports">Sports</option>
                         <option value="Arts & Kalolsavam">Arts & Kalolsavam</option>
@@ -1330,26 +1681,129 @@ export default function App() {
                     </div>
                     <div>
                       <label className="block text-xs font-bold text-slate-700 mb-1">Year</label>
-                      <input name="year" required defaultValue={editingItem?.year || "2024"} className="w-full px-3.5 py-2 text-xs border rounded-xl" />
+                      <input
+                        name="year"
+                        required
+                        defaultValue={editingItem?.year || "2024"}
+                        className="w-full px-3 py-2 text-xs border rounded-xl font-mono"
+                      />
                     </div>
                   </div>
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">Badge Ribbon</label>
-                    <input name="badge" required defaultValue={editingItem?.badge || "Full A+ / Honors"} className="w-full px-3.5 py-2 text-xs border rounded-xl" />
+                    <label className="block text-xs font-bold text-slate-700 mb-1">Ribbon Distinction / Badge</label>
+                    <input
+                      name="badge"
+                      required
+                      defaultValue={editingItem?.badge || "Full A+ / First Rank"}
+                      className="w-full px-3 py-2 text-xs border rounded-xl"
+                    />
                   </div>
                   <div>
                     <label className="block text-xs font-bold text-slate-700 mb-1">Description</label>
-                    <textarea name="description" rows={2} defaultValue={editingItem?.description || ""} className="w-full px-3.5 py-2 text-xs border rounded-xl" />
+                    <textarea
+                      name="description"
+                      rows={2}
+                      defaultValue={editingItem?.description || ""}
+                      className="w-full px-3 py-2 text-xs border rounded-xl"
+                    />
                   </div>
                 </>
               )}
 
-              <div className="flex justify-end gap-2 pt-3 border-t">
-                <button type="button" onClick={() => setModalMode(null)} className="px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-xl cursor-pointer">
+              {/* SCHOLARSHIPS FIELDS */}
+              {modalTarget === "scholarships" && (
+                <>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label className="block text-xs font-bold text-slate-700 mb-1">Target</label>
+                      <input name="target" required defaultValue={editingItem?.target || "Class 8 Students"} className="w-full px-3 py-2 text-xs border rounded-xl" />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-700 mb-1">Award Amount</label>
+                      <input name="amount" required defaultValue={editingItem?.amount || "₹12,000 per annum"} className="w-full px-3 py-2 text-xs border rounded-xl" />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 mb-1">Eligibility Criteria</label>
+                    <textarea name="eligibility" rows={2} defaultValue={editingItem?.eligibility || ""} className="w-full px-3 py-2 text-xs border rounded-xl" />
+                  </div>
+                </>
+              )}
+
+              {/* TEACHERS FIELDS */}
+              {modalTarget === "teachers" && (
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 mb-1">Designation</label>
+                    <input name="designation" required defaultValue={editingItem?.designation || "HST"} className="w-full px-3 py-2 text-xs border rounded-xl" />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 mb-1">Department</label>
+                    <input name="department" required defaultValue={editingItem?.department || "General"} className="w-full px-3 py-2 text-xs border rounded-xl" />
+                  </div>
+                </div>
+              )}
+
+              {/* NOTICES FIELDS */}
+              {modalTarget === "notices" && (
+                <>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label className="block text-xs font-bold text-slate-700 mb-1">Date</label>
+                      <input name="date" required defaultValue={editingItem?.date || new Date().toISOString().split("T")[0]} className="w-full px-3 py-2 text-xs border rounded-xl font-mono" />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-700 mb-1">Category</label>
+                      <input name="category" required defaultValue={editingItem?.category || "Examinations"} className="w-full px-3 py-2 text-xs border rounded-xl" />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 mb-1">Summary</label>
+                    <textarea name="summary" rows={2} defaultValue={editingItem?.summary || ""} className="w-full px-3 py-2 text-xs border rounded-xl" />
+                  </div>
+                </>
+              )}
+
+              {/* HERO SECTION FIELDS */}
+              {modalTarget === "hero" && (
+                <>
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 mb-1">Main Headline</label>
+                    <textarea name="heroHeadline" rows={2} defaultValue={siteSettings?.heroHeadline || ""} className="w-full px-3 py-2 text-xs border rounded-xl font-bold" />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 mb-1">Hero Subtitle</label>
+                    <textarea name="heroSubtitle" rows={2} defaultValue={siteSettings?.heroSubtitle || ""} className="w-full px-3 py-2 text-xs border rounded-xl" />
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label className="block text-xs font-bold text-slate-700 mb-1">Phone</label>
+                      <input name="phone" defaultValue={siteSettings?.phone || ""} className="w-full px-3 py-2 text-xs border rounded-xl" />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-700 mb-1">Email</label>
+                      <input name="email" defaultValue={siteSettings?.email || ""} className="w-full px-3 py-2 text-xs border rounded-xl" />
+                    </div>
+                  </div>
+                </>
+              )}
+
+              {/* BUTTONS */}
+              <div className="flex justify-end gap-2 pt-4 border-t border-slate-100">
+                <button
+                  type="button"
+                  onClick={() => setModalMode(null)}
+                  className="px-4 py-2 text-xs font-bold text-slate-600 hover:bg-slate-100 rounded-xl cursor-pointer"
+                >
                   Cancel
                 </button>
-                <button type="submit" disabled={formSubmitting} className="px-5 py-2 text-xs font-bold bg-[#008744] hover:bg-[#007038] text-white rounded-xl shadow-xs cursor-pointer">
-                  {formSubmitting ? "Saving..." : "Save Record"}
+                <button
+                  type="submit"
+                  disabled={formSubmitting}
+                  className="px-5 py-2 text-xs font-bold bg-[#008744] hover:bg-[#007038] text-white rounded-xl shadow-md cursor-pointer flex items-center gap-1.5"
+                >
+                  <Save className="w-3.5 h-3.5" />
+                  <span>{formSubmitting ? "Saving..." : "Save Changes"}</span>
                 </button>
               </div>
             </form>

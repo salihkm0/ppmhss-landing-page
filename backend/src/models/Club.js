@@ -7,6 +7,7 @@ const ClubSchema = new mongoose.Schema(
     coordinator: { type: String, required: true },
     description: { type: String, required: true },
     activities: [{ type: String }],
+    imageUrl: { type: String, default: "" },
   },
   { timestamps: true }
 );
