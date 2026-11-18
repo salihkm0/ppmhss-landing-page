@@ -33,7 +33,7 @@ export async function PUT(request: Request) {
 
   try {
     const body = await request.json();
-    const { schoolInfo, administration, bannerAnnouncement } = body;
+    const { schoolInfo, administration, bannerAnnouncement, homePageData } = body;
 
     const { isConnected } = await connectToDatabase();
     if (isConnected) {
@@ -45,6 +45,7 @@ export async function PUT(request: Request) {
         if (schoolInfo) settings.schoolInfo = schoolInfo;
         if (administration) settings.administration = administration;
         if (bannerAnnouncement) settings.bannerAnnouncement = bannerAnnouncement;
+        if (homePageData) settings.homePageData = homePageData;
         await settings.save();
         return NextResponse.json({ success: true, message: "Settings updated successfully", data: settings });
       } catch (err: any) {
@@ -56,6 +57,7 @@ export async function PUT(request: Request) {
     if (schoolInfo) fallbackStore.siteSettings.schoolInfo = { ...fallbackStore.siteSettings.schoolInfo, ...schoolInfo };
     if (administration) fallbackStore.siteSettings.administration = { ...fallbackStore.siteSettings.administration, ...administration };
     if (bannerAnnouncement) fallbackStore.siteSettings.bannerAnnouncement = { ...fallbackStore.siteSettings.bannerAnnouncement, ...bannerAnnouncement };
+    if (homePageData) fallbackStore.siteSettings.homePageData = { ...fallbackStore.siteSettings.homePageData, ...homePageData };
 
     return NextResponse.json({
       success: true,

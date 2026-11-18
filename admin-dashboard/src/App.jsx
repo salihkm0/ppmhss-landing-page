@@ -308,7 +308,7 @@ const DEFAULT_TEACHERS = [
 export default function App() {
   const [token, setAuthToken] = useState(getToken());
   const [adminUser, setAdminUser] = useState(null);
-  const [activePage, setActivePage] = useState("clubs"); // Default to visual clubs or home
+  const [activePage, setActivePage] = useState("home"); // Default to visual Home page editor
   const [loading, setLoading] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -706,13 +706,13 @@ export default function App() {
 
   // Navigation pages in Visual Editor
   const pages = [
+    { id: "home", label: "Home Page (Slider & Highlights)", icon: Building2 },
+    { id: "academics", label: "Academic Programs", icon: BookOpen, count: streams.length },
     { id: "clubs", label: "Clubs & Activities", icon: Compass, count: clubs.length },
     { id: "achievements", label: "Hall of Achievements", icon: Trophy, count: achievements.length },
-    { id: "academics", label: "Academic Programs", icon: BookOpen, count: streams.length },
-    { id: "scholarships", label: "Scholarships", icon: GraduationCap, count: scholarships.length },
     { id: "teachers", label: "Faculty Directory", icon: Users, count: teachers.length },
     { id: "notices", label: "Notices & Circulars", icon: Bell, count: notices.length },
-    { id: "home", label: "Home Page Banner", icon: Building2 },
+    { id: "scholarships", label: "Scholarships", icon: GraduationCap, count: scholarships.length },
     { id: "enquiries", label: "Admissions Leads", icon: Inbox, count: enquiries.length, highlight: true },
     { id: "settings", label: "School Info", icon: Settings },
   ];
@@ -1436,16 +1436,17 @@ export default function App() {
       )}
 
       {/* ========================================================================= */}
-      {/* 7. VISUAL PAGE: HOME PAGE BANNER & HEADLINE */}
+      {/* 7. VISUAL PAGE: HOME PAGE SLIDER, ABOUT SCHOOL & WHY PPM HSS */}
       {/* ========================================================================= */}
       {activePage === "home" && (
-        <div className="animate-in fade-in duration-200 max-w-7xl mx-auto px-4 sm:px-8 py-10 space-y-8">
+        <div className="animate-in fade-in duration-200 max-w-7xl mx-auto px-4 sm:px-8 py-10 space-y-10">
+          {/* Section 1: Hero Carousel Slider */}
           <div className="bg-white rounded-3xl border border-slate-200/90 p-8 shadow-sm space-y-6">
             <div className="flex justify-between items-start border-b border-slate-100 pb-4">
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-[#008744]">Main Public Landing Page</span>
-                <h2 className="text-2xl font-black text-slate-900 tracking-tight mt-1">Hero Section & Headline Settings</h2>
-                <p className="text-xs text-slate-500 mt-1">Changes here update the large hero titles and contact banner on the homepage.</p>
+                <span className="text-xs font-bold uppercase tracking-wider text-[#008744]">Section 1: Hero Banner</span>
+                <h2 className="text-2xl font-black text-slate-900 tracking-tight mt-1">Hero Carousel Slider (4 Slides)</h2>
+                <p className="text-xs text-slate-500 mt-1">High-impact visual banner slides rotating on the public home page.</p>
               </div>
               <button
                 onClick={() => openEditor("hero", siteSettings)}
@@ -1457,16 +1458,116 @@ export default function App() {
             </div>
 
             {/* Live Visual Preview of Public Hero */}
-            <div className="bg-slate-950 rounded-2xl p-8 text-white relative overflow-hidden border border-slate-800">
-              <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-emerald-300 bg-emerald-500/20 px-3 py-1 rounded-full border border-emerald-400/30 mb-4">
-                FOUNDED 1976 • MALAPPURAM
-              </span>
-              <h1 className="text-2xl sm:text-4xl font-black max-w-3xl leading-snug">
-                {siteSettings?.heroHeadline || "Nurturing Excellence, Values & Leadership Since 1976"}
-              </h1>
-              <p className="text-xs sm:text-sm text-slate-300 max-w-2xl mt-3 leading-relaxed">
-                {siteSettings?.heroSubtitle || "Premier Government-Aided Higher Secondary School under Nediyiruppu MEA."}
-              </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {[
+                { badge: "ESTD 1976", title: "Start Your Inspiring & Bright Academic Future", desc: "Government-aided school nurturing over 5,100 students in Malappuram district.", img: "https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?q=85&w=1920&auto=format&fit=crop", stat: "5,100+ Enrolled Students" },
+                { badge: "INFRASTRUCTURE", title: "Modern High-Tech Laboratories & Smart Classrooms", desc: "Fully equipped science labs and KITE ICT smart classrooms.", img: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=85&w=1920&auto=format&fit=crop", stat: "6+ Specialized Labs" },
+                { badge: "HIGHER SECONDARY", title: "Empowering Science, Commerce & Humanities Streams", desc: "Science, Commerce, and Humanities streams with 194 Full A+ in SSLC 2024.", img: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=85&w=1920&auto=format&fit=crop", stat: "194 Full A+ in SSLC 2024" },
+                { badge: "CAMPUS LIBRARY", title: "Central Reference Library & Digital Resource Wing", desc: "Over 15,000 titles, periodicals, and a reading room for students.", img: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=85&w=1920&auto=format&fit=crop", stat: "15,000+ Academic Volumes" },
+              ].map((slide, idx) => (
+                <div key={idx} className="rounded-2xl overflow-hidden border border-slate-800 bg-slate-950 text-white relative flex flex-col justify-between group">
+                  <div className="relative h-44 w-full overflow-hidden">
+                    <img src={slide.img} alt={slide.title} className="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+                    <div className="absolute top-3 left-3 flex items-center gap-2">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-300 bg-emerald-500/20 px-2.5 py-1 rounded-full border border-emerald-400/30">
+                        {slide.badge}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="p-5 space-y-2 relative -mt-6">
+                    <h4 className="text-sm font-black text-white">{slide.title}</h4>
+                    <p className="text-xs text-slate-300 line-clamp-2">{slide.desc}</p>
+                    <div className="pt-2 border-t border-slate-800 flex justify-between text-[11px] text-slate-400">
+                      <span>{slide.stat}</span>
+                      <span className="text-emerald-400 font-mono">Slide #{idx + 1}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Section 2: About Our School */}
+          <div className="bg-white rounded-3xl border border-slate-200/90 p-8 shadow-sm space-y-6">
+            <div className="border-b border-slate-100 pb-4">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#008744]">Section 2: About Our School</span>
+              <h2 className="text-2xl font-black text-slate-900 tracking-tight mt-1">About Our School & History</h2>
+              <p className="text-xs text-slate-500 mt-1">Photo collage, 1976 establishment badge, and institutional story.</p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-slate-50 p-6 rounded-2xl border border-slate-200">
+              <div className="lg:col-span-6 grid grid-cols-2 gap-3 items-end">
+                <div className="space-y-3">
+                  <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?q=80&w=600&auto=format&fit=crop" alt="Campus Building" className="w-full h-32 object-cover" />
+                  </div>
+                  <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=600&auto=format&fit=crop" alt="Science Lab" className="w-full h-24 object-cover" />
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  <div className="bg-[#008744] text-white p-4 rounded-2xl space-y-1 shadow-md">
+                    <div className="text-3xl font-black font-mono">1976</div>
+                    <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-200">Established Year</div>
+                    <p className="text-[10px] text-emerald-100 leading-tight">Nearly 50 years of educational service in Malappuram.</p>
+                  </div>
+                  <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=600&auto=format&fit=crop" alt="Campus Library" className="w-full h-28 object-cover" />
+                  </div>
+                </div>
+              </div>
+
+              <div className="lg:col-span-6 space-y-3">
+                <span className="text-xs font-bold text-[#008744] uppercase tracking-wider">About Our School</span>
+                <h4 className="text-2xl font-black text-slate-900 leading-snug">
+                  Quality Education & Character <span className="text-[#008744]">Since 1976</span>
+                </h4>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Founded under the Nediyiruppu Muslim Educational Association, PPM HSS provides quality, government-aided education to over 5,100 students across High School and Higher Secondary sections.
+                </p>
+                <div className="grid grid-cols-2 gap-3 pt-2">
+                  <div className="p-3 bg-white rounded-xl border border-slate-200 shadow-2xs">
+                    <h5 className="text-xs font-bold text-slate-900">Comprehensive Learning</h5>
+                    <p className="text-[11px] text-slate-500 mt-0.5">Balanced development across sciences, commerce, and sports.</p>
+                  </div>
+                  <div className="p-3 bg-white rounded-xl border border-slate-200 shadow-2xs">
+                    <h5 className="text-xs font-bold text-slate-900">Proven Results</h5>
+                    <p className="text-[11px] text-slate-500 mt-0.5">99.4% pass record with 194 Full A+ in SSLC 2024.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Section 3: Why PPM HSS Highlights */}
+          <div className="bg-white rounded-3xl border border-slate-200/90 p-8 shadow-sm space-y-6">
+            <div className="border-b border-slate-100 pb-4">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#008744]">Section 3: Highlights</span>
+              <h2 className="text-2xl font-black text-slate-900 tracking-tight mt-1">Why PPM HSS Highlights</h2>
+              <p className="text-xs text-slate-500 mt-1">4 pillar cards highlighting key institutional strengths.</p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {[
+                { title: "Experienced Faculty", desc: "165+ teachers across high school and higher secondary.", icon: Users },
+                { title: "Modern Laboratories", desc: "Equipped physics, chemistry, biology, and computer labs.", icon: Sparkles },
+                { title: "Government Aided", desc: "Subsidized free tuition with state scholarship access.", icon: Award },
+                { title: "4.5-Acre Campus", desc: "Smart classrooms, central library, and sports grounds.", icon: Building2 },
+              ].map((card, idx) => {
+                const Icon = card.icon;
+                return (
+                  <div key={idx} className="bg-slate-50 p-5 rounded-2xl border border-slate-200 shadow-2xs flex flex-col justify-between space-y-3">
+                    <div className="w-10 h-10 rounded-xl bg-emerald-100 text-[#008744] flex items-center justify-center">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h5 className="text-xs font-bold text-slate-900">{card.title}</h5>
+                      <p className="text-[11px] text-slate-500 mt-1 leading-relaxed">{card.desc}</p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>

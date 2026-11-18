@@ -22,6 +22,60 @@ import { SCHOOL_INFO, ADMINISTRATION } from "@/data/schoolData";
 
 export default function HomeHighlights() {
   const [videoModalOpen, setVideoModalOpen] = useState(false);
+  const [aboutData, setAboutData] = useState({
+    badge: "About Our School",
+    headingPart1: "Quality Education & Character",
+    headingHighlight: "Since 1976",
+    estdYear: "1976",
+    estdText: "Nearly 50 years of educational service in Malappuram district.",
+    description: "Founded under the Nediyiruppu Muslim Educational Association, PPM HSS provides quality, government-aided education to over 5,100 students across High School and Higher Secondary sections.",
+    img1: "https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?q=80&w=600&auto=format&fit=crop",
+    img2: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=600&auto=format&fit=crop",
+    img3: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=600&auto=format&fit=crop",
+    feature1Title: "Comprehensive Learning",
+    feature1Desc: "Balanced development across sciences, commerce, arts, and sports.",
+    feature2Title: "Proven Results",
+    feature2Desc: "99.4% pass record with 194 Full A+ in SSLC 2024.",
+  });
+
+  const [whyData, setWhyData] = useState({
+    badge: "Why PPM HSS",
+    headingPart1: "Dedicated Mentorship &",
+    headingHighlight: "Modern Campus",
+    description: "We combine academic discipline with individual guidance, modern laboratories, and government-aided affordability.",
+    cards: [
+      {
+        title: "Experienced Faculty",
+        desc: "165+ teachers across high school and higher secondary.",
+      },
+      {
+        title: "Modern Laboratories",
+        desc: "Equipped physics, chemistry, biology, and computer labs.",
+      },
+      {
+        title: "Government Aided",
+        desc: "Subsidized free tuition with state scholarship access.",
+      },
+      {
+        title: "4.5-Acre Campus",
+        desc: "Smart classrooms, central library, and sports grounds.",
+      },
+    ],
+  });
+
+  React.useEffect(() => {
+    fetch("/api/settings")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data?.data?.homePageData?.aboutSchool) {
+          setAboutData(data.data.homePageData.aboutSchool);
+        }
+        if (data?.data?.homePageData?.whySchool) {
+          setWhyData(data.data.homePageData.whySchool);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   // Key Institutional Leadership
   const keyLeaders = [
@@ -123,14 +177,14 @@ export default function HomeHighlights() {
               <div className="space-y-4">
                 <div className="rounded-3xl overflow-hidden shadow-lg border border-slate-200">
                   <img
-                    src="https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?q=80&w=600&auto=format&fit=crop"
+                    src={aboutData.img1 || "https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?q=80&w=600&auto=format&fit=crop"}
                     alt="PPM HSS Main Campus Building"
                     className="w-full h-56 object-cover"
                   />
                 </div>
                 <div className="rounded-3xl overflow-hidden shadow-lg border border-slate-200">
                   <img
-                    src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=600&auto=format&fit=crop"
+                    src={aboutData.img2 || "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=600&auto=format&fit=crop"}
                     alt="Science Laboratory"
                     className="w-full h-40 object-cover"
                   />
@@ -138,17 +192,17 @@ export default function HomeHighlights() {
               </div>
               <div className="space-y-4">
                 <div className="bg-[#008744] text-white p-6 rounded-3xl space-y-2 shadow-xl">
-                  <div className="text-4xl font-black font-mono">1976</div>
+                  <div className="text-4xl font-black font-mono">{aboutData.estdYear || "1976"}</div>
                   <div className="text-xs font-bold uppercase tracking-wider text-emerald-200">
                     Established Year
                   </div>
                   <p className="text-[11px] text-emerald-100 leading-relaxed">
-                    Nearly 50 years of educational service in Malappuram district.
+                    {aboutData.estdText || "Nearly 50 years of educational service in Malappuram district."}
                   </p>
                 </div>
                 <div className="rounded-3xl overflow-hidden shadow-lg border border-slate-200">
                   <img
-                    src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=600&auto=format&fit=crop"
+                    src={aboutData.img3 || "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=600&auto=format&fit=crop"}
                     alt="Campus Library"
                     className="w-full h-48 object-cover"
                   />
@@ -162,15 +216,16 @@ export default function HomeHighlights() {
             <div className="space-y-2">
               <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#008744] bg-emerald-50 px-3.5 py-1 rounded-full border border-emerald-200">
                 <BookOpen className="w-3.5 h-3.5" />
-                <span>About Our School</span>
+                <span>{aboutData.badge || "About Our School"}</span>
               </span>
               <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight">
-                Quality Education & Character <span className="text-[#008744]">Since 1976</span>
+                {aboutData.headingPart1 || "Quality Education & Character"}{" "}
+                <span className="text-[#008744]">{aboutData.headingHighlight || "Since 1976"}</span>
               </h2>
             </div>
 
             <p className="text-sm text-slate-600 leading-relaxed">
-              Founded under the Nediyiruppu Muslim Educational Association, PPM HSS provides quality, government-aided education to over 5,100 students across High School and Higher Secondary sections.
+              {aboutData.description || "Founded under the Nediyiruppu Muslim Educational Association, PPM HSS provides quality, government-aided education to over 5,100 students across High School and Higher Secondary sections."}
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
@@ -179,8 +234,8 @@ export default function HomeHighlights() {
                   <Sparkles className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-slate-900">Comprehensive Learning</h4>
-                  <p className="text-xs text-slate-500 mt-0.5">Balanced development across sciences, commerce, arts, and sports.</p>
+                  <h4 className="text-sm font-bold text-slate-900">{aboutData.feature1Title || "Comprehensive Learning"}</h4>
+                  <p className="text-xs text-slate-500 mt-0.5">{aboutData.feature1Desc || "Balanced development across sciences, commerce, arts, and sports."}</p>
                 </div>
               </div>
 
@@ -189,8 +244,8 @@ export default function HomeHighlights() {
                   <Award className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-slate-900">Proven Results</h4>
-                  <p className="text-xs text-slate-500 mt-0.5">99.4% pass record with 194 Full A+ in SSLC 2024.</p>
+                  <h4 className="text-sm font-bold text-slate-900">{aboutData.feature2Title || "Proven Results"}</h4>
+                  <p className="text-xs text-slate-500 mt-0.5">{aboutData.feature2Desc || "99.4% pass record with 194 Full A+ in SSLC 2024."}</p>
                 </div>
               </div>
             </div>
@@ -224,57 +279,34 @@ export default function HomeHighlights() {
             <div className="lg:col-span-5 space-y-4">
               <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#008744] bg-emerald-100/70 px-3.5 py-1 rounded-full border border-emerald-200">
                 <ShieldCheck className="w-3.5 h-3.5 text-[#008744]" />
-                <span>Why PPM HSS</span>
+                <span>{whyData.badge || "Why PPM HSS"}</span>
               </span>
               <h2 className="text-3xl font-black text-slate-900 tracking-tight leading-tight">
-                Dedicated Mentorship & <span className="text-[#008744]">Modern Campus</span>
+                {whyData.headingPart1 || "Dedicated Mentorship &"}{" "}
+                <span className="text-[#008744]">{whyData.headingHighlight || "Modern Campus"}</span>
               </h2>
               <p className="text-sm text-slate-600 leading-relaxed">
-                We combine academic discipline with individual guidance, modern laboratories, and government-aided affordability.
+                {whyData.description || "We combine academic discipline with individual guidance, modern laboratories, and government-aided affordability."}
               </p>
             </div>
 
             {/* Right: 4 Highlights Cards */}
             <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="bg-white rounded-2xl p-4 sm:p-5 flex items-start gap-3.5 shadow-sm border border-slate-200">
-                <div className="w-10 h-10 rounded-xl bg-emerald-50 text-[#008744] flex items-center justify-center shrink-0">
-                  <Users className="w-5 h-5" />
-                </div>
-                <div>
-                  <h4 className="text-xs font-bold text-slate-900">Experienced Faculty</h4>
-                  <p className="text-[11px] text-slate-500 mt-0.5">165+ teachers across high school and higher secondary.</p>
-                </div>
-              </div>
-
-              <div className="bg-white rounded-2xl p-4 sm:p-5 flex items-start gap-3.5 shadow-sm border border-slate-200">
-                <div className="w-10 h-10 rounded-xl bg-emerald-50 text-[#008744] flex items-center justify-center shrink-0">
-                  <Sparkles className="w-5 h-5" />
-                </div>
-                <div>
-                  <h4 className="text-xs font-bold text-slate-900">Modern Laboratories</h4>
-                  <p className="text-[11px] text-slate-500 mt-0.5">Equipped physics, chemistry, biology, and computer labs.</p>
-                </div>
-              </div>
-
-              <div className="bg-white rounded-2xl p-4 sm:p-5 flex items-start gap-3.5 shadow-sm border border-slate-200">
-                <div className="w-10 h-10 rounded-xl bg-emerald-50 text-[#008744] flex items-center justify-center shrink-0">
-                  <Award className="w-5 h-5" />
-                </div>
-                <div>
-                  <h4 className="text-xs font-bold text-slate-900">Government Aided</h4>
-                  <p className="text-[11px] text-slate-500 mt-0.5">Subsidized free tuition with state scholarship access.</p>
-                </div>
-              </div>
-
-              <div className="bg-white rounded-2xl p-4 sm:p-5 flex items-start gap-3.5 shadow-sm border border-slate-200">
-                <div className="w-10 h-10 rounded-xl bg-emerald-50 text-[#008744] flex items-center justify-center shrink-0">
-                  <Building2 className="w-5 h-5" />
-                </div>
-                <div>
-                  <h4 className="text-xs font-bold text-slate-900">4.5-Acre Campus</h4>
-                  <p className="text-[11px] text-slate-500 mt-0.5">Smart classrooms, central library, and sports grounds.</p>
-                </div>
-              </div>
+              {(whyData.cards || []).map((card: any, idx: number) => {
+                const icons = [Users, Sparkles, Award, Building2];
+                const IconComponent = icons[idx % icons.length];
+                return (
+                  <div key={idx} className="bg-white rounded-2xl p-4 sm:p-5 flex items-start gap-3.5 shadow-sm border border-slate-200">
+                    <div className="w-10 h-10 rounded-xl bg-emerald-50 text-[#008744] flex items-center justify-center shrink-0">
+                      <IconComponent className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h4 className="text-xs font-bold text-slate-900">{card.title}</h4>
+                      <p className="text-[11px] text-slate-500 mt-0.5">{card.desc}</p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
 

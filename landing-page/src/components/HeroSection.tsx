@@ -17,64 +17,76 @@ import {
   Compass,
 } from "lucide-react";
 
+const DEFAULT_SLIDES = [
+  {
+    badge: "ESTD 1976",
+    titlePart1: "Start Your",
+    titleHighlight: "Inspiring & Bright",
+    titlePart2: "Academic Future",
+    desc: "Government-aided school nurturing over 5,100 students in Malappuram district.",
+    image:
+      "https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?q=85&w=1920&auto=format&fit=crop",
+    caption: "4.5-Acre Campus & Modern Infrastructure",
+    tag: "Academic Excellence",
+    statValue: "5,100+",
+    statLabel: "Enrolled Students",
+  },
+  {
+    badge: "INFRASTRUCTURE",
+    titlePart1: "Modern High-Tech",
+    titleHighlight: "Laboratories & Smart",
+    titlePart2: "Classrooms",
+    desc: "Fully equipped science labs and KITE ICT smart classrooms.",
+    image:
+      "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=85&w=1920&auto=format&fit=crop",
+    caption: "Science Labs & ICT Smart Classrooms",
+    tag: "Research & Science",
+    statValue: "6+",
+    statLabel: "Specialized Labs",
+  },
+  {
+    badge: "HIGHER SECONDARY",
+    titlePart1: "Empowering",
+    titleHighlight: "Science, Commerce &",
+    titlePart2: "Humanities Streams",
+    desc: "Science, Commerce, and Humanities streams with 194 Full A+ in SSLC 2024.",
+    image:
+      "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=85&w=1920&auto=format&fit=crop",
+    caption: "165+ Dedicated Educators & Mentors",
+    tag: "DHSE Code: 11024",
+    statValue: "194",
+    statLabel: "Full A+ in SSLC 2024",
+  },
+  {
+    badge: "CAMPUS LIBRARY",
+    titlePart1: "Central Reference",
+    titleHighlight: "Library & Digital",
+    titlePart2: "Resource Wing",
+    desc: "Over 15,000 titles, periodicals, and a reading room for students.",
+    image:
+      "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=85&w=1920&auto=format&fit=crop",
+    caption: "15,000+ Volume Central Library",
+    tag: "Resource Hub",
+    statValue: "15,000+",
+    statLabel: "Academic Volumes",
+  },
+];
+
 export default function HeroSection() {
+  const [slides, setSlides] = useState(DEFAULT_SLIDES);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
-  const slides = [
-    {
-      badge: "ESTD 1976",
-      titlePart1: "Start Your",
-      titleHighlight: "Inspiring & Bright",
-      titlePart2: "Academic Future",
-      desc: "Government-aided school nurturing over 5,100 students in Malappuram district.",
-      image:
-        "https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?q=85&w=1920&auto=format&fit=crop",
-      caption: "4.5-Acre Campus & Modern Infrastructure",
-      tag: "Academic Excellence",
-      statValue: "5,100+",
-      statLabel: "Enrolled Students",
-    },
-    {
-      badge: "INFRASTRUCTURE",
-      titlePart1: "Modern High-Tech",
-      titleHighlight: "Laboratories & Smart",
-      titlePart2: "Classrooms",
-      desc: "Fully equipped science labs and KITE ICT smart classrooms.",
-      image:
-        "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=85&w=1920&auto=format&fit=crop",
-      caption: "Science Labs & ICT Smart Classrooms",
-      tag: "Research & Science",
-      statValue: "6+",
-      statLabel: "Specialized Labs",
-    },
-    {
-      badge: "HIGHER SECONDARY",
-      titlePart1: "Empowering",
-      titleHighlight: "Science, Commerce &",
-      titlePart2: "Humanities Streams",
-      desc: "Science, Commerce, and Humanities streams with 194 Full A+ in SSLC 2024.",
-      image:
-        "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=85&w=1920&auto=format&fit=crop",
-      caption: "165+ Dedicated Educators & Mentors",
-      tag: "DHSE Code: 11024",
-      statValue: "194",
-      statLabel: "Full A+ in SSLC 2024",
-    },
-    {
-      badge: "CAMPUS LIBRARY",
-      titlePart1: "Central Reference",
-      titleHighlight: "Library & Digital",
-      titlePart2: "Resource Wing",
-      desc: "Over 15,000 titles, periodicals, and a reading room for students.",
-      image:
-        "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=85&w=1920&auto=format&fit=crop",
-      caption: "15,000+ Volume Central Library",
-      tag: "Resource Hub",
-      statValue: "15,000+",
-      statLabel: "Academic Volumes",
-    },
-  ];
+  useEffect(() => {
+    fetch("/api/settings")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data?.data?.homePageData?.heroSlides?.length > 0) {
+          setSlides(data.data.homePageData.heroSlides);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   const slide = slides[currentSlide];
 

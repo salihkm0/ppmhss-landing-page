@@ -73,6 +73,7 @@ export interface ISiteSettings extends Document {
     link: string;
     active: boolean;
   };
+  homePageData?: any;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -86,6 +87,7 @@ const SiteSettingsSchema = new Schema<ISiteSettings>(
       link: { type: String, default: "/admissions" },
       active: { type: Boolean, default: true },
     },
+    homePageData: { type: Schema.Types.Mixed, default: {} },
   },
   { timestamps: true }
 );

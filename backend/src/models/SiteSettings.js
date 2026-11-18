@@ -9,6 +9,7 @@ const SiteSettingsSchema = new mongoose.Schema(
       link: { type: String, default: "/admissions" },
       active: { type: Boolean, default: true },
     },
+    homePageData: { type: mongoose.Schema.Types.Mixed, default: {} },
   },
   { timestamps: true }
 );
