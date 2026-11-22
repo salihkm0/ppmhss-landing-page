@@ -598,106 +598,104 @@ export default function AdminDashboardPage() {
 
       {/* Sidebar */}
       <aside
-        className={`fixed lg:sticky top-0 h-screen w-72 bg-white border-r border-slate-200 z-40 flex flex-col justify-between transition-transform duration-300 lg:translate-x-0 ${
-          sidebarOpen ? "translate-x-0" : "-translate-x-full"
+        className={`fixed top-0 left-0 bottom-0 h-screen w-72 bg-white border-r border-slate-200 z-40 flex flex-col transition-transform duration-300 ${
+          sidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
         }`}
       >
-        <div>
-          {/* Logo & Brand Header */}
-          <div className="p-5 border-b border-slate-100 flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-center p-1.5">
-                <Image
-                  src="/images/logo.png"
-                  alt="PPM HSS"
-                  width={32}
-                  height={32}
-                  className="object-contain"
-                />
-              </div>
-              <div>
-                <h1 className="text-sm font-black text-slate-900 tracking-tight">PPM HSS CMS</h1>
-                <p className="text-[11px] text-slate-500 font-medium">Page Visual Editor</p>
-              </div>
-            </Link>
-            <button
-              onClick={() => setSidebarOpen(false)}
-              className="lg:hidden p-1.5 rounded-lg text-slate-400 hover:text-slate-600"
-            >
-              <X className="w-5 h-5" />
-            </button>
-          </div>
-
-          {/* Database Mode Pill */}
-          <div className="px-5 py-3 border-b border-slate-100/80 bg-slate-50/50 flex items-center justify-between text-xs font-semibold">
-            <span className="flex items-center gap-2 text-slate-600">
-              <span className={`w-2 h-2 rounded-full ${dbStatus.includes("Live") ? "bg-emerald-500" : "bg-emerald-400"}`} />
-              {dbStatus}
-            </span>
-            <button
-              onClick={loadAllData}
-              title="Refresh live data"
-              className="text-slate-400 hover:text-slate-600 cursor-pointer"
-            >
-              <RefreshCw className={`w-3.5 h-3.5 ${loading ? "animate-spin text-[#008744]" : ""}`} />
-            </button>
-          </div>
-
-          {/* Navigation Links */}
-          <nav className="p-3 space-y-1 max-h-[calc(100vh-220px)] overflow-y-auto">
-            <div className="px-3 py-1.5 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-              PUBLIC PAGES & CONTENT
+        {/* Logo & Brand Header */}
+        <div className="shrink-0 p-5 border-b border-slate-100 flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-center p-1.5">
+              <Image
+                src="/images/logo.png"
+                alt="PPM HSS"
+                width={32}
+                height={32}
+                className="object-contain"
+              />
             </div>
-            {navItems.map((item) => {
-              const Icon = item.icon;
-              const isActive = activeTab === item.id;
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => {
-                    setActiveTab(item.id as TabType);
-                    setSidebarOpen(false);
-                  }}
-                  className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
-                    isActive
-                      ? "bg-[#008744] text-white shadow-xs font-bold"
-                      : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
-                  }`}
-                >
-                  <div className="flex items-center gap-3">
-                    <Icon className={`w-4 h-4 ${isActive ? "text-white" : "text-slate-400"}`} />
-                    <span>{item.label}</span>
-                  </div>
-                  {item.badge && (
-                    <span
-                      className={`text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider ${
-                        isActive ? "bg-white/20 text-white" : "bg-emerald-50 text-[#008744] border border-emerald-200"
-                      }`}
-                    >
-                      {item.badge}
-                    </span>
-                  )}
-                  {item.count !== undefined && !item.badge && (
-                    <span
-                      className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${
-                        isActive
-                          ? "bg-white/20 text-white"
-                          : item.highlight
-                          ? "bg-emerald-50 text-[#008744]"
-                          : "bg-slate-100 text-slate-600"
-                      }`}
-                    >
-                      {item.count}
-                    </span>
-                  )}
-                </button>
-              );
-            })}
-          </nav>
+            <div>
+              <h1 className="text-sm font-black text-slate-900 tracking-tight">PPM HSS CMS</h1>
+              <p className="text-[11px] text-slate-500 font-medium">Page Visual Editor</p>
+            </div>
+          </Link>
+          <button
+            onClick={() => setSidebarOpen(false)}
+            className="lg:hidden p-1.5 rounded-lg text-slate-400 hover:text-slate-600 cursor-pointer"
+          >
+            <X className="w-5 h-5" />
+          </button>
         </div>
 
+        {/* Database Mode Pill */}
+        <div className="shrink-0 px-5 py-3 border-b border-slate-100/80 bg-slate-50/50 flex items-center justify-between text-xs font-semibold">
+          <span className="flex items-center gap-2 text-slate-600">
+            <span className={`w-2 h-2 rounded-full ${dbStatus.includes("Live") ? "bg-emerald-500" : "bg-emerald-400"}`} />
+            {dbStatus}
+          </span>
+          <button
+            onClick={loadAllData}
+            title="Refresh live data"
+            className="text-slate-400 hover:text-slate-600 cursor-pointer"
+          >
+            <RefreshCw className={`w-3.5 h-3.5 ${loading ? "animate-spin text-[#008744]" : ""}`} />
+          </button>
+        </div>
+
+        {/* Navigation Links */}
+        <nav className="flex-1 min-h-0 overflow-y-auto p-3 space-y-1">
+          <div className="px-3 py-1.5 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+            PUBLIC PAGES & CONTENT
+          </div>
+          {navItems.map((item) => {
+            const Icon = item.icon;
+            const isActive = activeTab === item.id;
+            return (
+              <button
+                key={item.id}
+                onClick={() => {
+                  setActiveTab(item.id as TabType);
+                  setSidebarOpen(false);
+                }}
+                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
+                  isActive
+                    ? "bg-[#008744] text-white shadow-xs font-bold"
+                    : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+                }`}
+              >
+                <div className="flex items-center gap-3">
+                  <Icon className={`w-4 h-4 ${isActive ? "text-white" : "text-slate-400"}`} />
+                  <span>{item.label}</span>
+                </div>
+                {item.badge && (
+                  <span
+                    className={`text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider ${
+                      isActive ? "bg-white/20 text-white" : "bg-emerald-50 text-[#008744] border border-emerald-200"
+                    }`}
+                  >
+                    {item.badge}
+                  </span>
+                )}
+                {item.count !== undefined && !item.badge && (
+                  <span
+                    className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${
+                      isActive
+                        ? "bg-white/20 text-white"
+                        : item.highlight
+                        ? "bg-emerald-50 text-[#008744]"
+                        : "bg-slate-100 text-slate-600"
+                    }`}
+                  >
+                    {item.count}
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </nav>
+
         {/* User Card & Logout */}
-        <div className="p-4 border-t border-slate-100 bg-slate-50/50 space-y-3">
+        <div className="shrink-0 p-4 border-t border-slate-100 bg-slate-50/50 space-y-3">
           <div className="flex items-center justify-between text-xs">
             <span className="text-slate-500 font-medium">Logged in as:</span>
             <span className="font-bold text-slate-900">{adminUser?.username || "Admin"}</span>
@@ -723,7 +721,7 @@ export default function AdminDashboardPage() {
       </aside>
 
       {/* Main Content Area */}
-      <main className="flex-1 min-w-0 flex flex-col min-h-screen">
+      <main className="flex-1 min-w-0 flex flex-col min-h-screen lg:pl-72">
         {/* Top Header Bar */}
         <header className="sticky top-0 bg-white/95 backdrop-blur-md border-b border-slate-200 z-20 px-6 py-4 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
