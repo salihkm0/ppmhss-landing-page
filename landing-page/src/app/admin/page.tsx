@@ -747,42 +747,6 @@ export default function AdminDashboardPage() {
               </p>
             </div>
           </div>
-
-          {/* Quick Page Jump Pills */}
-          <div className="hidden xl:flex items-center gap-1 bg-slate-100/80 p-1 rounded-xl border border-slate-200/60">
-            {["home", "academics", "clubs", "achievements", "teachers", "notices", "gallery", "scholarships"].map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab as TabType)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-bold capitalize transition-all cursor-pointer ${
-                  activeTab === tab
-                    ? "bg-[#008744] text-white shadow-xs"
-                    : "text-slate-600 hover:text-slate-900 hover:bg-white"
-                }`}
-              >
-                {tab}
-              </button>
-            ))}
-          </div>
-
-          <div className="flex items-center gap-3">
-            <button
-              onClick={loadAllData}
-              className="p-2 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50 transition-colors"
-              title="Refresh live data"
-            >
-              <RefreshCw className={`w-4 h-4 ${loading ? "animate-spin text-[#008744]" : ""}`} />
-            </button>
-            {activeTab !== "home" && activeTab !== "academics" && activeTab !== "settings" && activeTab !== "overview" && activeTab !== "enquiries" && activeTab !== "contacts" && activeTab !== "alumni" && (
-              <button
-                onClick={() => openAddModal(activeTab)}
-                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#008744] hover:bg-[#007038] text-white font-bold text-xs uppercase tracking-wider shadow-xs transition-all cursor-pointer"
-              >
-                <Plus className="w-4 h-4" />
-                <span>Add New</span>
-              </button>
-            )}
-          </div>
         </header>
 
         {/* Content Body */}
