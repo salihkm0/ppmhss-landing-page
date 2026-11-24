@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -34,9 +34,17 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchModalOpen, setSearchModalOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
+  const [scrolled, setScrolled] = useState(false);
 
-  // Consolidated navigation: Every dropdown item points to a DISTINCT page!
-  // No multiple nav items point to the same page.
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const navItems: NavItem[] = [
     {
       label: "HOME",
@@ -170,9 +178,24 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="sticky top-0 z-[100] w-full bg-white shadow-xs">
-        {/* Light Institutional Top Bar (Clean, Professional, Light Theme) */}
-        <div className="w-full bg-slate-50 text-slate-600 py-1.5 border-b border-slate-200/80">
+      {/* ========================================================
+          FIXED GLASS-MORPHIC NAVBAR WITH DYNAMIC SCROLL TRANSITION
+      ======================================================== */}
+      <header
+        className={`fixed top-0 left-0 right-0 z-[100] w-full transition-all duration-300 ${
+          scrolled
+            ? "bg-white/85 backdrop-blur-xl shadow-lg shadow-slate-900/5 border-b border-slate-200/70"
+            : "bg-white/95 backdrop-blur-md shadow-xs border-b border-slate-200/50"
+        }`}
+      >
+        {/* Top Institutional Contact Bar (Smoothly collapases on scroll for focused reading) */}
+        <div
+          className={`w-full transition-all duration-300 ease-in-out bg-slate-50/90 backdrop-blur-md text-slate-600 border-b border-slate-200/60 overflow-hidden ${
+            scrolled
+              ? "max-h-0 py-0 opacity-0 pointer-events-none"
+              : "max-h-14 py-1.5 opacity-100"
+          }`}
+        >
           <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-2 text-xs font-medium">
             {/* Left Info: Code & Location */}
             <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-slate-600 text-[11px] sm:text-xs shrink-0">
@@ -256,10 +279,10 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Main Brand & Navigation Bar */}
-        <div className="w-full bg-white">
-          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex items-center justify-between gap-3">
-            {/* Official School Crest & Title (Eduka Clean Badge) */}
+        {/* Main Brand & Navigation Bar with Frosted Glass Layer */}
+        <div className={`w-full transition-all duration-300 ${scrolled ? "py-2 sm:py-2.5" : "py-2.5 sm:py-3"}`}>
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-3">
+            {/* Official School Crest & Title */}
             <Link
               href="/"
               className="flex items-center gap-2.5 sm:gap-3 shrink-0 group py-0.5"
@@ -267,7 +290,9 @@ export default function Navbar() {
               <img
                 src="/images/logo.png"
                 alt="PPM HSS Official Crest"
-                className="h-10 sm:h-11 w-auto object-contain drop-shadow-xs group-hover:scale-105 transition-transform duration-300 shrink-0"
+                className={`w-auto object-contain drop-shadow-xs group-hover:scale-105 transition-all duration-300 shrink-0 ${
+                  scrolled ? "h-9 sm:h-10" : "h-10 sm:h-11"
+                }`}
               />
               <div className="flex flex-col shrink-0">
                 <span className="text-sm sm:text-base font-black tracking-tight text-slate-900 leading-none font-serif whitespace-nowrap">
@@ -279,7 +304,7 @@ export default function Navbar() {
               </div>
             </Link>
 
-            {/* Desktop Navigation with Dropdowns (>= 1024px) */}
+            {/* Desktop Navigation with Frosted Glass Dropdowns (>= 1024px) */}
             <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1.5 text-slate-800">
               {navItems.map((item) => {
                 const active = isNavGroupActive(item);
@@ -292,19 +317,19 @@ export default function Navbar() {
                     >
                       <Link
                         href={item.href}
-                        className={`inline-flex items-center gap-1 px-2 xl:px-2.5 py-1.5 rounded-lg text-[11px] xl:text-[13px] font-bold tracking-wider uppercase transition-colors whitespace-nowrap cursor-pointer ${
+                        className={`inline-flex items-center gap-1 px-2.5 xl:px-3 py-1.5 rounded-lg text-[11px] xl:text-[13px] font-bold tracking-wider uppercase transition-all whitespace-nowrap cursor-pointer ${
                           active
-                            ? "text-[#008744] font-black"
-                            : "text-slate-700 hover:text-[#008744]"
+                            ? "text-[#008744] font-black bg-emerald-50/80"
+                            : "text-slate-700 hover:text-[#008744] hover:bg-slate-100/60"
                         }`}
                       >
                         <span>{item.label}</span>
                         <ChevronDown className="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180 text-slate-400 group-hover:text-[#008744]" />
                       </Link>
 
-                      {/* Dropdown Menu Box */}
-                      <div className="absolute top-full left-0 pt-1.5 w-64 xl:w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-1 group-hover:translate-y-0 transition-all duration-200 pointer-events-none group-hover:pointer-events-auto z-[9999]">
-                        <div className="bg-white rounded-2xl shadow-2xl shadow-slate-900/20 border border-slate-100 p-2 overflow-hidden ring-1 ring-slate-900/10 space-y-1">
+                      {/* Frosted Glass Dropdown Menu Box */}
+                      <div className="absolute top-full left-0 pt-1.5 w-68 xl:w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-1 group-hover:translate-y-0 transition-all duration-200 pointer-events-none group-hover:pointer-events-auto z-[9999]">
+                        <div className="bg-white/90 backdrop-blur-2xl rounded-2xl shadow-2xl shadow-slate-900/15 border border-white/80 p-2 overflow-hidden ring-1 ring-slate-900/5 space-y-1">
                           {item.children.map((sub) => (
                             <Link
                               key={sub.label}
@@ -338,10 +363,10 @@ export default function Navbar() {
                   <Link
                     key={item.label}
                     href={item.href}
-                    className={`px-2 xl:px-2.5 py-1.5 rounded-lg text-[11px] xl:text-[13px] font-bold tracking-wider uppercase transition-colors whitespace-nowrap ${
+                    className={`px-2.5 xl:px-3 py-1.5 rounded-lg text-[11px] xl:text-[13px] font-bold tracking-wider uppercase transition-all whitespace-nowrap ${
                       active
-                        ? "text-[#008744] font-black"
-                        : "text-slate-700 hover:text-[#008744]"
+                        ? "text-[#008744] font-black bg-emerald-50/80"
+                        : "text-slate-700 hover:text-[#008744] hover:bg-slate-100/60"
                     }`}
                   >
                     {item.label}
@@ -351,101 +376,95 @@ export default function Navbar() {
             </nav>
 
             {/* Right Header Actions */}
-            <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
-            {/* Quick Search Trigger */}
-            <button
-              onClick={() => setSearchModalOpen(true)}
-              className="w-8 h-8 rounded-full border border-slate-200 text-slate-600 hover:text-[#008744] hover:border-emerald-300 flex items-center justify-center transition-colors cursor-pointer shrink-0"
-              title="Search Portal"
-              aria-label="Search Portal"
-            >
-              <Search className="w-3.5 h-3.5" />
-            </button>
+            <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+              {/* Quick Search Trigger with Glass Hover */}
+              <button
+                onClick={() => setSearchModalOpen(true)}
+                className="w-8 h-8 rounded-full border border-slate-200/80 bg-white/70 hover:bg-white text-slate-600 hover:text-[#008744] hover:border-emerald-300 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer shrink-0 hover:scale-105 active:scale-95 shadow-2xs"
+                title="Search Portal"
+                aria-label="Search Portal"
+              >
+                <Search className="w-3.5 h-3.5" />
+              </button>
 
-            {/* HS Login Redirect Button */}
-            <a
-              href="https://manage.ppmhsskottukkara.com/login"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full bg-[#008744] hover:bg-[#007038] text-white font-bold text-[11px] sm:text-xs uppercase tracking-wider shadow-xs hover:shadow-md transition-all transform hover:-translate-y-0.5 whitespace-nowrap shrink-0"
-            >
-              <LogIn className="w-3.5 h-3.5" />
-              <span>HS Login</span>
-            </a>
+              {/* HS Login Redirect Button with Glass Glow Accent */}
+              <a
+                href="https://manage.ppmhsskottukkara.com/login"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-[#008744] hover:bg-[#007038] text-white font-bold text-[11px] sm:text-xs uppercase tracking-wider shadow-sm hover:shadow-emerald-700/30 hover:shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0 whitespace-nowrap shrink-0 border border-emerald-400/30"
+              >
+                <LogIn className="w-3.5 h-3.5" />
+                <span>HS Login</span>
+              </a>
 
-            {/* Mobile Hamburger Toggle */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-1.5 rounded-md text-slate-800 hover:bg-slate-100 cursor-pointer shrink-0"
-              aria-label="Open mobile navigation"
-            >
-              {mobileMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
-            </button>
+              {/* Mobile Hamburger Toggle */}
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="lg:hidden p-1.5 rounded-lg text-slate-800 hover:bg-slate-100/80 backdrop-blur-xs cursor-pointer shrink-0 transition-colors"
+                aria-label="Open mobile navigation"
+              >
+                {mobileMenuOpen ? (
+                  <X className="w-6 h-6" />
+                ) : (
+                  <Menu className="w-6 h-6" />
+                )}
+              </button>
+            </div>
           </div>
         </div>
-      </div>
 
-        {/* Mobile Navigation Drawer with Accordion Sub-Menus */}
+        {/* Mobile Navigation Drawer with Frosted Glass Backdrop */}
         {mobileMenuOpen && (
-          <div className="lg:hidden bg-white border-t border-slate-200 px-4 py-4 space-y-2 shadow-2xl max-h-[85vh] overflow-y-auto">
+          <div className="lg:hidden bg-white/95 backdrop-blur-2xl border-t border-slate-200/80 px-4 py-4 space-y-2 shadow-2xl max-h-[80vh] overflow-y-auto">
             <div className="pb-3 mb-2 border-b border-slate-100 flex items-center gap-3">
               <img
                 src="/images/logo.png"
                 alt="PPM HSS Crest"
                 className="h-10 w-auto object-contain"
               />
-              <div className="text-xs font-bold text-slate-900">
-                Panakkad Pookkoya Thangal Memorial HSS
+              <div>
+                <div className="text-sm font-black text-slate-900 font-serif">
+                  P.P.M.H.S.S
+                </div>
+                <div className="text-[10px] font-bold text-[#008744] uppercase tracking-wider">
+                  Kottukkara • Malappuram
+                </div>
               </div>
             </div>
 
             <div className="space-y-1">
               {navItems.map((item) => {
                 const active = isNavGroupActive(item);
-                const hasChildren = item.children && item.children.length > 0;
                 const isExpanded = mobileExpanded === item.label;
 
-                if (hasChildren) {
+                if (item.children && item.children.length > 0) {
                   return (
-                    <div
-                      key={item.label}
-                      className="rounded-xl overflow-hidden border border-slate-100"
-                    >
-                      <div className="flex items-center justify-between bg-slate-50/80 px-4 py-2.5">
-                        <Link
-                          href={item.href}
-                          onClick={closeMobile}
-                          className={`text-xs font-bold uppercase tracking-wider ${
-                            active ? "text-[#008744]" : "text-slate-800"
+                    <div key={item.label} className="space-y-1">
+                      <button
+                        onClick={() => toggleMobileGroup(item.label)}
+                        className={`w-full flex items-center justify-between px-4 py-2.5 rounded-xl text-xs font-bold tracking-wider uppercase transition-all ${
+                          active
+                            ? "bg-emerald-50 text-[#008744]"
+                            : "text-slate-800 hover:bg-slate-50"
+                        }`}
+                      >
+                        <span>{item.label}</span>
+                        <ChevronDown
+                          className={`w-4 h-4 transition-transform duration-200 ${
+                            isExpanded ? "rotate-180 text-[#008744]" : "text-slate-400"
                           }`}
-                        >
-                          {item.label}
-                        </Link>
-                        <button
-                          onClick={() => toggleMobileGroup(item.label)}
-                          className="p-1 rounded-md text-slate-500 hover:text-[#008744]"
-                          aria-label={`Toggle ${item.label} submenu`}
-                        >
-                          <ChevronDown
-                            className={`w-4 h-4 transition-transform duration-200 ${
-                              isExpanded ? "rotate-180 text-[#008744]" : ""
-                            }`}
-                          />
-                        </button>
-                      </div>
+                        />
+                      </button>
 
                       {isExpanded && (
-                        <div className="bg-white px-3 py-2 space-y-1 border-t border-slate-100">
-                          {item.children!.map((sub) => (
+                        <div className="pl-4 pr-1 py-1 space-y-1 bg-slate-50/80 backdrop-blur-md rounded-xl border border-slate-100">
+                          {item.children.map((sub) => (
                             <Link
                               key={sub.label}
                               href={sub.href}
                               onClick={closeMobile}
-                              className={`block py-2 px-3 rounded-lg text-xs font-medium transition-colors ${
+                              className={`block px-3 py-2 rounded-lg text-xs transition-colors ${
                                 isExactActive(sub.href)
                                   ? "text-[#008744] bg-emerald-50 font-bold"
                                   : "text-slate-600 hover:text-[#008744] hover:bg-slate-50"
@@ -490,7 +509,7 @@ export default function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={closeMobile}
-                className="w-full py-2.5 text-center rounded-xl bg-[#008744] text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-xs"
+                className="w-full py-2.5 text-center rounded-xl bg-[#008744] text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-sm"
               >
                 <LogIn className="w-4 h-4" />
                 <span>HS Login</span>
@@ -500,14 +519,14 @@ export default function Navbar() {
         )}
       </header>
 
-      {/* Quick Search Modal */}
+      {/* Quick Search Modal with Frosted Glass Backdrop */}
       {searchModalOpen && (
         <div
-          className="fixed inset-0 z-[10000] bg-black/50 backdrop-blur-xs flex items-start justify-center pt-24 px-4"
+          className="fixed inset-0 z-[10000] bg-slate-950/60 backdrop-blur-md flex items-start justify-center pt-24 px-4"
           onClick={() => setSearchModalOpen(false)}
         >
           <div
-            className="bg-white rounded-3xl max-w-xl w-full p-6 shadow-2xl space-y-4"
+            className="bg-white/95 backdrop-blur-2xl rounded-3xl max-w-xl w-full p-6 shadow-2xl border border-white/60 space-y-4"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
@@ -517,7 +536,7 @@ export default function Navbar() {
               </div>
               <button
                 onClick={() => setSearchModalOpen(false)}
-                className="p-1 rounded-md text-slate-400 hover:text-slate-700"
+                className="p-1.5 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-700 transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -528,7 +547,7 @@ export default function Navbar() {
                 type="text"
                 autoFocus
                 placeholder="Search pages, question papers, courses, admission info..."
-                className="w-full px-4 py-3 rounded-2xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#008744] text-slate-800"
+                className="w-full px-4 py-3 rounded-2xl bg-slate-50/90 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#008744] text-slate-800"
               />
 
               <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider pt-2">

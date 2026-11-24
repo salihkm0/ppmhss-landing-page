@@ -143,8 +143,8 @@ export default function HeroSection() {
         {/* Bottom soft gradient for smooth transition to floating cards */}
         <div className="absolute bottom-0 inset-x-0 h-44 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent pointer-events-none" />
 
-        {/* Top-Right Floating Live Photo Caption Badge */}
-        <div className="absolute top-6 right-4 sm:right-8 z-20 hidden md:flex items-center gap-2.5 px-4 py-2 rounded-full bg-slate-950/65 hover:bg-slate-950/85 text-white border border-white/20 backdrop-blur-md shadow-xl text-xs font-medium transition-all">
+        {/* Top-Right Floating Live Photo Caption Badge with Subtle Floating Animation */}
+        <div className="absolute top-6 right-4 sm:right-8 z-20 hidden md:flex items-center gap-2.5 px-4 py-2 rounded-full bg-slate-950/65 hover:bg-slate-950/85 text-white border border-white/20 backdrop-blur-md shadow-xl text-xs font-medium transition-all animate-float">
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
           <Camera className="w-3.5 h-3.5 text-emerald-400" />
           <span className="font-semibold">{slide.caption}</span>
@@ -327,18 +327,18 @@ export default function HeroSection() {
       </section>
 
       {/* ========================================================
-          2. 4 FLOATING ASYMMETRIC CARDS (EDUKA STYLE OVERLAP)
+          2. 4 FLOATING ASYMMETRIC GLASS CARDS (EDUKA STYLE OVERLAP)
       ======================================================== */}
       <section className="relative z-30 max-w-7xl mx-auto px-4 sm:px-8 -mt-14 sm:-mt-16 lg:-mt-20 pb-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* Card 01: Scholarship Facility */}
-          <div className="bg-white rounded-tl-[36px] rounded-br-[36px] rounded-tr-2xl rounded-bl-2xl p-7 shadow-xl hover:shadow-2xl border border-slate-200/90 hover:border-emerald-300 transition-all duration-300 group flex flex-col justify-between relative overflow-hidden">
-            <div className="absolute top-3 right-3 w-16 h-16 rounded-full border-2 border-emerald-100 group-hover:border-emerald-300/60 group-hover:scale-110 transition-all pointer-events-none" />
+          <div className="bg-white/90 backdrop-blur-xl rounded-tl-[36px] rounded-br-[36px] rounded-tr-2xl rounded-bl-2xl p-7 shadow-xl hover:shadow-2xl hover:bg-white/98 border border-white/80 hover:border-emerald-300 transition-all duration-300 hover:-translate-y-2 group flex flex-col justify-between relative overflow-hidden">
+            <div className="absolute top-3 right-3 w-16 h-16 rounded-full border-2 border-emerald-100 group-hover:border-emerald-300/60 group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
             <span className="absolute top-4 right-5 text-3xl font-black text-slate-200 group-hover:text-emerald-600 transition-colors font-mono pointer-events-none">
               01
             </span>
             <div className="space-y-4">
-              <div className="w-14 h-14 rounded-2xl bg-emerald-50 text-[#008744] group-hover:bg-[#008744] group-hover:text-white transition-all flex items-center justify-center shadow-xs">
+              <div className="w-14 h-14 rounded-2xl bg-emerald-50 text-[#008744] group-hover:bg-[#008744] group-hover:text-white transition-all duration-300 flex items-center justify-center shadow-xs group-hover:scale-105">
                 <Award className="w-7 h-7" />
               </div>
               <div>
@@ -355,18 +355,18 @@ export default function HeroSection() {
               className="inline-flex items-center gap-1.5 text-xs font-bold text-[#008744] group-hover:text-slate-900 mt-5 pt-3 border-t border-slate-100 uppercase tracking-wider transition-colors"
             >
               <span>Learn More</span>
-              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1.5 transition-transform duration-200" />
             </Link>
           </div>
 
           {/* Card 02: Skilled Lecturers */}
-          <div className="bg-white rounded-tl-[36px] rounded-br-[36px] rounded-tr-2xl rounded-bl-2xl p-7 shadow-xl hover:shadow-2xl border border-slate-200/90 hover:border-emerald-300 transition-all duration-300 group flex flex-col justify-between relative overflow-hidden">
-            <div className="absolute top-3 right-3 w-16 h-16 rounded-full border-2 border-emerald-100 group-hover:border-emerald-300/60 group-hover:scale-110 transition-all pointer-events-none" />
+          <div className="bg-white/90 backdrop-blur-xl rounded-tl-[36px] rounded-br-[36px] rounded-tr-2xl rounded-bl-2xl p-7 shadow-xl hover:shadow-2xl hover:bg-white/98 border border-white/80 hover:border-emerald-300 transition-all duration-300 hover:-translate-y-2 group flex flex-col justify-between relative overflow-hidden">
+            <div className="absolute top-3 right-3 w-16 h-16 rounded-full border-2 border-emerald-100 group-hover:border-emerald-300/60 group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
             <span className="absolute top-4 right-5 text-3xl font-black text-slate-200 group-hover:text-emerald-600 transition-colors font-mono pointer-events-none">
               02
             </span>
             <div className="space-y-4">
-              <div className="w-14 h-14 rounded-2xl bg-emerald-50 text-[#008744] group-hover:bg-[#008744] group-hover:text-white transition-all flex items-center justify-center shadow-xs">
+              <div className="w-14 h-14 rounded-2xl bg-emerald-50 text-[#008744] group-hover:bg-[#008744] group-hover:text-white transition-all duration-300 flex items-center justify-center shadow-xs group-hover:scale-105">
                 <Users className="w-7 h-7" />
               </div>
               <div>
@@ -383,18 +383,18 @@ export default function HeroSection() {
               className="inline-flex items-center gap-1.5 text-xs font-bold text-[#008744] group-hover:text-slate-900 mt-5 pt-3 border-t border-slate-100 uppercase tracking-wider transition-colors"
             >
               <span>Meet Faculty</span>
-              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1.5 transition-transform duration-200" />
             </Link>
           </div>
 
           {/* Card 03: Book Library Facility */}
-          <div className="bg-white rounded-tl-[36px] rounded-br-[36px] rounded-tr-2xl rounded-bl-2xl p-7 shadow-xl hover:shadow-2xl border border-slate-200/90 hover:border-emerald-300 transition-all duration-300 group flex flex-col justify-between relative overflow-hidden">
-            <div className="absolute top-3 right-3 w-16 h-16 rounded-full border-2 border-emerald-100 group-hover:border-emerald-300/60 group-hover:scale-110 transition-all pointer-events-none" />
+          <div className="bg-white/90 backdrop-blur-xl rounded-tl-[36px] rounded-br-[36px] rounded-tr-2xl rounded-bl-2xl p-7 shadow-xl hover:shadow-2xl hover:bg-white/98 border border-white/80 hover:border-emerald-300 transition-all duration-300 hover:-translate-y-2 group flex flex-col justify-between relative overflow-hidden">
+            <div className="absolute top-3 right-3 w-16 h-16 rounded-full border-2 border-emerald-100 group-hover:border-emerald-300/60 group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
             <span className="absolute top-4 right-5 text-3xl font-black text-slate-200 group-hover:text-emerald-600 transition-colors font-mono pointer-events-none">
               03
             </span>
             <div className="space-y-4">
-              <div className="w-14 h-14 rounded-2xl bg-emerald-50 text-[#008744] group-hover:bg-[#008744] group-hover:text-white transition-all flex items-center justify-center shadow-xs">
+              <div className="w-14 h-14 rounded-2xl bg-emerald-50 text-[#008744] group-hover:bg-[#008744] group-hover:text-white transition-all duration-300 flex items-center justify-center shadow-xs group-hover:scale-105">
                 <BookOpen className="w-7 h-7" />
               </div>
               <div>
@@ -411,18 +411,18 @@ export default function HeroSection() {
               className="inline-flex items-center gap-1.5 text-xs font-bold text-[#008744] group-hover:text-slate-900 mt-5 pt-3 border-t border-slate-100 uppercase tracking-wider transition-colors"
             >
               <span>Explore Library</span>
-              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1.5 transition-transform duration-200" />
             </Link>
           </div>
 
           {/* Card 04: Aided Education */}
-          <div className="bg-white rounded-tl-[36px] rounded-br-[36px] rounded-tr-2xl rounded-bl-2xl p-7 shadow-xl hover:shadow-2xl border border-slate-200/90 hover:border-emerald-300 transition-all duration-300 group flex flex-col justify-between relative overflow-hidden">
-            <div className="absolute top-3 right-3 w-16 h-16 rounded-full border-2 border-emerald-100 group-hover:border-emerald-300/60 group-hover:scale-110 transition-all pointer-events-none" />
+          <div className="bg-white/90 backdrop-blur-xl rounded-tl-[36px] rounded-br-[36px] rounded-tr-2xl rounded-bl-2xl p-7 shadow-xl hover:shadow-2xl hover:bg-white/98 border border-white/80 hover:border-emerald-300 transition-all duration-300 hover:-translate-y-2 group flex flex-col justify-between relative overflow-hidden">
+            <div className="absolute top-3 right-3 w-16 h-16 rounded-full border-2 border-emerald-100 group-hover:border-emerald-300/60 group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
             <span className="absolute top-4 right-5 text-3xl font-black text-slate-200 group-hover:text-emerald-600 transition-colors font-mono pointer-events-none">
               04
             </span>
             <div className="space-y-4">
-              <div className="w-14 h-14 rounded-2xl bg-emerald-50 text-[#008744] group-hover:bg-[#008744] group-hover:text-white transition-all flex items-center justify-center shadow-xs">
+              <div className="w-14 h-14 rounded-2xl bg-emerald-50 text-[#008744] group-hover:bg-[#008744] group-hover:text-white transition-all duration-300 flex items-center justify-center shadow-xs group-hover:scale-105">
                 <ShieldCheck className="w-7 h-7" />
               </div>
               <div>
@@ -439,7 +439,7 @@ export default function HeroSection() {
               className="inline-flex items-center gap-1.5 text-xs font-bold text-[#008744] group-hover:text-slate-900 mt-5 pt-3 border-t border-slate-100 uppercase tracking-wider transition-colors"
             >
               <span>Admission Guide</span>
-              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1.5 transition-transform duration-200" />
             </Link>
           </div>
         </div>

@@ -21,6 +21,8 @@ export default function PublicLayoutWrapper({
   return (
     <>
       <Navbar />
+      {/* Dynamic top spacer ensuring content starts cleanly below the fixed navbar */}
+      <div className="h-[96px] sm:h-[96px] lg:h-[102px] shrink-0" />
       <UrgentTicker />
       <main className="flex-1">{children}</main>
       <Footer />
@@ -28,4 +30,3 @@ export default function PublicLayoutWrapper({
     </>
   );
 }
-

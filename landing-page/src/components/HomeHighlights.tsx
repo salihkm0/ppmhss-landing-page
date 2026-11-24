@@ -290,19 +290,22 @@ export default function HomeHighlights() {
               </p>
             </div>
 
-            {/* Right: 4 Highlights Cards */}
+            {/* Right: 4 Highlights Cards with Glass Effect and Lift Animation */}
             <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
               {(whyData.cards || []).map((card: any, idx: number) => {
                 const icons = [Users, Sparkles, Award, Building2];
                 const IconComponent = icons[idx % icons.length];
                 return (
-                  <div key={idx} className="bg-white rounded-2xl p-4 sm:p-5 flex items-start gap-3.5 shadow-sm border border-slate-200">
-                    <div className="w-10 h-10 rounded-xl bg-emerald-50 text-[#008744] flex items-center justify-center shrink-0">
+                  <div
+                    key={idx}
+                    className="bg-white/85 backdrop-blur-md rounded-2xl p-4 sm:p-5 flex items-start gap-3.5 shadow-xs hover:shadow-xl hover:border-emerald-300 border border-slate-200/80 hover:bg-white/95 hover:-translate-y-1 transition-all duration-300 group"
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-emerald-50 text-[#008744] group-hover:bg-[#008744] group-hover:text-white transition-colors duration-300 flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105">
                       <IconComponent className="w-5 h-5" />
                     </div>
                     <div>
-                      <h4 className="text-xs font-bold text-slate-900">{card.title}</h4>
-                      <p className="text-[11px] text-slate-500 mt-0.5">{card.desc}</p>
+                      <h4 className="text-xs font-bold text-slate-900 group-hover:text-[#008744] transition-colors">{card.title}</h4>
+                      <p className="text-[11px] text-slate-500 mt-0.5 leading-relaxed">{card.desc}</p>
                     </div>
                   </div>
                 );
@@ -310,11 +313,14 @@ export default function HomeHighlights() {
             </div>
           </div>
 
-          {/* Stats Bar */}
-          <div className="pt-8 border-t border-slate-200/90 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          {/* Stats Bar with Frosted Glass Badges */}
+          <div className="pt-8 border-t border-slate-200/80 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-center">
             {SCHOOL_INFO.stats.slice(0, 4).map((st, i) => (
-              <div key={i} className="space-y-1">
-                <div className="text-3xl sm:text-4xl font-black text-slate-900 font-mono">
+              <div
+                key={i}
+                className="p-4 sm:p-5 rounded-2xl bg-white/70 backdrop-blur-md border border-slate-200/70 shadow-xs hover:shadow-md hover:bg-white/95 hover:-translate-y-1 transition-all duration-300 space-y-1 group"
+              >
+                <div className="text-3xl sm:text-4xl font-black text-slate-900 font-mono group-hover:scale-105 transition-transform">
                   {st.value}
                   <span className="text-[#008744]">{st.suffix}</span>
                 </div>
@@ -354,18 +360,19 @@ export default function HomeHighlights() {
           {upcomingEvents.map((evt, idx) => (
             <div
               key={idx}
-              className="bg-white rounded-3xl p-5 shadow-sm hover:shadow-lg border border-slate-200 transition-all flex flex-col justify-between space-y-4"
+              className="bg-white/90 backdrop-blur-xl rounded-3xl p-5 shadow-sm hover:shadow-2xl hover:border-emerald-300 border border-slate-200/80 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between space-y-4 group"
             >
               <div className="space-y-3">
-                <div className="h-40 w-full rounded-2xl overflow-hidden bg-slate-100">
+                <div className="h-44 w-full rounded-2xl overflow-hidden bg-slate-100 relative">
                   <img
                     src={evt.image}
                     alt={evt.title}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
                 <div className="flex items-center gap-3 text-xs text-slate-500 pt-1">
-                  <span className="flex items-center gap-1 text-[#008744] font-semibold">
+                  <span className="flex items-center gap-1 text-[#008744] font-semibold bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100">
                     <Calendar className="w-3.5 h-3.5" />
                     <span>{evt.date}</span>
                   </span>
@@ -374,7 +381,7 @@ export default function HomeHighlights() {
                     <span>{evt.time}</span>
                   </span>
                 </div>
-                <h3 className="text-sm font-bold text-slate-900 leading-snug">
+                <h3 className="text-sm font-bold text-slate-900 group-hover:text-[#008744] transition-colors leading-snug">
                   {evt.title}
                 </h3>
                 <p className="text-xs text-slate-600 leading-relaxed line-clamp-2">
@@ -388,7 +395,7 @@ export default function HomeHighlights() {
                   className="inline-flex items-center gap-1.5 text-xs font-bold text-[#008744] hover:underline"
                 >
                   <span>Read Notice</span>
-                  <ArrowRight className="w-3 h-3" />
+                  <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </div>
             </div>
@@ -442,8 +449,11 @@ export default function HomeHighlights() {
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors flex items-center justify-center">
-                  <div className="w-14 h-14 rounded-full bg-[#008744] text-white flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform">
-                    <Play className="w-6 h-6 fill-white ml-0.5" />
+                  <div className="relative flex items-center justify-center">
+                    <div className="absolute inset-0 rounded-full bg-emerald-400 animate-ping opacity-40 pointer-events-none" />
+                    <div className="w-14 h-14 rounded-full bg-[#008744] text-white flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform relative z-10 border-2 border-white/40">
+                      <Play className="w-6 h-6 fill-white ml-0.5" />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -479,18 +489,19 @@ export default function HomeHighlights() {
           {keyLeaders.map((ldr, idx) => (
             <div
               key={idx}
-              className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md border border-slate-200 transition-all flex flex-col justify-between"
+              className="bg-white/90 backdrop-blur-xl rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:border-emerald-300 border border-slate-200/80 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between group"
             >
               <div>
-                <div className="h-56 w-full overflow-hidden bg-slate-100">
+                <div className="h-56 w-full overflow-hidden bg-slate-100 relative">
                   <img
                     src={ldr.photo}
                     alt={ldr.name}
-                    className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
                 <div className="p-4 space-y-1">
-                  <h3 className="text-sm font-bold text-slate-900">{ldr.name}</h3>
+                  <h3 className="text-sm font-bold text-slate-900 group-hover:text-[#008744] transition-colors">{ldr.name}</h3>
                   <div className="text-xs font-semibold text-[#008744]">{ldr.role}</div>
                   <div className="text-[11px] text-slate-500">{ldr.title}</div>
                 </div>
@@ -503,7 +514,7 @@ export default function HomeHighlights() {
       {/* ========================================================
           6. ALUMNI & STUDENT VOICES
       ======================================================== */}
-      <section className="bg-slate-50 border-t border-slate-200/90 py-14 sm:py-16">
+      <section className="bg-slate-50/80 border-t border-slate-200/90 py-14 sm:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-8">
           <div className="text-center max-w-xl mx-auto space-y-1">
             <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#008744] bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
@@ -522,9 +533,9 @@ export default function HomeHighlights() {
             {testimonials.map((item, idx) => (
               <div
                 key={idx}
-                className="bg-white rounded-3xl p-6 shadow-sm border border-slate-200/90 flex flex-col justify-between space-y-4"
+                className="bg-white/85 backdrop-blur-md rounded-3xl p-6 shadow-sm hover:shadow-xl hover:border-emerald-300 border border-slate-200/90 transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between space-y-4 group"
               >
-                <p className="text-xs text-slate-600 leading-relaxed italic">
+                <p className="text-xs text-slate-600 leading-relaxed italic group-hover:text-slate-800 transition-colors">
                   &ldquo;{item.quote}&rdquo;
                 </p>
 
@@ -532,10 +543,10 @@ export default function HomeHighlights() {
                   <img
                     src={item.avatar}
                     alt={item.name}
-                    className="w-10 h-10 rounded-full object-cover border border-slate-200"
+                    className="w-10 h-10 rounded-full object-cover border border-slate-200 group-hover:border-emerald-300 transition-colors"
                   />
                   <div>
-                    <h4 className="text-xs font-bold text-slate-900">{item.name}</h4>
+                    <h4 className="text-xs font-bold text-slate-900 group-hover:text-[#008744] transition-colors">{item.name}</h4>
                     <p className="text-[10px] text-slate-500">{item.role}</p>
                   </div>
                 </div>
