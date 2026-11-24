@@ -103,7 +103,7 @@ export default function HeroSection() {
           1. CLEAN, MINIMAL HERO SLIDER (SCHOOL IMAGES FULLY VISIBLE)
       ======================================================== */}
       <section
-        className="relative min-h-[580px] sm:min-h-[620px] lg:min-h-[660px] flex items-center pt-8 pb-28 sm:pb-32 lg:pb-36"
+        className="relative min-h-[580px] sm:min-h-[620px] lg:min-h-[660px] flex items-center pt-8 pb-28 sm:pb-32 lg:pb-36 no-scroll-reveal"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
@@ -198,6 +198,25 @@ export default function HeroSection() {
           <ChevronRight className="w-5 h-5" />
         </button>
 
+        {/* Animated Mouse Scroll Down Indicator */}
+        <div
+          className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 hidden sm:flex flex-col items-center gap-1.5 cursor-pointer opacity-85 hover:opacity-100 transition-opacity"
+          onClick={() => {
+            window.scrollTo({
+              top: 560,
+              behavior: "smooth",
+            });
+          }}
+          title="Scroll down to explore"
+        >
+          <span className="text-[10px] tracking-widest uppercase font-bold text-slate-300 drop-shadow">
+            Scroll Down
+          </span>
+          <div className="w-5 h-8 rounded-full border-2 border-white/40 flex items-start justify-center p-1 backdrop-blur-xs">
+            <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-[scrollMouse_1.5s_infinite]" />
+          </div>
+        </div>
+
         {/* Minimal Bottom Slide Indicators + Slide Counter */}
         <div className="absolute bottom-6 sm:bottom-8 right-6 sm:right-10 z-30 flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-slate-950/60 backdrop-blur-md border border-white/15 text-white shadow-lg">
           <span className="font-mono text-[11px] font-bold text-emerald-400">
@@ -232,7 +251,7 @@ export default function HeroSection() {
       <section className="relative z-30 max-w-7xl mx-auto px-4 sm:px-8 -mt-14 sm:-mt-16 lg:-mt-20 pb-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* Card 01: Scholarship Facility */}
-          <div className="bg-white/90 backdrop-blur-xl rounded-tl-[36px] rounded-br-[36px] rounded-tr-2xl rounded-bl-2xl p-7 shadow-xl hover:shadow-2xl hover:bg-white/98 border border-white/80 hover:border-emerald-300 transition-all duration-300 hover:-translate-y-2 group flex flex-col justify-between relative overflow-hidden">
+          <div className="scroll-reveal delay-100 bg-white/90 backdrop-blur-xl rounded-tl-[36px] rounded-br-[36px] rounded-tr-2xl rounded-bl-2xl p-7 shadow-xl hover:shadow-2xl hover:bg-white/98 border border-white/80 hover:border-emerald-300 transition-all duration-300 hover:-translate-y-2 group flex flex-col justify-between relative overflow-hidden">
             <div className="absolute top-3 right-3 w-16 h-16 rounded-full border-2 border-emerald-100 group-hover:border-emerald-300/60 group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
             <span className="absolute top-4 right-5 text-3xl font-black text-slate-200 group-hover:text-emerald-600 transition-colors font-mono pointer-events-none">
               01
@@ -260,7 +279,7 @@ export default function HeroSection() {
           </div>
 
           {/* Card 02: Skilled Lecturers */}
-          <div className="bg-white/90 backdrop-blur-xl rounded-tl-[36px] rounded-br-[36px] rounded-tr-2xl rounded-bl-2xl p-7 shadow-xl hover:shadow-2xl hover:bg-white/98 border border-white/80 hover:border-emerald-300 transition-all duration-300 hover:-translate-y-2 group flex flex-col justify-between relative overflow-hidden">
+          <div className="scroll-reveal delay-200 bg-white/90 backdrop-blur-xl rounded-tl-[36px] rounded-br-[36px] rounded-tr-2xl rounded-bl-2xl p-7 shadow-xl hover:shadow-2xl hover:bg-white/98 border border-white/80 hover:border-emerald-300 transition-all duration-300 hover:-translate-y-2 group flex flex-col justify-between relative overflow-hidden">
             <div className="absolute top-3 right-3 w-16 h-16 rounded-full border-2 border-emerald-100 group-hover:border-emerald-300/60 group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
             <span className="absolute top-4 right-5 text-3xl font-black text-slate-200 group-hover:text-emerald-600 transition-colors font-mono pointer-events-none">
               02
@@ -288,7 +307,7 @@ export default function HeroSection() {
           </div>
 
           {/* Card 03: Book Library Facility */}
-          <div className="bg-white/90 backdrop-blur-xl rounded-tl-[36px] rounded-br-[36px] rounded-tr-2xl rounded-bl-2xl p-7 shadow-xl hover:shadow-2xl hover:bg-white/98 border border-white/80 hover:border-emerald-300 transition-all duration-300 hover:-translate-y-2 group flex flex-col justify-between relative overflow-hidden">
+          <div className="scroll-reveal delay-300 bg-white/90 backdrop-blur-xl rounded-tl-[36px] rounded-br-[36px] rounded-tr-2xl rounded-bl-2xl p-7 shadow-xl hover:shadow-2xl hover:bg-white/98 border border-white/80 hover:border-emerald-300 transition-all duration-300 hover:-translate-y-2 group flex flex-col justify-between relative overflow-hidden">
             <div className="absolute top-3 right-3 w-16 h-16 rounded-full border-2 border-emerald-100 group-hover:border-emerald-300/60 group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
             <span className="absolute top-4 right-5 text-3xl font-black text-slate-200 group-hover:text-emerald-600 transition-colors font-mono pointer-events-none">
               03
@@ -316,7 +335,7 @@ export default function HeroSection() {
           </div>
 
           {/* Card 04: Aided Education */}
-          <div className="bg-white/90 backdrop-blur-xl rounded-tl-[36px] rounded-br-[36px] rounded-tr-2xl rounded-bl-2xl p-7 shadow-xl hover:shadow-2xl hover:bg-white/98 border border-white/80 hover:border-emerald-300 transition-all duration-300 hover:-translate-y-2 group flex flex-col justify-between relative overflow-hidden">
+          <div className="scroll-reveal delay-400 bg-white/90 backdrop-blur-xl rounded-tl-[36px] rounded-br-[36px] rounded-tr-2xl rounded-bl-2xl p-7 shadow-xl hover:shadow-2xl hover:bg-white/98 border border-white/80 hover:border-emerald-300 transition-all duration-300 hover:-translate-y-2 group flex flex-col justify-between relative overflow-hidden">
             <div className="absolute top-3 right-3 w-16 h-16 rounded-full border-2 border-emerald-100 group-hover:border-emerald-300/60 group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
             <span className="absolute top-4 right-5 text-3xl font-black text-slate-200 group-hover:text-emerald-600 transition-colors font-mono pointer-events-none">
               04

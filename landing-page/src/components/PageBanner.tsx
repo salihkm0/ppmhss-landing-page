@@ -41,7 +41,7 @@ export default function PageBanner({
       <div className="absolute inset-0 bg-[radial-gradient(#008744_1px,transparent_1px)] [background-size:24px_24px] opacity-15 pointer-events-none" />
 
       {/* Inner Content Container */}
-      <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+      <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 animate-slide-up">
         {/* Breadcrumb Navigation Pill */}
         <nav className="inline-flex items-center gap-2 text-xs font-semibold px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-slate-200 mb-1 shadow-sm">
           <Link
