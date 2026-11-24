@@ -246,121 +246,105 @@ export default function HeroSection() {
       </section>
 
       {/* ========================================================
-          2. 4 FLOATING ASYMMETRIC GLASS CARDS (EDUKA STYLE OVERLAP)
+          2. 4 EXECUTIVE QUICK-ACCESS CARDS (CLEAN & MINIMALIST)
       ======================================================== */}
-      <section className="relative z-30 max-w-7xl mx-auto px-4 sm:px-8 -mt-14 sm:-mt-16 lg:-mt-20 pb-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <section className="relative z-30 max-w-7xl mx-auto px-4 sm:px-8 -mt-10 sm:-mt-12 lg:-mt-14 pb-12 sm:pb-14">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           {/* Card 01: Scholarship Facility */}
-          <div className="scroll-reveal delay-100 bg-white/90 backdrop-blur-xl rounded-tl-[36px] rounded-br-[36px] rounded-tr-2xl rounded-bl-2xl p-7 shadow-xl hover:shadow-2xl hover:bg-white/98 border border-white/80 hover:border-emerald-300 transition-all duration-300 hover:-translate-y-2 group flex flex-col justify-between relative overflow-hidden">
-            <div className="absolute top-3 right-3 w-16 h-16 rounded-full border-2 border-emerald-100 group-hover:border-emerald-300/60 group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
-            <span className="absolute top-4 right-5 text-3xl font-black text-slate-200 group-hover:text-emerald-600 transition-colors font-mono pointer-events-none">
-              01
-            </span>
-            <div className="space-y-4">
-              <div className="w-14 h-14 rounded-2xl bg-emerald-50 text-[#008744] group-hover:bg-[#008744] group-hover:text-white transition-all duration-300 flex items-center justify-center shadow-xs group-hover:scale-105">
-                <Award className="w-7 h-7" />
+          <Link
+            href="/academics/scholarships"
+            className="scroll-reveal delay-100 bg-white/95 backdrop-blur-xl rounded-2xl p-5 shadow-sm hover:shadow-xl hover:border-emerald-500 border border-slate-200/80 transition-all duration-300 hover:-translate-y-1 group flex flex-col justify-between"
+          >
+            <div className="space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-emerald-50 text-[#008744] group-hover:bg-[#008744] group-hover:text-white transition-colors duration-300 flex items-center justify-center shadow-2xs group-hover:scale-105">
+                <Award className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="text-base font-bold text-slate-900 group-hover:text-[#008744] transition-colors">
-                  Scholarship Facility
+                <h3 className="text-sm font-bold text-slate-900 group-hover:text-[#008744] transition-colors">
+                  Scholarships & Aid
                 </h3>
-                <p className="text-xs text-slate-600 mt-2 leading-relaxed">
-                  NMMS, USS, Post-Matric Minority, and PPM Merit Awards.
+                <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+                  NMMS, USS, Post-Matric Minority & merit endowment awards.
                 </p>
               </div>
             </div>
-            <Link
-              href="/academics"
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#008744] group-hover:text-slate-900 mt-5 pt-3 border-t border-slate-100 uppercase tracking-wider transition-colors"
-            >
+            <div className="inline-flex items-center gap-1 text-[11px] font-bold text-[#008744] group-hover:text-slate-900 pt-3 mt-3 border-t border-slate-100 transition-colors uppercase tracking-wider">
               <span>Learn More</span>
-              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1.5 transition-transform duration-200" />
-            </Link>
-          </div>
+              <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </Link>
 
           {/* Card 02: Skilled Lecturers */}
-          <div className="scroll-reveal delay-200 bg-white/90 backdrop-blur-xl rounded-tl-[36px] rounded-br-[36px] rounded-tr-2xl rounded-bl-2xl p-7 shadow-xl hover:shadow-2xl hover:bg-white/98 border border-white/80 hover:border-emerald-300 transition-all duration-300 hover:-translate-y-2 group flex flex-col justify-between relative overflow-hidden">
-            <div className="absolute top-3 right-3 w-16 h-16 rounded-full border-2 border-emerald-100 group-hover:border-emerald-300/60 group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
-            <span className="absolute top-4 right-5 text-3xl font-black text-slate-200 group-hover:text-emerald-600 transition-colors font-mono pointer-events-none">
-              02
-            </span>
-            <div className="space-y-4">
-              <div className="w-14 h-14 rounded-2xl bg-emerald-50 text-[#008744] group-hover:bg-[#008744] group-hover:text-white transition-all duration-300 flex items-center justify-center shadow-xs group-hover:scale-105">
-                <Users className="w-7 h-7" />
+          <Link
+            href="/teachers"
+            className="scroll-reveal delay-200 bg-white/95 backdrop-blur-xl rounded-2xl p-5 shadow-sm hover:shadow-xl hover:border-emerald-500 border border-slate-200/80 transition-all duration-300 hover:-translate-y-1 group flex flex-col justify-between"
+          >
+            <div className="space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-emerald-50 text-[#008744] group-hover:bg-[#008744] group-hover:text-white transition-colors duration-300 flex items-center justify-center shadow-2xs group-hover:scale-105">
+                <Users className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="text-base font-bold text-slate-900 group-hover:text-[#008744] transition-colors">
-                  Skilled Lecturers
+                <h3 className="text-sm font-bold text-slate-900 group-hover:text-[#008744] transition-colors">
+                  Dedicated Faculty
                 </h3>
-                <p className="text-xs text-slate-600 mt-2 leading-relaxed">
-                  165+ experienced post-graduate teachers across HS and HSE wings.
+                <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+                  165+ accredited post-graduate educators across HS & HSE.
                 </p>
               </div>
             </div>
-            <Link
-              href="/teachers"
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#008744] group-hover:text-slate-900 mt-5 pt-3 border-t border-slate-100 uppercase tracking-wider transition-colors"
-            >
+            <div className="inline-flex items-center gap-1 text-[11px] font-bold text-[#008744] group-hover:text-slate-900 pt-3 mt-3 border-t border-slate-100 transition-colors uppercase tracking-wider">
               <span>Meet Faculty</span>
-              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1.5 transition-transform duration-200" />
-            </Link>
-          </div>
+              <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </Link>
 
           {/* Card 03: Book Library Facility */}
-          <div className="scroll-reveal delay-300 bg-white/90 backdrop-blur-xl rounded-tl-[36px] rounded-br-[36px] rounded-tr-2xl rounded-bl-2xl p-7 shadow-xl hover:shadow-2xl hover:bg-white/98 border border-white/80 hover:border-emerald-300 transition-all duration-300 hover:-translate-y-2 group flex flex-col justify-between relative overflow-hidden">
-            <div className="absolute top-3 right-3 w-16 h-16 rounded-full border-2 border-emerald-100 group-hover:border-emerald-300/60 group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
-            <span className="absolute top-4 right-5 text-3xl font-black text-slate-200 group-hover:text-emerald-600 transition-colors font-mono pointer-events-none">
-              03
-            </span>
-            <div className="space-y-4">
-              <div className="w-14 h-14 rounded-2xl bg-emerald-50 text-[#008744] group-hover:bg-[#008744] group-hover:text-white transition-all duration-300 flex items-center justify-center shadow-xs group-hover:scale-105">
-                <BookOpen className="w-7 h-7" />
+          <Link
+            href="/campus-life"
+            className="scroll-reveal delay-300 bg-white/95 backdrop-blur-xl rounded-2xl p-5 shadow-sm hover:shadow-xl hover:border-emerald-500 border border-slate-200/80 transition-all duration-300 hover:-translate-y-1 group flex flex-col justify-between"
+          >
+            <div className="space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-emerald-50 text-[#008744] group-hover:bg-[#008744] group-hover:text-white transition-colors duration-300 flex items-center justify-center shadow-2xs group-hover:scale-105">
+                <BookOpen className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="text-base font-bold text-slate-900 group-hover:text-[#008744] transition-colors">
+                <h3 className="text-sm font-bold text-slate-900 group-hover:text-[#008744] transition-colors">
                   Reference Library
                 </h3>
-                <p className="text-xs text-slate-600 mt-2 leading-relaxed">
-                  15,000+ books, periodicals, and quiet reading spaces.
+                <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+                  15,000+ volumes, academic journals & quiet study halls.
                 </p>
               </div>
             </div>
-            <Link
-              href="/campus-life"
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#008744] group-hover:text-slate-900 mt-5 pt-3 border-t border-slate-100 uppercase tracking-wider transition-colors"
-            >
-              <span>Explore Library</span>
-              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1.5 transition-transform duration-200" />
-            </Link>
-          </div>
+            <div className="inline-flex items-center gap-1 text-[11px] font-bold text-[#008744] group-hover:text-slate-900 pt-3 mt-3 border-t border-slate-100 transition-colors uppercase tracking-wider">
+              <span>Campus Facilities</span>
+              <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </Link>
 
           {/* Card 04: Aided Education */}
-          <div className="scroll-reveal delay-400 bg-white/90 backdrop-blur-xl rounded-tl-[36px] rounded-br-[36px] rounded-tr-2xl rounded-bl-2xl p-7 shadow-xl hover:shadow-2xl hover:bg-white/98 border border-white/80 hover:border-emerald-300 transition-all duration-300 hover:-translate-y-2 group flex flex-col justify-between relative overflow-hidden">
-            <div className="absolute top-3 right-3 w-16 h-16 rounded-full border-2 border-emerald-100 group-hover:border-emerald-300/60 group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
-            <span className="absolute top-4 right-5 text-3xl font-black text-slate-200 group-hover:text-emerald-600 transition-colors font-mono pointer-events-none">
-              04
-            </span>
-            <div className="space-y-4">
-              <div className="w-14 h-14 rounded-2xl bg-emerald-50 text-[#008744] group-hover:bg-[#008744] group-hover:text-white transition-all duration-300 flex items-center justify-center shadow-xs group-hover:scale-105">
-                <ShieldCheck className="w-7 h-7" />
+          <Link
+            href="/admissions"
+            className="scroll-reveal delay-400 bg-white/95 backdrop-blur-xl rounded-2xl p-5 shadow-sm hover:shadow-xl hover:border-emerald-500 border border-slate-200/80 transition-all duration-300 hover:-translate-y-1 group flex flex-col justify-between"
+          >
+            <div className="space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-emerald-50 text-[#008744] group-hover:bg-[#008744] group-hover:text-white transition-colors duration-300 flex items-center justify-center shadow-2xs group-hover:scale-105">
+                <ShieldCheck className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="text-base font-bold text-slate-900 group-hover:text-[#008744] transition-colors">
+                <h3 className="text-sm font-bold text-slate-900 group-hover:text-[#008744] transition-colors">
                   Government-Aided
                 </h3>
-                <p className="text-xs text-slate-600 mt-2 leading-relaxed">
-                  Government-aided fee structure under the Kerala General Education Dept.
+                <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+                  Subsidized education under Kerala General Education Dept.
                 </p>
               </div>
             </div>
-            <Link
-              href="/admissions"
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#008744] group-hover:text-slate-900 mt-5 pt-3 border-t border-slate-100 uppercase tracking-wider transition-colors"
-            >
-              <span>Admission Guide</span>
-              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1.5 transition-transform duration-200" />
-            </Link>
-          </div>
+            <div className="inline-flex items-center gap-1 text-[11px] font-bold text-[#008744] group-hover:text-slate-900 pt-3 mt-3 border-t border-slate-100 transition-colors uppercase tracking-wider">
+              <span>Admission Info</span>
+              <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </Link>
         </div>
       </section>
     </div>

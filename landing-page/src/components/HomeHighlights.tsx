@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import {
   BookOpen,
@@ -8,28 +8,36 @@ import {
   Award,
   Users,
   ArrowRight,
-  Play,
-  CheckCircle2,
-  Clock,
-  Sparkles,
   ShieldCheck,
   Calendar,
+  Sparkles,
   MapPin,
+  Phone,
+  Mail,
   Building2,
-  Quote,
+  FileText,
 } from "lucide-react";
-import { SCHOOL_INFO, ADMINISTRATION } from "@/data/schoolData";
+import { SCHOOL_INFO } from "@/data/schoolData";
+
+interface NoticeItem {
+  id?: string;
+  _id?: string;
+  title: string;
+  category: string;
+  date: string;
+  urgent?: boolean;
+}
 
 export default function HomeHighlights() {
-  const [videoModalOpen, setVideoModalOpen] = useState(false);
   const [aboutData, setAboutData] = useState({
     badge: "About Our School",
     headingPart1: "Quality Education & Character",
     headingHighlight: "Since 1976",
     estdYear: "1976",
     estdText: "Nearly 50 years of educational service in Malappuram district.",
-    description: "Founded under the Nediyiruppu Muslim Educational Association, PPM HSS provides quality, government-aided education to over 5,100 students across High School and Higher Secondary sections.",
-    img1: "https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?q=80&w=600&auto=format&fit=crop",
+    description:
+      "Founded under the Nediyiruppu Muslim Educational Association, PPM HSS provides quality, government-aided education to over 5,100 students across High School and Higher Secondary sections.",
+    img1: "https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?q=80&w=800&auto=format&fit=crop",
     img2: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=600&auto=format&fit=crop",
     img3: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=600&auto=format&fit=crop",
     feature1Title: "Comprehensive Learning",
@@ -38,229 +46,136 @@ export default function HomeHighlights() {
     feature2Desc: "99.4% pass record with 194 Full A+ in SSLC 2024.",
   });
 
-  const [whyData, setWhyData] = useState({
-    badge: "Why PPM HSS",
-    headingPart1: "Dedicated Mentorship &",
-    headingHighlight: "Modern Campus",
-    description: "We combine academic discipline with individual guidance, modern laboratories, and government-aided affordability.",
-    cards: [
-      {
-        title: "Experienced Faculty",
-        desc: "165+ teachers across high school and higher secondary.",
-      },
-      {
-        title: "Modern Laboratories",
-        desc: "Equipped physics, chemistry, biology, and computer labs.",
-      },
-      {
-        title: "Government Aided",
-        desc: "Subsidized free tuition with state scholarship access.",
-      },
-      {
-        title: "4.5-Acre Campus",
-        desc: "Smart classrooms, central library, and sports grounds.",
-      },
-    ],
-  });
+  const [notices, setNotices] = useState<NoticeItem[]>([
+    {
+      id: "n1",
+      title: "Notice regarding submission of examination fee for Plus Two Board Exam 2025",
+      category: "Examinations",
+      date: "2025-02-14",
+      urgent: true,
+    },
+    {
+      id: "n2",
+      title: "Circular on Declaration of Local Holiday on Account of Kondotty Nercha",
+      category: "General Orders",
+      date: "2025-02-08",
+      urgent: false,
+    },
+    {
+      id: "n3",
+      title: "Special Coaching Schedule for SSLC Students with Subject Mentors",
+      category: "Academic",
+      date: "2025-01-10",
+      urgent: false,
+    },
+  ]);
 
-  React.useEffect(() => {
+  useEffect(() => {
+    // Fetch home page settings if updated from CMS
     fetch("/api/settings")
       .then((res) => res.json())
       .then((data) => {
         if (data?.data?.homePageData?.aboutSchool) {
           setAboutData(data.data.homePageData.aboutSchool);
         }
-        if (data?.data?.homePageData?.whySchool) {
-          setWhyData(data.data.homePageData.whySchool);
+      })
+      .catch(() => {});
+
+    // Fetch latest school notices
+    fetch("/api/notices")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data?.data && Array.isArray(data.data) && data.data.length > 0) {
+          setNotices(data.data.slice(0, 3));
         }
       })
       .catch(() => {});
   }, []);
 
-  // Key Institutional Leadership
-  const keyLeaders = [
-    {
-      name: ADMINISTRATION.manager.name,
-      role: "Manager",
-      title: "Nediyiruppu MEA",
-      photo: ADMINISTRATION.manager.photo,
-    },
-    {
-      name: ADMINISTRATION.secretary.name,
-      role: "Secretary & Treasurer",
-      title: "Nediyiruppu MEA",
-      photo: ADMINISTRATION.secretary.photo,
-    },
-    {
-      name: ADMINISTRATION.principal.name,
-      role: "Principal",
-      title: "Higher Secondary Wing",
-      photo: ADMINISTRATION.principal.photo,
-    },
-    {
-      name: ADMINISTRATION.headmaster.name,
-      role: "Headmaster",
-      title: "High School Wing",
-      photo: ADMINISTRATION.headmaster.photo,
-    },
-  ];
-
-  // Upcoming Events & Key Notices
-  const upcomingEvents = [
-    {
-      title: "Plus One Admissions (HSCAP) Helpdesk",
-      location: "Computer Lab Helpdesk",
-      date: "16 June, 2025",
-      time: "10:00 AM - 01:00 PM",
-      desc: "Guidance on stream choices, option entry, and certificate verification for Class 10 graduates.",
-      image:
-        "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop",
-    },
-    {
-      title: "Annual Merit Day & Toppers Felicitations",
-      location: "Main Campus Auditorium",
-      date: "05 July, 2025",
-      time: "09:30 AM - 01:30 PM",
-      desc: "Honoring 194 Full A+ SSLC students and Higher Secondary stream toppers.",
-      image:
-        "https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=800&auto=format&fit=crop",
-    },
-    {
-      title: "Science & Innovation Fair 'Invento'",
-      location: "Science Wing Labs",
-      date: "12 August, 2025",
-      time: "09:00 AM - 04:00 PM",
-      desc: "Exhibition of student working models in renewable energy, robotics, and applied sciences.",
-      image:
-        "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=800&auto=format&fit=crop",
-    },
-  ];
-
-  // Testimonials / Alumni & Scholar Voices
-  const testimonials = [
-    {
-      name: "Dr. Mohammed Ansar K.",
-      role: "Alumni • Consultant Cardiologist, Aster MIMS",
-      quote:
-        "The strong scientific foundation and ethics of service instilled in me at PPM HSS continue to guide my medical practice.",
-      avatar:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300&auto=format&fit=crop",
-    },
-    {
-      name: "Aparna K. Menon",
-      role: "Alumni • Sub-Collector & IAS Officer",
-      quote:
-        "The debate clubs, literary forums, and library at PPM HSS were my training ground for civil services.",
-      avatar:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=300&auto=format&fit=crop",
-    },
-    {
-      name: "Jamsheer Puthenpeedika",
-      role: "Alumni • Chartered Accountant, Dubai",
-      quote:
-        "Practical commerce education and dedicated teachers helped me build a global career in auditing.",
-      avatar:
-        "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=300&auto=format&fit=crop",
-    },
-  ];
-
   return (
-    <div className="space-y-20 py-12 sm:py-16">
+    <div className="space-y-16 sm:space-y-20 py-8 sm:py-12">
       {/* ========================================================
-          1. ABOUT US SUMMARY
+          1. CLEAN & DIGNIFIED ABOUT SECTION (UNCLUTTERED)
       ======================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-          {/* Left: Geometric Photo Showcase */}
-          <div className="lg:col-span-6 relative">
-            <div className="grid grid-cols-2 gap-4 items-end">
-              <div className="space-y-4">
-                <div className="rounded-3xl overflow-hidden shadow-lg border border-slate-200">
-                  <img
-                    src={aboutData.img1 || "https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?q=80&w=600&auto=format&fit=crop"}
-                    alt="PPM HSS Main Campus Building"
-                    className="w-full h-56 object-cover"
-                  />
-                </div>
-                <div className="rounded-3xl overflow-hidden shadow-lg border border-slate-200">
-                  <img
-                    src={aboutData.img2 || "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=600&auto=format&fit=crop"}
-                    alt="Science Laboratory"
-                    className="w-full h-40 object-cover"
-                  />
-                </div>
-              </div>
-              <div className="space-y-4">
-                <div className="bg-[#008744] text-white p-6 rounded-3xl space-y-2 shadow-xl">
-                  <div className="text-4xl font-black font-mono">{aboutData.estdYear || "1976"}</div>
-                  <div className="text-xs font-bold uppercase tracking-wider text-emerald-200">
-                    Established Year
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          {/* Left: Single High-Impact Photo Showcase with Estd Badge */}
+          <div className="lg:col-span-5 relative">
+            <div className="relative rounded-3xl overflow-hidden shadow-xl border border-slate-200/90 group">
+              <img
+                src={aboutData.img1 || "https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?q=80&w=800&auto=format&fit=crop"}
+                alt="PPM HSS Main Campus Building"
+                className="w-full h-80 sm:h-96 object-cover group-hover:scale-102 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
+              
+              {/* Refined Floating Badge */}
+              <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-white/80 shadow-lg text-slate-900">
+                <div>
+                  <div className="text-xs font-bold uppercase tracking-wider text-[#008744]">
+                    Government-Aided
                   </div>
-                  <p className="text-[11px] text-emerald-100 leading-relaxed">
-                    {aboutData.estdText || "Nearly 50 years of educational service in Malappuram district."}
-                  </p>
+                  <div className="text-sm font-black text-slate-900">
+                    Estd. {aboutData.estdYear || "1976"} • Kottukkara
+                  </div>
                 </div>
-                <div className="rounded-3xl overflow-hidden shadow-lg border border-slate-200">
-                  <img
-                    src={aboutData.img3 || "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=600&auto=format&fit=crop"}
-                    alt="Campus Library"
-                    className="w-full h-48 object-cover"
-                  />
+                <div className="text-right">
+                  <div className="text-xs font-bold text-slate-500">DHSE Code</div>
+                  <div className="text-sm font-mono font-black text-[#008744]">11024</div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right: Concise Story & Values */}
-          <div className="lg:col-span-6 space-y-6">
+          {/* Right: Concise Story & Key Institutional Numbers */}
+          <div className="lg:col-span-7 space-y-6">
             <div className="space-y-2">
               <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#008744] bg-emerald-50 px-3.5 py-1 rounded-full border border-emerald-200">
-                <BookOpen className="w-3.5 h-3.5" />
+                <Sparkles className="w-3.5 h-3.5" />
                 <span>{aboutData.badge || "About Our School"}</span>
               </span>
-              <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight leading-tight">
                 {aboutData.headingPart1 || "Quality Education & Character"}{" "}
                 <span className="text-[#008744]">{aboutData.headingHighlight || "Since 1976"}</span>
               </h2>
             </div>
 
-            <p className="text-sm text-slate-600 leading-relaxed">
-              {aboutData.description || "Founded under the Nediyiruppu Muslim Educational Association, PPM HSS provides quality, government-aided education to over 5,100 students across High School and Higher Secondary sections."}
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl">
+              {aboutData.description ||
+                "Founded under the Nediyiruppu Muslim Educational Association, PPM HSS provides quality, government-aided education to over 5,100 students across High School and Higher Secondary sections."}
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
-              <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-full bg-emerald-50 text-[#008744] flex items-center justify-center shrink-0 mt-0.5">
-                  <Sparkles className="w-5 h-5" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-slate-900">{aboutData.feature1Title || "Comprehensive Learning"}</h4>
-                  <p className="text-xs text-slate-500 mt-0.5">{aboutData.feature1Desc || "Balanced development across sciences, commerce, arts, and sports."}</p>
-                </div>
+            {/* Clean Key Stats Grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+              <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 text-center">
+                <div className="text-2xl sm:text-3xl font-black text-slate-900 font-mono">5,100<span className="text-[#008744]">+</span></div>
+                <div className="text-[11px] font-semibold text-slate-500 mt-0.5">Students</div>
               </div>
-
-              <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-full bg-emerald-50 text-[#008744] flex items-center justify-center shrink-0 mt-0.5">
-                  <Award className="w-5 h-5" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-slate-900">{aboutData.feature2Title || "Proven Results"}</h4>
-                  <p className="text-xs text-slate-500 mt-0.5">{aboutData.feature2Desc || "99.4% pass record with 194 Full A+ in SSLC 2024."}</p>
-                </div>
+              <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 text-center">
+                <div className="text-2xl sm:text-3xl font-black text-slate-900 font-mono">165<span className="text-[#008744]">+</span></div>
+                <div className="text-[11px] font-semibold text-slate-500 mt-0.5">Faculty</div>
+              </div>
+              <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 text-center">
+                <div className="text-2xl sm:text-3xl font-black text-slate-900 font-mono">194</div>
+                <div className="text-[11px] font-semibold text-slate-500 mt-0.5">Full A+ ('24)</div>
+              </div>
+              <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 text-center">
+                <div className="text-2xl sm:text-3xl font-black text-slate-900 font-mono">4.5<span className="text-[#008744]">Ac</span></div>
+                <div className="text-[11px] font-semibold text-slate-500 mt-0.5">Campus</div>
               </div>
             </div>
 
-            <div className="pt-2 flex items-center gap-4">
+            <div className="pt-2 flex items-center gap-3">
               <Link
                 href="/institute"
-                className="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-[#008744] hover:bg-[#007038] text-white font-bold text-xs uppercase tracking-wider shadow-md transition-all"
+                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#008744] hover:bg-[#007038] text-white font-bold text-xs uppercase tracking-wider shadow-sm transition-all"
               >
                 <span>Read Full History</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-3.5 h-3.5" />
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs uppercase tracking-wider transition-all"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs uppercase tracking-wider transition-all"
               >
                 <span>Campus Location</span>
               </Link>
@@ -270,333 +185,254 @@ export default function HomeHighlights() {
       </section>
 
       {/* ========================================================
-          2. KEY HIGHLIGHTS & STATS BAR
+          2. ACADEMIC PROGRAMS & STREAMS (CLEAN 3-CARD SHOWCASE)
       ======================================================== */}
-      <section className="bg-slate-50 border-y border-slate-200/90 py-14 sm:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            {/* Left Content */}
-            <div className="lg:col-span-5 space-y-4">
-              <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#008744] bg-emerald-100/70 px-3.5 py-1 rounded-full border border-emerald-200">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#008744]" />
-                <span>{whyData.badge || "Why PPM HSS"}</span>
-              </span>
-              <h2 className="text-3xl font-black text-slate-900 tracking-tight leading-tight">
-                {whyData.headingPart1 || "Dedicated Mentorship &"}{" "}
-                <span className="text-[#008744]">{whyData.headingHighlight || "Modern Campus"}</span>
-              </h2>
-              <p className="text-sm text-slate-600 leading-relaxed">
-                {whyData.description || "We combine academic discipline with individual guidance, modern laboratories, and government-aided affordability."}
-              </p>
-            </div>
-
-            {/* Right: 4 Highlights Cards with Glass Effect and Lift Animation */}
-            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {(whyData.cards || []).map((card: any, idx: number) => {
-                const icons = [Users, Sparkles, Award, Building2];
-                const IconComponent = icons[idx % icons.length];
-                return (
-                  <div
-                    key={idx}
-                    className="bg-white/85 backdrop-blur-md rounded-2xl p-4 sm:p-5 flex items-start gap-3.5 shadow-xs hover:shadow-xl hover:border-emerald-300 border border-slate-200/80 hover:bg-white/95 hover:-translate-y-1 transition-all duration-300 group"
-                  >
-                    <div className="w-10 h-10 rounded-xl bg-emerald-50 text-[#008744] group-hover:bg-[#008744] group-hover:text-white transition-colors duration-300 flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105">
-                      <IconComponent className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <h4 className="text-xs font-bold text-slate-900 group-hover:text-[#008744] transition-colors">{card.title}</h4>
-                      <p className="text-[11px] text-slate-500 mt-0.5 leading-relaxed">{card.desc}</p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Stats Bar with Frosted Glass Badges */}
-          <div className="pt-8 border-t border-slate-200/80 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-center">
-            {SCHOOL_INFO.stats.slice(0, 4).map((st, i) => (
-              <div
-                key={i}
-                className="p-4 sm:p-5 rounded-2xl bg-white/70 backdrop-blur-md border border-slate-200/70 shadow-xs hover:shadow-md hover:bg-white/95 hover:-translate-y-1 transition-all duration-300 space-y-1 group"
-              >
-                <div className="text-3xl sm:text-4xl font-black text-slate-900 font-mono group-hover:scale-105 transition-transform">
-                  {st.value}
-                  <span className="text-[#008744]">{st.suffix}</span>
-                </div>
-                <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
-                  {st.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================================
-          3. UPCOMING EVENTS & NOTICES
-      ======================================================== */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-8 space-y-8">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 pb-4">
-          <div className="space-y-1">
-            <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#008744] bg-emerald-50 px-3.5 py-1 rounded-full border border-emerald-200">
-              <Calendar className="w-3.5 h-3.5" />
-              <span>Campus Calendar</span>
+      <section className="bg-slate-50/70 border-y border-slate-200/70 py-14 sm:py-18">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-10">
+          <div className="text-center max-w-xl mx-auto space-y-2">
+            <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#008744] bg-emerald-100/70 px-3.5 py-1 rounded-full border border-emerald-200">
+              <GraduationCap className="w-3.5 h-3.5 text-[#008744]" />
+              <span>Academic Programs</span>
             </span>
             <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-              Events & <span className="text-[#008744]">Announcements</span>
-            </h2>
-          </div>
-          <Link
-            href="/news-events"
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-[#008744] hover:underline"
-          >
-            <span>View All Notices & Events</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {upcomingEvents.map((evt, idx) => (
-            <div
-              key={idx}
-              className="bg-white/90 backdrop-blur-xl rounded-3xl p-5 shadow-sm hover:shadow-2xl hover:border-emerald-300 border border-slate-200/80 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between space-y-4 group"
-            >
-              <div className="space-y-3">
-                <div className="h-44 w-full rounded-2xl overflow-hidden bg-slate-100 relative">
-                  <img
-                    src={evt.image}
-                    alt={evt.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                </div>
-                <div className="flex items-center gap-3 text-xs text-slate-500 pt-1">
-                  <span className="flex items-center gap-1 text-[#008744] font-semibold bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100">
-                    <Calendar className="w-3.5 h-3.5" />
-                    <span>{evt.date}</span>
-                  </span>
-                  <span className="flex items-center gap-1 text-slate-400">
-                    <Clock className="w-3.5 h-3.5" />
-                    <span>{evt.time}</span>
-                  </span>
-                </div>
-                <h3 className="text-sm font-bold text-slate-900 group-hover:text-[#008744] transition-colors leading-snug">
-                  {evt.title}
-                </h3>
-                <p className="text-xs text-slate-600 leading-relaxed line-clamp-2">
-                  {evt.desc}
-                </p>
-              </div>
-
-              <div className="pt-3 border-t border-slate-100">
-                <Link
-                  href="/news-events"
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#008744] hover:underline"
-                >
-                  <span>Read Notice</span>
-                  <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ========================================================
-          4. CAMPUS TOUR & DOCUMENTARY
-      ======================================================== */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-8">
-        <div className="bg-slate-900 rounded-3xl p-6 sm:p-10 text-white relative overflow-hidden border border-slate-800">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-5 space-y-4">
-              <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-400 bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-800/60">
-                <Play className="w-3.5 h-3.5 fill-emerald-400 text-emerald-400" />
-                <span>Campus Life</span>
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight leading-tight">
-                Explore Our Campus & Student Activities
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                Take a look at life on campus — from state-of-the-art laboratories and sports meets to cultural arts festivals and social service camps.
-              </p>
-              <div className="pt-2 flex flex-wrap gap-3">
-                <Link
-                  href="/campus-life"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#008744] hover:bg-[#007038] text-white font-bold text-xs uppercase tracking-wider transition-all"
-                >
-                  <span>Campus Facilities</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-                <Link
-                  href="/gallery"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-wider border border-white/20 transition-all"
-                >
-                  <span>Photo Gallery</span>
-                </Link>
-              </div>
-            </div>
-
-            {/* Video Preview Card */}
-            <div className="lg:col-span-7">
-              <div
-                onClick={() => setVideoModalOpen(true)}
-                className="relative h-60 sm:h-72 w-full rounded-2xl overflow-hidden cursor-pointer shadow-xl group border-2 border-white/20"
-              >
-                <img
-                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1000&auto=format&fit=crop"
-                  alt="Video Tour Preview"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors flex items-center justify-center">
-                  <div className="relative flex items-center justify-center">
-                    <div className="absolute inset-0 rounded-full bg-emerald-400 animate-ping opacity-40 pointer-events-none" />
-                    <div className="w-14 h-14 rounded-full bg-[#008744] text-white flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform relative z-10 border-2 border-white/40">
-                      <Play className="w-6 h-6 fill-white ml-0.5" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================================
-          5. ADMINISTRATIVE LEADERSHIP
-      ======================================================== */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-8 space-y-8">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 pb-4">
-          <div className="space-y-1">
-            <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#008744] bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
-              <Users className="w-3.5 h-3.5" />
-              <span>Leadership</span>
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-              Administrative <span className="text-[#008744]">Leadership</span>
-            </h2>
-          </div>
-          <Link
-            href="/teachers"
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-[#008744] hover:underline"
-          >
-            <span>Meet All Faculty</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {keyLeaders.map((ldr, idx) => (
-            <div
-              key={idx}
-              className="bg-white/90 backdrop-blur-xl rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:border-emerald-300 border border-slate-200/80 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between group"
-            >
-              <div>
-                <div className="h-56 w-full overflow-hidden bg-slate-100 relative">
-                  <img
-                    src={ldr.photo}
-                    alt={ldr.name}
-                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                </div>
-                <div className="p-4 space-y-1">
-                  <h3 className="text-sm font-bold text-slate-900 group-hover:text-[#008744] transition-colors">{ldr.name}</h3>
-                  <div className="text-xs font-semibold text-[#008744]">{ldr.role}</div>
-                  <div className="text-[11px] text-slate-500">{ldr.title}</div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ========================================================
-          6. ALUMNI & STUDENT VOICES
-      ======================================================== */}
-      <section className="bg-slate-50/80 border-t border-slate-200/90 py-14 sm:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-8">
-          <div className="text-center max-w-xl mx-auto space-y-1">
-            <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#008744] bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
-              <Quote className="w-3.5 h-3.5" />
-              <span>Testimonials</span>
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-              Voices of <span className="text-[#008744]">PPM HSS</span>
+              Curriculum & Specialized Wings
             </h2>
             <p className="text-xs sm:text-sm text-slate-600">
-              Reflections from our students and distinguished alumni.
+              Recognized Kerala state syllabus with modern ICT classrooms and science laboratories.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {testimonials.map((item, idx) => (
-              <div
-                key={idx}
-                className="bg-white/85 backdrop-blur-md rounded-3xl p-6 shadow-sm hover:shadow-xl hover:border-emerald-300 border border-slate-200/90 transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between space-y-4 group"
-              >
-                <p className="text-xs text-slate-600 leading-relaxed italic group-hover:text-slate-800 transition-colors">
-                  &ldquo;{item.quote}&rdquo;
-                </p>
-
-                <div className="flex items-center gap-3 pt-4 border-t border-slate-100">
-                  <img
-                    src={item.avatar}
-                    alt={item.name}
-                    className="w-10 h-10 rounded-full object-cover border border-slate-200 group-hover:border-emerald-300 transition-colors"
-                  />
-                  <div>
-                    <h4 className="text-xs font-bold text-slate-900 group-hover:text-[#008744] transition-colors">{item.name}</h4>
-                    <p className="text-[10px] text-slate-500">{item.role}</p>
+            {/* Wing 1: Higher Secondary */}
+            <div className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs hover:shadow-xl hover:border-emerald-400 transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between group">
+              <div className="space-y-4">
+                <div className="w-12 h-12 rounded-xl bg-emerald-50 text-[#008744] group-hover:bg-[#008744] group-hover:text-white transition-colors duration-300 flex items-center justify-center">
+                  <GraduationCap className="w-6 h-6" />
+                </div>
+                <div>
+                  <div className="text-[11px] font-bold text-emerald-600 uppercase tracking-wider">
+                    Standards 11 & 12
                   </div>
+                  <h3 className="text-base font-bold text-slate-900 group-hover:text-[#008744] transition-colors mt-0.5">
+                    Higher Secondary (HSE)
+                  </h3>
+                  <p className="text-xs text-slate-500 mt-2 leading-relaxed">
+                    Science (Biology & Computer Science), Commerce, and Humanities streams with state-of-the-art research laboratories.
+                  </p>
                 </div>
               </div>
-            ))}
-          </div>
+              <Link
+                href="/academics"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#008744] group-hover:text-slate-900 pt-4 mt-4 border-t border-slate-100 uppercase tracking-wider transition-colors"
+              >
+                <span>Explore HSE Streams</span>
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
 
-          <div className="text-center pt-2">
-            <Link
-              href="/alumni"
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-slate-900 hover:bg-[#008744] text-white font-bold text-xs uppercase tracking-wider shadow-sm transition-all"
-            >
-              <span>Explore Alumni Network</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
+            {/* Wing 2: High School */}
+            <div className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs hover:shadow-xl hover:border-emerald-400 transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between group">
+              <div className="space-y-4">
+                <div className="w-12 h-12 rounded-xl bg-emerald-50 text-[#008744] group-hover:bg-[#008744] group-hover:text-white transition-colors duration-300 flex items-center justify-center">
+                  <BookOpen className="w-6 h-6" />
+                </div>
+                <div>
+                  <div className="text-[11px] font-bold text-emerald-600 uppercase tracking-wider">
+                    Standards 8, 9 & 10
+                  </div>
+                  <h3 className="text-base font-bold text-slate-900 group-hover:text-[#008744] transition-colors mt-0.5">
+                    High School Wing (HS)
+                  </h3>
+                  <p className="text-xs text-slate-500 mt-2 leading-relaxed">
+                    KITE ICT-enabled classrooms, comprehensive language training, basic science practicals, and 194 Full A+ in SSLC 2024.
+                  </p>
+                </div>
+              </div>
+              <Link
+                href="/academics"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#008744] group-hover:text-slate-900 pt-4 mt-4 border-t border-slate-100 uppercase tracking-wider transition-colors"
+              >
+                <span>Explore High School</span>
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+
+            {/* Wing 3: Campus & Facilities */}
+            <div className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs hover:shadow-xl hover:border-emerald-400 transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between group">
+              <div className="space-y-4">
+                <div className="w-12 h-12 rounded-xl bg-emerald-50 text-[#008744] group-hover:bg-[#008744] group-hover:text-white transition-colors duration-300 flex items-center justify-center">
+                  <Building2 className="w-6 h-6" />
+                </div>
+                <div>
+                  <div className="text-[11px] font-bold text-emerald-600 uppercase tracking-wider">
+                    Infrastructure & Activities
+                  </div>
+                  <h3 className="text-base font-bold text-slate-900 group-hover:text-[#008744] transition-colors mt-0.5">
+                    Campus Life & Facilities
+                  </h3>
+                  <p className="text-xs text-slate-500 mt-2 leading-relaxed">
+                    15,000+ volume central library, high-tech science labs, 4.5-acre playground, NCC, Scouts & Guides, and clubs.
+                  </p>
+                </div>
+              </div>
+              <Link
+                href="/campus-life"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#008744] group-hover:text-slate-900 pt-4 mt-4 border-t border-slate-100 uppercase tracking-wider transition-colors"
+              >
+                <span>Explore Campus Life</span>
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Video Modal */}
-      {videoModalOpen && (
-        <div
-          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-xs flex items-center justify-center p-4"
-          onClick={() => setVideoModalOpen(false)}
-        >
-          <div
-            className="bg-white rounded-3xl max-w-2xl w-full p-6 space-y-4 shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-              <h3 className="text-base font-bold text-slate-900">
-                PPM HSS Kottukkara — Campus Documentary
-              </h3>
-              <button
-                onClick={() => setVideoModalOpen(false)}
-                className="text-xs font-bold text-slate-500 hover:text-slate-800"
-              >
-                Close ✕
-              </button>
-            </div>
-            <div className="aspect-video w-full rounded-2xl bg-slate-900 flex items-center justify-center text-white text-xs">
-              <div className="text-center space-y-2 p-6">
-                <Play className="w-12 h-12 text-[#008744] mx-auto fill-[#008744]" />
-                <p className="font-bold text-sm">PPM HSS Official Documentary</p>
-                <p className="text-slate-400 text-xs">Available on our official YouTube channel @ppmhsskottukkara</p>
+      {/* ========================================================
+          3. OFFICIAL NOTICES & SCHOOL INFO (EXECUTIVE 2-COL)
+      ======================================================== */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          {/* Left: Latest Notices & Circulars */}
+          <div className="lg:col-span-8 space-y-5">
+            <div className="flex items-center justify-between border-b border-slate-200 pb-3">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-[#008744]">
+                  Official Noticeboard
+                </span>
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900 mt-0.5">
+                  Latest Circulars & Announcements
+                </h3>
               </div>
+              <Link
+                href="/news-events"
+                className="text-xs font-bold text-[#008744] hover:underline flex items-center gap-1"
+              >
+                <span>View All</span>
+                <ArrowRight className="w-3 h-3" />
+              </Link>
+            </div>
+
+            <div className="space-y-3">
+              {notices.map((n, idx) => (
+                <div
+                  key={n.id || n._id || idx}
+                  className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/80 hover:border-emerald-400 hover:shadow-md transition-all duration-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 group"
+                >
+                  <div className="space-y-1.5">
+                    <div className="flex items-center gap-2">
+                      <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100">
+                        {n.category}
+                      </span>
+                      {n.urgent && (
+                        <span className="text-[10px] font-bold text-rose-600 bg-rose-50 px-2 py-0.5 rounded-full border border-rose-200 animate-pulse">
+                          Urgent
+                        </span>
+                      )}
+                      <span className="text-xs text-slate-400 font-mono">
+                        {n.date}
+                      </span>
+                    </div>
+                    <h4 className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-[#008744] transition-colors line-clamp-2">
+                      {n.title}
+                    </h4>
+                  </div>
+                  <Link
+                    href="/news-events"
+                    className="inline-flex items-center gap-1 text-xs font-bold text-[#008744] shrink-0 hover:underline"
+                  >
+                    <span>Read Circular</span>
+                    <ArrowRight className="w-3 h-3" />
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right: Executive School Key Info Card */}
+          <div className="lg:col-span-4 bg-slate-900 text-white rounded-3xl p-6 sm:p-7 shadow-xl border border-slate-800 space-y-6">
+            <div className="space-y-1 border-b border-slate-800 pb-4">
+              <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">
+                School Helpdesk
+              </span>
+              <h4 className="text-lg font-bold text-white">
+                PPM HSS Kottukkara
+              </h4>
+              <p className="text-xs text-slate-400">
+                School Code: <span className="font-mono text-emerald-400 font-bold">11024</span> • Govt-Aided
+              </p>
+            </div>
+
+            <div className="space-y-3.5 text-xs text-slate-300">
+              <div className="flex items-start gap-2.5">
+                <MapPin className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                <span>Kottukkara, Kondotty, Malappuram, Kerala - 673638</span>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <Phone className="w-4 h-4 text-emerald-400 shrink-0" />
+                <a href={`tel:${SCHOOL_INFO.phone}`} className="hover:text-white transition-colors">
+                  {SCHOOL_INFO.phone}
+                </a>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <Mail className="w-4 h-4 text-emerald-400 shrink-0" />
+                <a href={`mailto:${SCHOOL_INFO.email}`} className="hover:text-white transition-colors truncate">
+                  {SCHOOL_INFO.email}
+                </a>
+              </div>
+            </div>
+
+            <div className="pt-2 space-y-2">
+              <Link
+                href="/admissions"
+                className="block w-full py-2.5 px-4 rounded-full bg-[#008744] hover:bg-[#007038] text-white font-bold text-xs uppercase tracking-wider text-center transition-all shadow-md"
+              >
+                Admissions Portal & Info
+              </Link>
+              <Link
+                href="/contact"
+                className="block w-full py-2.5 px-4 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs uppercase tracking-wider text-center transition-all border border-slate-700"
+              >
+                Campus Visit & Map
+              </Link>
             </div>
           </div>
         </div>
-      )}
+      </section>
+
+      {/* ========================================================
+          4. SLEEK ADMISSIONS BANNER (CLEAN & MINIMALIST)
+      ======================================================== */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-8 pb-8">
+        <div className="rounded-3xl bg-gradient-to-r from-slate-900 via-slate-900 to-emerald-950 p-6 sm:p-10 text-white border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
+          <div className="space-y-2 text-center md:text-left">
+            <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-400 bg-emerald-950/80 px-3 py-1 rounded-full border border-emerald-800/60">
+              <ShieldCheck className="w-3.5 h-3.5" />
+              <span>Admissions Open 2025–26</span>
+            </span>
+            <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+              Join Our Academic Community at Kottukkara
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-300 max-w-xl">
+              Assistance for Single Window HSCAP options and Class 8–10 admissions available through our helpdesk.
+            </p>
+          </div>
+
+          <div className="flex items-center gap-3 shrink-0">
+            <Link
+              href="/admissions"
+              className="px-6 py-3 rounded-full bg-[#008744] hover:bg-[#007038] text-white font-bold text-xs uppercase tracking-wider shadow-md transition-all cursor-pointer"
+            >
+              Admissions Guide
+            </Link>
+            <Link
+              href="/contact"
+              className="px-5 py-3 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-wider border border-white/20 transition-all cursor-pointer"
+            >
+              Contact Us
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
